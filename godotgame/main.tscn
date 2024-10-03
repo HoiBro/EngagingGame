@@ -7,7 +7,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mcfso"]
 
 [node name="Main" type="Node2D"]
-<<<<<<< HEAD
 
 [node name="player" type="RigidBody2D" parent="."]
 constant_force = Vector2(0, 9)
