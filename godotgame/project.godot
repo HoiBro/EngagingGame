@@ -11,5 +11,17 @@ config_version=5
 [application]
 
 config/name="GodotGame"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+<<<<<<< HEAD
+[dotnet]
+
+project/assembly_name="GodotGame"
+=======
+[physics]
+
+common/physics_ticks_per_second=1000
+common/max_physics_steps_per_frame=60
+>>>>>>> e947f1f04b3479bd8821a31c5da01867499a65e1
