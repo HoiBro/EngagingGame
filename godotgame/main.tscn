@@ -1,5 +1,39 @@
-[gd_scene format=3 uid="uid://basgipq3lyrs8"]
+[gd_scene load_steps=4 format=3 uid="uid://basgipq3lyrs8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_123yq"]
+
+[sub_resource type="TileSet" id="TileSet_83ada"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mcfso"]
 
 [node name="Main" type="Node2D"]
 
-[node name="FixedCamera" type="Camera2D" parent="."]
+[node name="player" type="RigidBody2D" parent="."]
+constant_force = Vector2(0, 9)
+
+[node name="FixedCamera" type="Camera2D" parent="player"]
+zoom = Vector2(5, 5)
+
+[node name="playerHitbox" type="CollisionShape2D" parent="player"]
+shape = SubResource("CapsuleShape2D_123yq")
+debug_color = Color(0, 0.600451, 0.697398, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="player"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(10, 15, -10, 15, -10, -15, 10, -15)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+tile_set = SubResource("TileSet_83ada")
+
+[node name="map temp" type="RigidBody2D" parent="."]
+position = Vector2(0, 30)
+
+[node name="lower boundry" type="CollisionShape2D" parent="map temp"]
+shape = SubResource("WorldBoundaryShape2D_mcfso")
+debug_color = Color(0, 0.600451, 0.697398, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="map temp/lower boundry"]
+position = Vector2(0, -30)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(100, 40, 100, 30, -100, 30, -100, 40)
