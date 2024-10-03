@@ -7,6 +7,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mcfso"]
 
 [node name="Main" type="Node2D"]
+<<<<<<< HEAD
 
 [node name="player" type="RigidBody2D" parent="."]
 constant_force = Vector2(0, 9)
@@ -37,3 +38,5 @@ debug_color = Color(0, 0.600451, 0.697398, 0.42)
 position = Vector2(0, -30)
 color = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(100, 40, 100, 30, -100, 30, -100, 40)
+=======
+>>>>>>> parent of ca3b04a (test 4)
