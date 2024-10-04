@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 1000
+@export var max_speed = 1000
+@export var acceleration_ground = 5000
+@export var acceleration_air = 1000
 @export var jump_velocity = -750.0
 @export var air_friction = 2000
 @export var ground_friction = 5000
@@ -24,12 +26,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_movement(DIR,delta):
-	if DIR: 
-		velocity.x = DIR * speed
+	if DIR:
+		if abs(velocity.x) < max_speed:
+			if is_on_floor():
+				velocity.x += DIR * acceleration_ground * delta
+			else:
+				velocity.x += DIR * acceleration_air * delta
+				print(velocity.x)
 
 func handle_friction(DIR,delta):
 	if is_on_floor():
-		move_toward(velocity.x, 0, ground_friction * delta)
-		print(ground_friction * delta)
+		if velocity.x > 0:
+			velocity.x -= ground_friction * delta
+		else:
+			velocity.x += ground_friction * delta
+		## move_toward(velocity.x, 0, ground_friction * delta) wil niet werken, weet ook niet waarom
 	else:
 		move_toward(velocity.x, 0, air_friction * delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=7 format=3 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://icon.svg" id="2_ht8q8"]
@@ -9,6 +9,11 @@ size = Vector2(495, 77.5)
 [sub_resource type="QuadMesh" id="QuadMesh_pt4u1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u2u65"]
+
+[sub_resource type="TileSet" id="TileSet_ccg35"]
+tile_layout = 2
+tile_size = Vector2i(64, 64)
+uv_clipping = true
 
 [node name="World" type="Node2D"]
 
@@ -49,3 +54,6 @@ position = Vector2(55.5, 95.75)
 scale = Vector2(495, 86.5)
 mesh = SubResource("QuadMesh_pt4u1")
 texture = ExtResource("2_ht8q8")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ccg35")
