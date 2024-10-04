@@ -1,7 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=6 format=3 uid="uid://cicu2igm1m3ux"]
 
-[ext_resource type="PackedScene" uid="uid://dxqhri8g637de" path="res://scenes/player.tscn" id="1_w1ley"]
+[ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://icon.svg" id="2_ht8q8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg1pe"]
+size = Vector2(495, 77.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pt4u1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u2u65"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_w1ley")]
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(56, 99)
+shape = SubResource("RectangleShape2D_xg1pe")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
+position = Vector2(55.5, 95.75)
+scale = Vector2(495, 86.5)
+mesh = SubResource("QuadMesh_pt4u1")
+texture = ExtResource("2_ht8q8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 400)
+shape = SubResource("WorldBoundaryShape2D_u2u65")
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(628, -73)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(56, 99)
+shape = SubResource("RectangleShape2D_xg1pe")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2"]
+position = Vector2(55.5, 95.75)
+scale = Vector2(495, 86.5)
+mesh = SubResource("QuadMesh_pt4u1")
+texture = ExtResource("2_ht8q8")
