@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var SPEED = 1000
-@export var JUMP_VELOCITY = -400.0
-@export var AIR_FRICTION = 2000
-@export var GROUND_FRICTION = 5000
+@export var speed = 1000
+@export var jump_velocity = -400.0
+@export var air_friction = 2000
+@export var ground_friction = 5000
 
 
 func _physics_process(delta: float) -> void:
@@ -13,15 +13,23 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_velocity
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
-		velocity.x = velocity.x + direction * delta * SPEED
-	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, GROUND_FRICTION * delta)
+	var DIRECTION = Input.get_axis("move_left", "move_right")
+	
+	if DIRECTION:
+		if is_on_floor():
+			if((velocity.x > 0) != (DIRECTION > 0) and velocity.x != 0):
+				velocity.x = move_toward(velocity.x, 0, (ground_friction + DIRECTION * speed) * delta)
+			else:
+				velocity.x = move_toward(velocity.x, DIRECTION * speed, ground_friction * delta)
+		else:
+			velocity.x = move_toward(velocity.x, DIRECTION * speed, air_friction * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION * delta)
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 
 	move_and_slide()
