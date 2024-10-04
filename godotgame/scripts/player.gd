@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var max_speed = 1000
-@export var acceleration_ground = 5000
+@export var acceleration_ground = 6000
 @export var acceleration_air = 1000
 @export var jump_velocity = -750.0
 @export var air_friction = 2000
@@ -32,7 +32,6 @@ func handle_movement(DIR,delta):
 				velocity.x += DIR * acceleration_ground * delta
 			else:
 				velocity.x += DIR * acceleration_air * delta
-				print(velocity.x)
 
 func handle_friction(DIR,delta):
 	if is_on_floor():

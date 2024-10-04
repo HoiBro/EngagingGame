@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://icon.svg" id="1_dn1ol"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbqx5"]
-size = Vector2(79, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
+size = Vector2(60, 90)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -63)
@@ -12,14 +12,15 @@ script = ExtResource("1_s1vd6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.500001, -1)
-scale = Vector2(0.617188, 1)
+scale = Vector2(0.5, 0.7)
 texture = ExtResource("1_dn1ol")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_fbqx5")
+shape = SubResource("RectangleShape2D_5gqgi")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2(0, -100)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
