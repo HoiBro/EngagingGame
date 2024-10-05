@@ -6,7 +6,11 @@ extends CharacterBody2D
 @export var jump_velocity = 750.0
 @export var air_friction = 200
 @export var ground_friction = 5000
+@export var recoil = 1200
 
+func _input(event):
+	if event.is_action_pressed(&"fire shotgun"):
+		handle_recoil_shotgun()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -54,5 +58,6 @@ func handle_friction(delta):
 				velocity.x += air_friction * delta
 
 func handle_recoil_shotgun():
-	pass
-	get_global_mouse_position()
+	var POS_DELTA = position - get_global_mouse_position()
+	var RECOIL = POS_DELTA.normalized() * recoil
+	velocity += RECOIL

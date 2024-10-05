@@ -28,6 +28,7 @@ position_smoothing_speed = 10.0
 script = ExtResource("3_5iy3g")
 
 [node name="Shotgun" type="Node2D" parent="."]
+position = Vector2(0, 20)
 
 [node name="Shotgun" type="Sprite2D" parent="Shotgun"]
 texture = ExtResource("5_8i122")
