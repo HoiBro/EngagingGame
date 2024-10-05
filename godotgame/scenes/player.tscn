@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://icon.svg" id="1_dn1ol"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
-[ext_resource type="Script" path="res://scenes/player_camera.gd" id="3_5iy3g"]
-[ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://shotgun.png" id="5_8i122"]
-[ext_resource type="Script" path="res://sprite_2d.gd" id="6_uu1id"]
+[ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
+[ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://textures/shotgun.png" id="5_8i122"]
+[ext_resource type="Script" path="res://scripts/sprite_2d.gd" id="6_uu1id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
 size = Vector2(60, 90)
