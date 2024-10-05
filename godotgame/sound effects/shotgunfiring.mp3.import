@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1qnlx5e1gy8f"
+path="res://.godot/imported/shotgunfiring.mp3-4d4e2a926c691c67e2beeddfba7933df.mp3str"
+
+[deps]
+
+source_file="res://sound effects/shotgunfiring.mp3"
+dest_files=["res://.godot/imported/shotgunfiring.mp3-4d4e2a926c691c67e2beeddfba7933df.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
