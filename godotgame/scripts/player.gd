@@ -14,7 +14,7 @@ var DIRECTION: int
 var JUMP_BUFFER:bool = false;
 
 func _physics_process(delta: float) -> void:
-	var DIRECTION = Input.get_axis("move_left", "move_right")
+	DIRECTION = Input.get_axis("move_left", "move_right")
 
 	# Add the gravity.
 	if not is_on_floor():
