@@ -8,12 +8,12 @@ extends CharacterBody2D
 @export var ground_friction = 3000
 @export var recoil = 1200
 @export var jump_buffer_timer = 0.07
+@export var bunnyhop_speed = 1000
 
 var DIRECTION: int
 var JUMP_BUFFER:bool = false;
 
 func _physics_process(delta: float) -> void:
-		# Get the input direction and handle the movement/deceleration.
 	var DIRECTION = Input.get_axis("move_left", "move_right")
 
 	# Add the gravity.
@@ -70,7 +70,7 @@ func handle_recoil_shotgun():
 func handle_jump(DIR):
 	if is_on_floor():
 		velocity.y -= jump_velocity
-		velocity.x += DIR + 40
+		velocity.x += DIR * bunnyhop_speed
 	elif is_on_wall():
 		velocity += get_wall_normal() * jump_velocity
 	else:
