@@ -1,9 +1,10 @@
 extends Camera2D
 
 @export var camera_height = -100
-@export var zoom_speed :float = 0.1
-@export var zoom_factor :float = 1
-var ZOOM_EXPONENT :float = log(zoom_factor)/log(2)
+@export var zoom_speed: float = 0.1
+@export var zoom_factor: float = 1
+
+var ZOOM_EXPONENT: float = log(zoom_factor)/log(2)
 
 func _input(event):
 	if event.is_action_pressed(&"zoom_in"):
