@@ -79,4 +79,3 @@ func handle_jump(DIR):
 
 func on_jump_buffer_timeout():
 	JUMP_BUFFER = false
-	
