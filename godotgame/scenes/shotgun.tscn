@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1b36vrx1y3sr"]
+
+[ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://textures/shotgun.png" id="1_55ycu"]
+[ext_resource type="Script" path="res://scripts/sprite_2d.gd" id="2_7wwmp"]
+
+[node name="shotgun" type="Node2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_55ycu")
+script = ExtResource("2_7wwmp")
