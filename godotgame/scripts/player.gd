@@ -9,16 +9,21 @@ extends CharacterBody2D
 @export var recoil = 1200
 @export var jump_buffer_timer = 0.07
 @export var bunnyhop_speed = 50
+@export var coyote_time = 0.5
 
-var DIRECTION: float
-var JUMP_BUFFER: bool = false;
+@onready var coyote_timer = $Coyote_Timer
+
+var DIRECTION: int
 var POS_DELTA: Vector2
+var CAN_JUMP: bool = false
+var JUMP_BUFFER: bool = false;
 
 func _input(event):
 	if event.is_action_pressed(&"fire shotgun"):
 		handle_recoil_shotgun(POS_DELTA)
 	if event.is_action_pressed(&"jump"):
-		handle_jump(DIRECTION)
+		if CAN_JUMP:
+			handle_jump(DIRECTION)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
@@ -27,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
+		CAN_JUMP = true
 		if JUMP_BUFFER:
 			handle_jump(DIRECTION)
 			JUMP_BUFFER = false
@@ -79,3 +85,6 @@ func handle_jump(DIR):
 
 func on_jump_buffer_timeout():
 	JUMP_BUFFER = false
+
+func on_coyote_timer_timeout():
+	CAN_JUMP = false
