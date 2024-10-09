@@ -13,6 +13,7 @@ size = Vector2(60, 90)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_s1vd6")
+coyote_time = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.7)
@@ -42,5 +43,6 @@ max_polyphony = 10
 script = ExtResource("7_ufex6")
 
 [node name="Coyote_Timer" type="Timer" parent="."]
+one_shot = true
 
-[connection signal="timeout" from="Coyote_Timer" to="." method="on_coyote_timer_timeout"]
+[connection signal="timeout" from="Coyote_Timer" to="." method="on_coyote_timeout"]

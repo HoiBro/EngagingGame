@@ -52,6 +52,10 @@ zoom_out={
 ]
 }
 
+[internationalization]
+
+rendering/bg_color=Color(0.14, 0.14, 0.14, 1)
+
 [physics]
 
 common/physics_ticks_per_second=1000

@@ -13,7 +13,7 @@ extends CharacterBody2D
 
 @onready var coyote_timer = $Coyote_Timer
 
-var DIRECTION: int
+var DIRECTION: float
 var POS_DELTA: Vector2
 var CAN_JUMP: bool = false
 var JUMP_BUFFER: bool = false;
@@ -22,8 +22,7 @@ func _input(event):
 	if event.is_action_pressed(&"fire shotgun"):
 		handle_recoil_shotgun(POS_DELTA)
 	if event.is_action_pressed(&"jump"):
-		if CAN_JUMP:
-			handle_jump(DIRECTION)
+		handle_jump(DIRECTION)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
@@ -31,6 +30,9 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		if CAN_JUMP:
+			if not coyote_timer:
+				coyote_timer.start(coyote_time)
 	else:
 		CAN_JUMP = true
 		if JUMP_BUFFER:
@@ -52,22 +54,9 @@ func handle_movement(DIR,delta):
 
 func handle_friction(delta):
 	if is_on_floor():
-		if abs(velocity.x) > 0:
-			if velocity.x > 0:
-				velocity.x -= ground_friction * delta
-				if velocity.x < 0:
-					velocity.x = 0
-			else:
-				velocity.x += ground_friction * delta
-				if velocity.x > 0:
-					velocity.x = 0
-		## move_toward(velocity.x, 0, ground_friction * delta) wil niet werken, weet ook niet waarom
+		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
 	else:
-		if abs(velocity.x) > 0:
-			if velocity.x > 0:
-				velocity.x -= air_friction * delta
-			else:
-				velocity.x += air_friction * delta
+		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 
 func handle_recoil_shotgun(POS):
 	var RECOIL = POS.normalized() * recoil
@@ -77,8 +66,7 @@ func handle_jump(DIR):
 	if is_on_floor():
 		velocity.y -= jump_velocity
 		velocity.x += DIR * bunnyhop_speed
-	elif is_on_wall():
-		velocity += get_wall_normal() * jump_velocity
+		CAN_JUMP = false
 	else:
 		JUMP_BUFFER = true
 		get_tree().create_timer(jump_buffer_timer).timeout.connect(on_jump_buffer_timeout)
@@ -86,5 +74,5 @@ func handle_jump(DIR):
 func on_jump_buffer_timeout():
 	JUMP_BUFFER = false
 
-func on_coyote_timer_timeout():
+func on_coyote_timeout():
 	CAN_JUMP = false
