@@ -33,6 +33,11 @@ func _physics_process(delta: float) -> void:
 		if CAN_JUMP:
 			if not coyote_timer:
 				coyote_timer.start(coyote_time)
+		else:
+			pass
+			#var distance = position - TileMapLayer.position
+			#if distance.abs < 30: #this is a bit finicky, switch it for a better condition
+				#print(distance) #put walljump code here
 	else:
 		CAN_JUMP = true
 		if JUMP_BUFFER:
@@ -76,3 +81,7 @@ func on_jump_buffer_timeout():
 
 func on_coyote_timeout():
 	CAN_JUMP = false
+
+func handle_forces():
+	var forces = null
+	velocity += forces

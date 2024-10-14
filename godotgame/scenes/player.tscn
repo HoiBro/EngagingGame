@@ -29,6 +29,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_5iy3g")
 
+[node name="Coyote_Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Shotgun" type="Node2D" parent="."]
 position = Vector2(0, 20)
 
@@ -39,10 +42,7 @@ script = ExtResource("6_uu1id")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Shotgun"]
 stream = ExtResource("6_drf0i")
 volume_db = 10.0
-max_polyphony = 10
+max_polyphony = 2
 script = ExtResource("7_ufex6")
-
-[node name="Coyote_Timer" type="Timer" parent="."]
-one_shot = true
 
 [connection signal="timeout" from="Coyote_Timer" to="." method="on_coyote_timeout"]
