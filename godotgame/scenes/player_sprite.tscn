@@ -23,3 +23,9 @@ position = Vector2(-25, 45)
 scale = Vector2(1.5, 1.5)
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="PolygonFace" type="Polygon2D" parent="Sprite2D/PolygonBody"]
+position = Vector2(40, 0)
+scale = Vector2(2.25, 2.25)
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(5, 10, 5, -10, -5, -10, -5, 10)

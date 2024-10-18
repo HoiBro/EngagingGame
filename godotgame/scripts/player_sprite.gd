@@ -7,10 +7,8 @@ func _process(delta: float) -> void:
 	var COS = cos(angle)
 	
 	if (COS < 0) != (cos < 0): #AAAAAAAH werkt niet, flip is niet inherited :(
-		var VECTOR = Vector2.ZERO # en de transform is fucked goofy
 		if (COS < 0):
-			VECTOR.x = floor(cos(angle))
+			scale.x = floor(cos(angle))
 		else:
-			VECTOR.x = ceil(cos(angle))
-		transform.scaled(VECTOR)
+			scale.x = ceil(cos(angle))
 		cos = COS
