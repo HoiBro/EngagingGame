@@ -1,5 +1,9 @@
 extends AudioStreamPlayer
 
-func _input(event):
-	if event.is_action_pressed(&"fire shotgun"):
-		play()
+signal shotgun_fired
+
+func _ready() -> void:
+	connect("shotgun_fired",shotgun)
+
+func shotgun():
+	play()

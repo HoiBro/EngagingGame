@@ -14,19 +14,20 @@ extends CharacterBody2D
 @onready var coyote_timer = $Coyote_Timer
 
 var DIRECTION: float
-var POS_DELTA: Vector2
+var POS_DELTA_MOUSE: Vector2
 var CAN_JUMP: bool = false
-var JUMP_BUFFER: bool = false;
+var JUMP_BUFFER: bool = false
+
+func _ready() -> void:
+	$Shotgun.connect("shotgun_fired",handle_recoil_shotgun)
 
 func _input(event):
-	if event.is_action_pressed(&"fire shotgun"):
-		handle_recoil_shotgun(POS_DELTA)
 	if event.is_action_pressed(&"jump"):
 		handle_jump(DIRECTION)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
-	POS_DELTA = position - get_global_mouse_position()
+	POS_DELTA_MOUSE = position - get_global_mouse_position()
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -35,8 +36,8 @@ func _physics_process(delta: float) -> void:
 				coyote_timer.start(coyote_time)
 		else:
 			pass
-			#var distance = position - TileMapLayer.position
-			#if distance.abs < 30: #this is a bit finicky, switch it for a better condition
+			#var distance = position - TileMapLayer.position #distance to tilemap is hard to get
+			#if distance.abs < 30:
 				#print(distance) #put walljump code here
 	else:
 		CAN_JUMP = true
