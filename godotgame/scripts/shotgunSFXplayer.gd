@@ -6,8 +6,6 @@ signal shotgun_fired
 
 func _ready() -> void:
 	shotgun.connect("shotgun_fired",play_SFX)
-	print(shotgun)
 
-func play_SFX(_POS):
+func play_SFX(_POS,_RECOIL):
 	play()
-	print("shotgun SFX")

@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var jump_velocity = 750
 @export var air_friction = 200
 @export var ground_friction = 3000
-@export var recoil = 1200
 @export var jump_buffer_timer = 0.07
 @export var bunnyhop_speed = 50
 @export var coyote_time = 0.5
@@ -65,9 +64,9 @@ func handle_friction(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 
-func handle_recoil_shotgun(POS):
-	var RECOIL = -POS.normalized() * recoil
-	velocity += RECOIL
+func handle_recoil_shotgun(POS,RECOIL):
+	var FORCE = -POS.normalized() * RECOIL
+	velocity += FORCE
 
 func handle_jump(DIR):
 	if is_on_floor():

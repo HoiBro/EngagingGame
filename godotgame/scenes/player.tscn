@@ -43,3 +43,4 @@ script = ExtResource("7_ufex6")
 [node name="reloadTimer" type="Timer" parent="Shotgun"]
 
 [connection signal="timeout" from="Coyote_Timer" to="." method="on_coyote_timeout"]
+[connection signal="timeout" from="Shotgun/reloadTimer" to="Shotgun" method="_on_reload_timer_timeout"]
