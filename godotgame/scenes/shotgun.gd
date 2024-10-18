@@ -8,6 +8,6 @@ signal shotgun_fired
 
 func _input(event):
 	if event.is_action_pressed(&"fire shotgun"):
-		if not reloadTimer:
-			emit_signal("shotgun_fired")
+		if reloadTimer:
+			emit_signal("shotgun_fired",get_local_mouse_position())
 			reloadTimer.start(reload_time)

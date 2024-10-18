@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var coyote_time = 0.5
 
 @onready var coyote_timer = $Coyote_Timer
+@onready var shotgun = $Shotgun
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
@@ -65,7 +66,7 @@ func handle_friction(delta):
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 
 func handle_recoil_shotgun(POS):
-	var RECOIL = POS.normalized() * recoil
+	var RECOIL = -POS.normalized() * recoil
 	velocity += RECOIL
 
 func handle_jump(DIR):
