@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
 [ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
-[ext_resource type="Script" path="res://scenes/shotgun.gd" id="4_d5ahc"]
+[ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
 [ext_resource type="Script" path="res://scripts/shotgunSFXplayer.gd" id="7_ufex6"]
 
@@ -12,7 +12,6 @@ size = Vector2(60, 90)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_s1vd6")
-coyote_time = 500.0
 
 [node name="player_sprite2" parent="." instance=ExtResource("2_r7638")]
 
@@ -26,8 +25,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_5iy3g")
 
-[node name="Coyote_Timer" type="Timer" parent="."]
+[node name="coyoteTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="bufferTimer" type="Timer" parent="."]
 
 [node name="Shotgun" type="Node2D" parent="."]
 position = Vector2(25, 10)
@@ -42,5 +43,6 @@ script = ExtResource("7_ufex6")
 
 [node name="reloadTimer" type="Timer" parent="Shotgun"]
 
-[connection signal="timeout" from="Coyote_Timer" to="." method="on_coyote_timeout"]
+[connection signal="timeout" from="coyoteTimer" to="." method="on_coyote_timeout"]
+[connection signal="timeout" from="bufferTimer" to="." method="on_jump_buffer_timeout"]
 [connection signal="timeout" from="Shotgun/reloadTimer" to="Shotgun" method="_on_reload_timer_timeout"]

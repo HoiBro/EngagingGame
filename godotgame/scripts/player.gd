@@ -6,12 +6,12 @@ extends CharacterBody2D
 @export var jump_velocity = 750
 @export var air_friction = 200
 @export var ground_friction = 3000
-@export var jump_buffer_timer = 0.07
+@export var jump_buffer_time = 0.07
 @export var bunnyhop_speed = 50
 @export var coyote_time = 0.5
 
-@onready var coyote_timer = $Coyote_Timer
-@onready var shotgun = $Shotgun
+@onready var coyote_timer = $coyoteTimer
+@onready var buffer_timer = $bufferTimer
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
@@ -28,11 +28,11 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
-
-	if not is_on_floor():
+	
+	if !is_on_floor():
 		velocity += get_gravity() * delta
 		if CAN_JUMP:
-			if not coyote_timer:
+			if coyote_timer.is_stopped():
 				coyote_timer.start(coyote_time)
 		else:
 			pass
@@ -49,6 +49,15 @@ func _physics_process(delta: float) -> void:
 	handle_movement(DIRECTION,delta)
 	
 	move_and_slide()
+
+func handle_jump(DIR):
+	if is_on_floor():
+		velocity.y -= jump_velocity
+		velocity.x += DIR * bunnyhop_speed
+		CAN_JUMP = false
+	else:
+		JUMP_BUFFER = true
+		buffer_timer.start(jump_buffer_time)
 
 func handle_movement(DIR,delta):
 	if DIR:
@@ -67,15 +76,6 @@ func handle_friction(delta):
 func handle_recoil_shotgun(POS,RECOIL):
 	var FORCE = -POS.normalized() * RECOIL
 	velocity += FORCE
-
-func handle_jump(DIR):
-	if is_on_floor():
-		velocity.y -= jump_velocity
-		velocity.x += DIR * bunnyhop_speed
-		CAN_JUMP = false
-	else:
-		JUMP_BUFFER = true
-		get_tree().create_timer(jump_buffer_timer).timeout.connect(on_jump_buffer_timeout)
 
 func on_jump_buffer_timeout():
 	JUMP_BUFFER = false
