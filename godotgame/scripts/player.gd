@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var coyote_timer = $coyoteTimer
 @onready var buffer_timer = $bufferTimer
 
+
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
 var CAN_JUMP: bool = false
