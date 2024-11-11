@@ -17,9 +17,6 @@ var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 
-func _ready() -> void:
-	$Shotgun.connect("shotgun_fired",handle_recoil_shotgun)
-
 func _input(event):
 	if event.is_action_pressed(&"jump"):
 		handle_jump(DIRECTION)
@@ -69,12 +66,11 @@ func handle_jump(DIR):
 			velocity.x += DIR * bunnyhop_speed
 
 func handle_movement(DIR,delta):
-	if DIR:
-		if abs(velocity.x) < max_speed:
-			if is_on_floor():
-				velocity.x += DIR * acceleration_ground * delta
-			else:
-				velocity.x += DIR * acceleration_air * delta
+	if DIR && abs(velocity.x) < max_speed:
+		if is_on_floor():
+			velocity.x += DIR * acceleration_ground * delta
+		else:
+			velocity.x += DIR * acceleration_air * delta
 
 func handle_friction(delta):
 	if is_on_floor():
@@ -82,10 +78,6 @@ func handle_friction(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
 
-func handle_recoil_shotgun(POS,RECOIL):
-	var FORCE = -POS.normalized() * RECOIL
+func handle_recoil_shotgun(MPOS,RECOIL):
+	var FORCE = -MPOS.normalized() * RECOIL
 	velocity += FORCE
-
-func handle_forces():
-	var forces = null
-	velocity += forces
