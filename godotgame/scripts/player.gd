@@ -77,7 +77,3 @@ func handle_friction(delta):
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, air_friction * delta)
-
-func handle_recoil_shotgun(MPOS,RECOIL):
-	var FORCE = -MPOS.normalized() * RECOIL
-	velocity += FORCE
