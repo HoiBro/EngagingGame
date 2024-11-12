@@ -20,7 +20,7 @@ var BUFFER_TIMER: float = 0
 func _ready() -> void:
 	position = Vector2(0, -50)
 
-func _input(event):
+func _input(event) -> void:
 	if event.is_action_pressed(&"jump"):
 		handle_jump(DIRECTION)
 
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func handle_jump(DIR):
+func handle_jump(DIR) -> void:
 	if is_on_floor():
 		velocity.y -= jump_velocity
 		velocity.x += DIR * bunnyhop_speed
@@ -68,14 +68,14 @@ func handle_jump(DIR):
 			velocity.y -= jump_velocity
 			velocity.x += DIR * bunnyhop_speed
 
-func handle_movement(DIR,delta):
+func handle_movement(DIR,delta) -> void:
 	if DIR && abs(velocity.x) < max_speed:
 		if is_on_floor():
 			velocity.x += DIR * acceleration_ground * delta
 		else:
 			velocity.x += DIR * acceleration_air * delta
 
-func handle_friction(delta):
+func handle_friction(delta) -> void:
 	if is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, ground_friction * delta)
 	else:

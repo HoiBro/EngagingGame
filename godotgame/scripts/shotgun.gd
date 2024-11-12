@@ -4,18 +4,18 @@ extends Node2D
 @export var recoil = 1000
 @export var ready_to_fire: bool = true
 
-@onready var player = $".."
+@onready var player: CharacterBody2D = $".."
 
 func _ready() -> void:
 	position = Vector2(25, 10)
 	scale = Vector2(1.3, 1.3)
 
-func _input(event):
+func _input(event) -> void:
 	if event.is_action_pressed(&"fire shotgun") && ready_to_fire:
 		player.velocity += -get_local_mouse_position().normalized() * recoil
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		$AudioStreamPlayer.play()
 		ready_to_fire = false
 
-func _on_reload_timer_timeout():
+func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true
