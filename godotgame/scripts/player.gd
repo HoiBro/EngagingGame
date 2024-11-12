@@ -17,6 +17,9 @@ var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 
+func _ready() -> void:
+	position = Vector2(0, -50)
+
 func _input(event):
 	if event.is_action_pressed(&"jump"):
 		handle_jump(DIRECTION)

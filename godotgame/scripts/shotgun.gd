@@ -6,12 +6,16 @@ extends Node2D
 
 @onready var player = $".."
 
+func _ready() -> void:
+	position = Vector2(25, 10)
+	scale = Vector2(1.3, 1.3)
+
 func _input(event):
 	if event.is_action_pressed(&"fire shotgun") && ready_to_fire:
 		player.velocity += -get_local_mouse_position().normalized() * recoil
+		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		$AudioStreamPlayer.play()
-		$reloadTimer.start(reload_time)
 		ready_to_fire = false
 
-func _on_reload_timer_timeout() -> void:
+func _on_reload_timer_timeout():
 	ready_to_fire = true

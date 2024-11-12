@@ -6,6 +6,12 @@ extends Camera2D
 
 var ZOOM_EXPONENT: float = log(zoom_factor)/log(2)
 
+func _ready() -> void:
+	position.y = camera_height
+	zoom = Vector2(0.5, 0.5)
+	position_smoothing_enabled = true
+	position_smoothing_speed = 10
+
 func _input(event):
 	if event.is_action_pressed(&"zoom_in"):
 		ZOOM_EXPONENT += Input.get_action_strength("zoom_in") * zoom_speed
