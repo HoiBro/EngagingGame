@@ -22,6 +22,10 @@ script = ExtResource("3_5iy3g")
 
 [node name="Shotgun" type="Node2D" parent="."]
 script = ExtResource("4_d5ahc")
+reload_time = null
+recoil = null
+ready_to_fire = null
+raycast = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Shotgun"]
 stream = ExtResource("6_drf0i")

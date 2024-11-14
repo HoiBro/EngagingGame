@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=10 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
 [ext_resource type="Texture2D" uid="uid://b6dfiyy1kcel2" path="res://textures/BlobbyTilesetTest.png" id="2_s6ahe"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_6mtiv"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_2nedq"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="5_5m22t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -392,6 +394,8 @@ terrain_set_0/terrain_0/name = "test1"
 terrain_set_0/terrain_0/color = Color(0.31, 0.31, 0.31, 1)
 sources/2 = SubResource("TileSetAtlasSource_k5gwv")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqxaw"]
+
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_w1ley")]
@@ -412,3 +416,15 @@ unresizable = true
 borderless = true
 transparent = true
 unfocusable = true
+
+[node name="Enemy" type="RigidBody2D" parent="."]
+position = Vector2(800, -50)
+script = ExtResource("5_5m22t")
+
+[node name="EnemySprite" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("4_2nedq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_gqxaw")
+debug_color = Color(1, 0, 1, 0.419608)
