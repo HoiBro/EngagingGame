@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxtn88d3xvpha"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
-[ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
+[ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/playersprite.tscn" id="2_r7638"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
 [ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
@@ -12,7 +12,7 @@ size = Vector2(60, 90)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_s1vd6")
 
-[node name="player_sprite2" parent="." instance=ExtResource("2_r7638")]
+[node name="PlayerSprite" parent="." instance=ExtResource("2_r7638")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5gqgi")
@@ -22,10 +22,6 @@ script = ExtResource("3_5iy3g")
 
 [node name="Shotgun" type="Node2D" parent="."]
 script = ExtResource("4_d5ahc")
-reload_time = null
-recoil = null
-ready_to_fire = null
-raycast = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Shotgun"]
 stream = ExtResource("6_drf0i")
