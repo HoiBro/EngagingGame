@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var enemy_stats = {
-	"health": 100
+	"health": 20
 }
 
 @onready var shotgun = $"../Player/Shotgun"

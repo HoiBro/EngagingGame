@@ -18,7 +18,7 @@ var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 
 func _ready() -> void:
-	position = Vector2(0, -50)
+	position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
 
 func _input(event) -> void:
 	if event.is_action_pressed(&"jump"):

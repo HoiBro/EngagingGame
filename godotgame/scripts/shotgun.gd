@@ -30,7 +30,8 @@ func _input(event) -> void:
 		var query = PhysicsRayQueryParameters2D.create(SHOTGUN_POSITION, SHOTGUN_POSITION + MPOS * raycast_length, 4294967295, [player])
 		var cast = get_world_2d().direct_space_state.intersect_ray(query)
 		print(cast)
-		result = cast #update global dictionary
+		for i in cast:
+			result[i] = cast[i] #update global dictionary
 		raycast_result.emit()
 		
 		ready_to_fire = false
