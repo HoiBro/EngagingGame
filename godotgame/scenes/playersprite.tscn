@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player_sprite.gd" id="1_hke06"]
 [ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://textures/shotgun.png" id="2_88ce4"]
-[ext_resource type="Script" path="res://scripts/sprite_shotgun.gd" id="3_oab32"]
+[ext_resource type="Script" path="res://scripts/shotgun_sprite.gd" id="3_oab32"]
 
 [node name="player_sprite2" type="Node2D"]
 scale = Vector2(0.7, 0.7)
