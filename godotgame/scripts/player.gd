@@ -62,12 +62,14 @@ func handle_jump(DIR) -> void:
 		velocity.y -= jump_velocity
 		velocity.x += DIR * bunnyhop_speed
 		HAS_JUMPED = true
+		print("jumped floor")
 	else:
 		BUFFER_TIMER_START = true
 		if COYOTE_TIMER != 0 && COYOTE_TIMER <= coyote_time:
 			velocity.y -= jump_velocity
 			velocity.x += DIR * bunnyhop_speed
-	get_parent().get_child(4).position = position
+			print("coyote jump")
+		$"../JumpTracker".position = position
 
 func handle_movement(DIR,delta) -> void:
 	if DIR && abs(velocity.x) < max_speed:
