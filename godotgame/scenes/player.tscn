@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxtn88d3xvpha"]
+[gd_scene load_steps=8 format=3 uid="uid://cxtn88d3xvpha"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
-[ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/playersprite.tscn" id="2_r7638"]
+[ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
 [ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
+[ext_resource type="Script" path="res://scenes/grappling_hook.gd" id="6_e0hap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
 size = Vector2(60, 90)
@@ -27,3 +28,6 @@ script = ExtResource("4_d5ahc")
 stream = ExtResource("6_drf0i")
 volume_db = 10.0
 max_polyphony = 2
+
+[node name="GrapplingHook" type="Node2D" parent="."]
+script = ExtResource("6_e0hap")

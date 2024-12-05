@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwt53j51gbysd"]
+[gd_scene load_steps=6 format=3 uid="uid://cwt53j51gbysd"]
 
 [ext_resource type="Script" path="res://scripts/player_sprite.gd" id="1_7piis"]
 [ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://textures/shotgun.png" id="2_3lln2"]
 [ext_resource type="Script" path="res://scripts/sprite_shotgun.gd" id="3_jqnmc"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_q51ri"]
+[ext_resource type="Script" path="res://scenes/grappling_hook_sprite.gd" id="5_cemdk"]
 
 [node name="player_sprite2" type="Node2D"]
 scale = Vector2(0.7, 0.7)
@@ -32,18 +34,35 @@ scale = Vector2(2.25, 2.25)
 color = Color(1, 0, 1, 1)
 polygon = PackedVector2Array(5, 10, 5, -10, -5, -10, -5, 10)
 
-[node name="Shotgun" type="Sprite2D" parent="Sprite2D"]
+[node name="ShotgunSprite" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(30, 20)
 scale = Vector2(1.7, 1.7)
 texture = ExtResource("2_3lln2")
 script = ExtResource("3_jqnmc")
 
-[node name="PolygonHand" type="Polygon2D" parent="Sprite2D/Shotgun"]
+[node name="PolygonHand" type="Polygon2D" parent="Sprite2D/ShotgunSprite"]
 position = Vector2(-15, 7)
 scale = Vector2(0.7, 0.7)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 
-[node name="PolygonHand2" type="Polygon2D" parent="Sprite2D/Shotgun"]
+[node name="PolygonHand2" type="Polygon2D" parent="Sprite2D/ShotgunSprite"]
+position = Vector2(18, 5)
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="GrapplingHookSprite" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(49.2857, 20)
+scale = Vector2(0.881696, 0.267857)
+texture = ExtResource("4_q51ri")
+script = ExtResource("5_cemdk")
+
+[node name="PolygonHand" type="Polygon2D" parent="Sprite2D/GrapplingHookSprite"]
+position = Vector2(-15, 7)
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
+
+[node name="PolygonHand2" type="Polygon2D" parent="Sprite2D/GrapplingHookSprite"]
 position = Vector2(18, 5)
 scale = Vector2(0.7, 0.7)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
