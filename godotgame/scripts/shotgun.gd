@@ -20,6 +20,7 @@ func _input(event) -> void:
 		MPOS = get_local_mouse_position().normalized()
 		SHOTGUN_POSITION = shotgun_model.position + player.position
 		player.velocity -= MPOS * recoil
+		player.just_jumped = false
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		

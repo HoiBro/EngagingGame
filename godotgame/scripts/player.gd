@@ -6,9 +6,11 @@ extends CharacterBody2D
 @export var jump_velocity = 750
 @export var air_friction = 200
 @export var ground_friction = 3000
+@export var gravity = 1000
 @export var jump_buffer_time = 0.03
 @export var bunnyhop_speed = 50
 @export var coyote_time = 0.1
+@export var just_jumped: bool = false
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
@@ -20,16 +22,14 @@ var BUFFER_TIMER: float = 0
 func _ready() -> void:
 	position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
 
-func _input(event) -> void:
-	if event.is_action_pressed(&"jump"):
-		handle_jump(DIRECTION)
-
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
 	if !is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += gravity * delta
+		if velocity.y > -200:
+			velocity.y += gravity * delta
 		if BUFFER_TIMER_START:
 			BUFFER_TIMER += delta
 		if BUFFER_TIMER > jump_buffer_time:
@@ -52,8 +52,14 @@ func _physics_process(delta: float) -> void:
 			handle_jump(DIRECTION)
 			BUFFER_TIMER = 0
 	
+	if Input.is_action_just_pressed("jump"):
+		handle_jump(DIRECTION)
 	handle_friction(delta)
 	handle_movement(DIRECTION,delta)
+	
+	if Input.is_action_just_released("jump") and just_jumped and velocity.y < 0:
+		velocity.y -= velocity.y/2
+		just_jumped = false
 	
 	move_and_slide()
 
@@ -62,14 +68,14 @@ func handle_jump(DIR) -> void:
 		velocity.y -= jump_velocity
 		velocity.x += DIR * bunnyhop_speed
 		HAS_JUMPED = true
-		print("jumped floor")
+		just_jumped = true
 	else:
 		BUFFER_TIMER_START = true
 		if COYOTE_TIMER != 0 && COYOTE_TIMER <= coyote_time:
 			velocity.y -= jump_velocity
 			velocity.x += DIR * bunnyhop_speed
-			print("coyote jump")
-		$"../JumpTracker".position = position
+			HAS_JUMPED = true
+			just_jumped = true
 
 func handle_movement(DIR,delta) -> void:
 	if DIR && abs(velocity.x) < max_speed:
