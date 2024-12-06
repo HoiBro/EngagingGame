@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
 [ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
-[ext_resource type="Script" path="res://scenes/grappling_hook.gd" id="6_e0hap"]
+[ext_resource type="Script" path="res://scripts/grappling_hook.gd" id="6_e0hap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
 size = Vector2(60, 90)

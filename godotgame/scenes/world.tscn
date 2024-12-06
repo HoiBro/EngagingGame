@@ -722,3 +722,6 @@ unfocusable = true
 [node name="Enemy" parent="." instance=ExtResource("6_vl8vc")]
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)

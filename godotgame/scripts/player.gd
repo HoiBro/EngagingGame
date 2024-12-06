@@ -47,10 +47,14 @@ func _physics_process(delta: float) -> void:
 				#print(distance) #put walljump code here
 	else:
 		HAS_JUMPED = false
+		just_jumped = false
 		COYOTE_TIMER = 0
 		if BUFFER_TIMER != 0 && BUFFER_TIMER <= jump_buffer_time:
 			handle_jump(DIRECTION)
 			BUFFER_TIMER = 0
+	
+	if $GrapplingHook.is_pulling == true and Input.is_action_pressed("fire grappling hook"):
+		velocity += delta * ($GrapplingHook.result.position - position) * 10
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
@@ -59,6 +63,10 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_released("jump") and just_jumped and velocity.y < 0:
 		velocity.y -= velocity.y/2
+		just_jumped = false
+	
+	if Input.is_action_just_released("jump") and BUFFER_TIMER != 0 and BUFFER_TIMER <= jump_buffer_time:
+		BUFFER_TIMER = 0
 		just_jumped = false
 	
 	move_and_slide()
@@ -74,6 +82,7 @@ func handle_jump(DIR) -> void:
 		if COYOTE_TIMER != 0 && COYOTE_TIMER <= coyote_time:
 			velocity.y -= jump_velocity
 			velocity.x += DIR * bunnyhop_speed
+			COYOTE_TIMER = 0
 			HAS_JUMPED = true
 			just_jumped = true
 
