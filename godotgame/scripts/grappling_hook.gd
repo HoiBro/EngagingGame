@@ -5,13 +5,11 @@ extends Node2D
 @export var pull = 1000
 @export var ready_to_fire: bool = true
 @export var raycast_length = 100000
-@export var result: Dictionary = {} # global dictionary for raycasting
+@export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."
-@onready var grappling_hook_model: Sprite2D = $"../PlayerSprite/Sprite2D/GrapplingHookSprite"
 
 var MPOS: Vector2 = Vector2(0, 0)
-var GRAPPLING_HOOK_POSITION: Vector2 = Vector2(0, 0)
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 signal raycast_result
@@ -19,15 +17,15 @@ signal raycast_result
 func _input(event) -> void:
 	if event.is_action_pressed(&"fire grappling hook") && ready_to_fire:
 		MPOS = get_local_mouse_position().normalized()
-		GRAPPLING_HOOK_POSITION = grappling_hook_model.position + player.position
 		player.just_jumped = false
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		
 		result = {}
-		QUERY = PhysicsRayQueryParameters2D.create(GRAPPLING_HOOK_POSITION, GRAPPLING_HOOK_POSITION + MPOS * raycast_length, 1, [player])
+		QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + MPOS * raycast_length, 1, [player])
 		CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
 		if CAST != {}:
+			#put code that looks for an objects property in the raycast here
 			if CAST.collider != null:
 				#player.velocity += MPOS * pull
 				is_pulling = true
@@ -40,3 +38,4 @@ func _input(event) -> void:
 
 func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true
+	player.can_grapple = true

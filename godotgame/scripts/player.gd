@@ -11,6 +11,8 @@ extends CharacterBody2D
 @export var bunnyhop_speed = 50
 @export var coyote_time = 0.1
 @export var just_jumped: bool = false
+@export var pull_strength = 10
+@export var can_grapple: bool = true
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
@@ -53,8 +55,11 @@ func _physics_process(delta: float) -> void:
 			handle_jump(DIRECTION)
 			BUFFER_TIMER = 0
 	
-	if $GrapplingHook.is_pulling == true and Input.is_action_pressed("fire grappling hook"):
-		velocity += delta * ($GrapplingHook.result.position - position) * 10
+	if Input.is_action_pressed("fire grappling hook") and $GrapplingHook.is_pulling and can_grapple:
+		velocity += delta * ($GrapplingHook.result.position - position) * pull_strength
+	
+	if Input.is_action_just_released("fire grappling hook") and !$GrapplingHook.ready_to_fire:
+		can_grapple = false
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
