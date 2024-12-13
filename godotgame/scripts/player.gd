@@ -2,17 +2,19 @@ extends CharacterBody2D
 
 @export var max_speed = 1000
 @export var acceleration_ground = 6000
-@export var acceleration_air = 2500
+@export var acceleration_air = 5000
 @export var jump_velocity = 750
 @export var air_friction = 200
 @export var ground_friction = 3000
 @export var gravity = 1000
 @export var jump_buffer_time = 0.03
-@export var bunnyhop_speed = 50
+@export var bunnyhop_speed = 100
 @export var coyote_time = 0.1
 @export var just_jumped: bool = false
-@export var pull_strength = 10
-@export var can_grapple: bool = true
+@export var pull_strength = 5000
+@export var grappling_time = 1.5
+@export var is_grappling: bool = false
+@export var has_grappled: bool = false
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
@@ -20,9 +22,12 @@ var HAS_JUMPED: bool = false
 var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
+var GRAPPLING_TIMER: float = 0
+signal done_grappling
 
 func _ready() -> void:
-	position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
+	#position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
+	position = Vector2(10000, -1500)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
@@ -54,12 +59,24 @@ func _physics_process(delta: float) -> void:
 		if BUFFER_TIMER != 0 && BUFFER_TIMER <= jump_buffer_time:
 			handle_jump(DIRECTION)
 			BUFFER_TIMER = 0
+			BUFFER_TIMER_START = false
 	
-	if Input.is_action_pressed("fire grappling hook") and $GrapplingHook.is_pulling and can_grapple:
-		velocity += delta * ($GrapplingHook.result.position - position) * pull_strength
+	if GRAPPLING_TIMER >= grappling_time:
+		is_grappling = false
+		has_grappled = true
+		GRAPPLING_TIMER = 0
+		done_grappling.emit()
 	
-	if Input.is_action_just_released("fire grappling hook") and !$GrapplingHook.ready_to_fire:
-		can_grapple = false
+	if Input.is_action_pressed("fire grappling hook") and !has_grappled:
+		if $GrapplingHook.result != {}:
+			is_grappling = true
+			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
+			GRAPPLING_TIMER += delta
+	
+	if Input.is_action_just_released("fire grappling hook"):
+		is_grappling = false
+		has_grappled = true
+		done_grappling.emit()
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
@@ -72,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_released("jump") and BUFFER_TIMER != 0 and BUFFER_TIMER <= jump_buffer_time:
 		BUFFER_TIMER = 0
-		just_jumped = false
+		BUFFER_TIMER_START = false
 	
 	move_and_slide()
 
@@ -92,7 +109,7 @@ func handle_jump(DIR) -> void:
 			just_jumped = true
 
 func handle_movement(DIR,delta) -> void:
-	if DIR && abs(velocity.x) < max_speed:
+	if DIR and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
 		if is_on_floor():
 			velocity.x += DIR * acceleration_ground * delta
 		else:
