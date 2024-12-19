@@ -14,7 +14,7 @@ var CAST: Dictionary = {}
 signal raycast_result
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"fire shotgun") && ready_to_fire:
+	if event.is_action_pressed(&"fire shotgun") and ready_to_fire and (player.item == 0 or player.item == 2):
 		MPOS = get_local_mouse_position().normalized()
 		player.velocity -= MPOS * recoil
 		player.just_jumped = false

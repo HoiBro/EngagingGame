@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwt53j51gbysd"]
+[gd_scene load_steps=8 format=3 uid="uid://cwt53j51gbysd"]
 
 [ext_resource type="Script" path="res://scripts/player_sprite.gd" id="1_7piis"]
-[ext_resource type="Texture2D" uid="uid://bmpfmhewbj223" path="res://textures/shotgun.png" id="2_3lln2"]
 [ext_resource type="Texture2D" uid="uid://td37bu0c0bwr" path="res://textures/player/eyes.png" id="2_uvbe1"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="3_78pv8"]
 [ext_resource type="Script" path="res://scripts/sprite_shotgun.gd" id="3_jqnmc"]
-[ext_resource type="Texture2D" uid="uid://dt05lymqa2ljr" path="res://textures/player/harpoon gun.png" id="4_7nx4j"]
-[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_q51ri"]
+[ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon gun(4).png" id="4_64i0i"]
 [ext_resource type="Script" path="res://scripts/grappling_hook_sprite.gd" id="5_cemdk"]
+[ext_resource type="Texture2D" uid="uid://bivxqemos3rtu" path="res://textures/player/shotgun(2).png" id="6_j5lxs"]
 
 [node name="player_sprite2" type="Node2D"]
 script = ExtResource("1_7piis")
@@ -27,7 +26,8 @@ texture = ExtResource("3_78pv8")
 [node name="Grapplinghook" type="Sprite2D" parent="."]
 z_index = 4
 position = Vector2(49.286, 20)
-texture = ExtResource("4_7nx4j")
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("4_64i0i")
 offset = Vector2(20, 100)
 script = ExtResource("5_cemdk")
 
@@ -56,8 +56,8 @@ polygon = PackedVector2Array(5, 10, 5, -10, -5, -10, -5, 10)
 [node name="ShotgunSprite" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(30, 20)
-scale = Vector2(1.7, 1.7)
-texture = ExtResource("2_3lln2")
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("6_j5lxs")
 script = ExtResource("3_jqnmc")
 
 [node name="PolygonHand" type="Polygon2D" parent="ShotgunSprite"]
@@ -66,22 +66,6 @@ scale = Vector2(0.7, 0.7)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
 
 [node name="PolygonHand2" type="Polygon2D" parent="ShotgunSprite"]
-position = Vector2(18, 5)
-scale = Vector2(0.7, 0.7)
-polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
-
-[node name="GrapplingHookSprite" type="Sprite2D" parent="."]
-position = Vector2(49.2857, 20)
-scale = Vector2(0.881696, 0.267857)
-texture = ExtResource("4_q51ri")
-script = ExtResource("5_cemdk")
-
-[node name="PolygonHand" type="Polygon2D" parent="GrapplingHookSprite"]
-position = Vector2(-15, 7)
-scale = Vector2(0.7, 0.7)
-polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
-
-[node name="PolygonHand2" type="Polygon2D" parent="GrapplingHookSprite"]
 position = Vector2(18, 5)
 scale = Vector2(0.7, 0.7)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)

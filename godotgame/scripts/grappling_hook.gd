@@ -2,7 +2,7 @@ extends Node2D
 
 @export var reload_time = 1.8
 @export var ready_to_fire: bool = true
-@export var raycast_length = 1000
+@export var raycast_length = 100000
 @export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."
@@ -13,7 +13,7 @@ var CAST: Dictionary = {}
 signal raycast_result
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"fire grappling hook") && ready_to_fire:
+	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and (player.item == 1 or player.item == 2):
 		MPOS = get_local_mouse_position().normalized()
 		player.just_jumped = false
 		player.has_grappled = false
