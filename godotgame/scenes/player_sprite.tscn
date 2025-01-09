@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwt53j51gbysd"]
+[gd_scene load_steps=7 format=3 uid="uid://cwt53j51gbysd"]
 
 [ext_resource type="Script" path="res://scripts/player_sprite.gd" id="1_7piis"]
 [ext_resource type="Texture2D" uid="uid://td37bu0c0bwr" path="res://textures/player/eyes.png" id="2_uvbe1"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="3_78pv8"]
-[ext_resource type="Script" path="res://scripts/sprite_shotgun.gd" id="3_jqnmc"]
+[ext_resource type="Script" path="res://scripts/weapon_sprite.gd" id="3_jqnmc"]
 [ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon gun(4).png" id="4_64i0i"]
-[ext_resource type="Script" path="res://scripts/grappling_hook_sprite.gd" id="5_cemdk"]
 [ext_resource type="Texture2D" uid="uid://bivxqemos3rtu" path="res://textures/player/shotgun(2).png" id="6_j5lxs"]
 
 [node name="player_sprite2" type="Node2D"]
@@ -29,7 +28,7 @@ position = Vector2(49.286, 20)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("4_64i0i")
 offset = Vector2(20, 100)
-script = ExtResource("5_cemdk")
+script = ExtResource("3_jqnmc")
 
 [node name="PolygonBody" type="Polygon2D" parent="."]
 color = Color(1, 0.00999999, 0.00999999, 1)

@@ -73,6 +73,11 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("fire grappling hook") and !has_grappled and (item == 1 or item == 2):
 		if $GrapplingHook.result != {}:
+			if Input.is_action_just_pressed("fire grappling hook"):
+				var angle = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
+				var V_relative = velocity.rotated(angle)
+				if V_relative.y > 0:
+					velocity = Vector2(V_relative.x, 0).rotated(angle)
 			is_grappling = true
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
 			GRAPPLING_TIMER += delta
@@ -80,6 +85,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("fire grappling hook") and (item == 1 or item == 2):
 		is_grappling = false
 		has_grappled = true
+		GRAPPLING_TIMER = 0
 		done_grappling.emit()
 	
 	if Input.is_action_just_pressed("jump"):

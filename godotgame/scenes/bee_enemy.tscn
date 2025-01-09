@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcxmjnd3wag0j"]
+
+[ext_resource type="Script" path="res://scripts/bee_enemy.gd" id="1_r1f3h"]
+[ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_ntk0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i22rd"]
+
+[node name="BeeEnemy" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_r1f3h")
+
+[node name="BeeSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ntk0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_i22rd")
+debug_color = Color(1, 0, 1, 0.419608)
