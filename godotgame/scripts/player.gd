@@ -27,6 +27,7 @@ var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 var GRAPPLING_TIMER: float = 0
+var grappling_conserve = 0.6
 signal done_grappling
 
 func _ready() -> void:
@@ -77,7 +78,7 @@ func _physics_process(delta: float) -> void:
 				var angle = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
 				var V_relative = velocity.rotated(angle)
 				if V_relative.y > 0:
-					velocity = Vector2(V_relative.x, 0).rotated(angle)
+					velocity = Vector2(V_relative.x, 0).rotated(angle) + velocity * grappling_conserve
 			is_grappling = true
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
 			GRAPPLING_TIMER += delta

@@ -9,6 +9,9 @@ extends Node2D
 @onready var player: CharacterBody2D = $".."
 
 var MPOS: Vector2 = Vector2(0, 0)
+var v_relative = Vector2(0,0)
+var angle
+var bounce = 0.25
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 signal raycast_result
@@ -16,7 +19,13 @@ signal raycast_result
 func _input(event) -> void:
 	if event.is_action_pressed(&"fire shotgun") and ready_to_fire and (player.item == 0 or player.item == 2):
 		MPOS = get_local_mouse_position().normalized()
-		player.velocity -= MPOS * recoil
+		angle = MPOS.angle_to(Vector2(0,-1))
+		v_relative = player.velocity.rotated(angle)
+		if v_relative.y < 0:
+			player.velocity = Vector2(v_relative.x,-bounce*v_relative.y).rotated(-angle) - MPOS * recoil
+		else:
+			player.velocity += -MPOS * recoil
+		
 		player.just_jumped = false
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
