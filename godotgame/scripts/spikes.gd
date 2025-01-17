@@ -1,5 +1,5 @@
 extends RigidBody2D
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

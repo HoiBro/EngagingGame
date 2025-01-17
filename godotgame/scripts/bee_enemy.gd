@@ -3,16 +3,17 @@ extends RigidBody2D
 @export var enemy_stats = {
 	"health": 20
 }
-@export var max_speed = 10
-@export var accel = Vector2(1, 1)
-@export var friction = 10
+@export var accel = 500
+@export var player_detection: bool = false
+@export var charge_time = 1
 
 @onready var player = $"../Player"
 @onready var shotgun = $"../Player/Shotgun"
+@onready var TARGET_POS = position
 
 var TIME: float = 0
 var DIRECTION
-var A = Vector2(0, 0)
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"fire shotgun"):
@@ -24,16 +25,17 @@ func _input(event: InputEvent) -> void:
 			queue_free()
 		print(enemy_stats.health, position)
 
-#i cant fucking do this my brain doesnt want to do shit
+func player_detected(rid, body, body_index, local_index):
+	if body == player and player.get_rid() == rid:
+		player_detection = true
+		print("PLAYER PLAYER WEEWOO")
+
 func _physics_process(delta: float) -> void:
-	angular_velocity = 1
-	TIME += delta
-	if TIME > 0.1:
-		DIRECTION = player.position - self.position
-		linear_velocity += accel * DIRECTION.normalized()
-		if linear_velocity.length() > max_speed:
-			linear_velocity = Vector2(max_speed, max_speed)
-		#A = (max_speed - linear_velocity.length()) * accel * DIRECTION
-		#linear_velocity -= linear_velocity * friction
-		#linear_velocity += A
-		TIME = 0
+	rotation = 0
+	if player_detection:
+		TIME -= delta
+		if TIME <= 0:
+			TARGET_POS = player.position
+			DIRECTION = player.position - self.position
+			linear_velocity = Vector2(accel, accel) * DIRECTION.normalized()
+			TIME = charge_time

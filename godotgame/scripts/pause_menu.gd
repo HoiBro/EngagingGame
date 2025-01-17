@@ -13,5 +13,5 @@ func _input(event: InputEvent) -> void:
 		else:
 			menu.show()
 
-func _process(delta: float) -> void:
-	delta = delta #added to avoid godot bitching about not using delta
+func _process(_delta: float) -> void:
+	pass

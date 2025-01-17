@@ -3,7 +3,7 @@ extends Node2D
 @export var reload_time = 1.8
 @export var recoil = 1000
 @export var ready_to_fire: bool = true
-@export var raycast_length = 100
+@export var raycast_length = 1000
 @export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."

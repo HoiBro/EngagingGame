@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=16 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_njhru"]
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dcsy8io523sm2" path="res://scenes/enemy.tscn" id="6_vl8vc"]
 [ext_resource type="PackedScene" uid="uid://ckbmbkq82mr7m" path="res://scenes/spikes.tscn" id="7_mxp0w"]
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="8_3h05f"]
+[ext_resource type="Script" path="res://scripts/grappling_projectile.gd" id="9_ps0nq"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="9_vgubj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -698,6 +700,8 @@ terrain_set_0/terrain_1/color = Color(1, 0.05, 0, 1)
 sources/3 = SubResource("TileSetAtlasSource_f6f2w")
 sources/2 = SubResource("TileSetAtlasSource_jv6mx")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vy7g5"]
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_njhru")
 enemy_scene = ExtResource("6_vl8vc")
@@ -735,3 +739,12 @@ mass = 1000.0
 polygon = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
+
+[node name="GrapplingProjectile" type="RigidBody2D" parent="."]
+script = ExtResource("9_ps0nq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplingProjectile"]
+shape = SubResource("CircleShape2D_vy7g5")
+
+[node name="GrapplingProjectile" type="Sprite2D" parent="GrapplingProjectile"]
+texture = ExtResource("9_vgubj")

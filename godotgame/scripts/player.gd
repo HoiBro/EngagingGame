@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var pull_strength = 5000
 @export var grappling_time = 1.5
 
-@export var item: int = 0
+@export var item: int = 2
 @export var just_jumped: bool = false
 @export var is_grappling: bool = false
 @export var has_grappled: bool = false
