@@ -3,11 +3,11 @@ extends CharacterBody2D
 @export var max_speed = 1000
 @export var acceleration_air = 5000
 @export var acceleration_ground = 6000
-@export var jump_velocity = 750
+@export var jump_velocity = 1000
 @export var air_friction = 400
 @export var ground_friction = 1000
 @export var dir_fric_mult = 0.5
-@export var gravity = 1000
+@export var gravity = 2500
 @export var max_fall = 5000
 @export var jump_buffer_time = 0.03
 @export var bunnyhop_speed = 100
@@ -29,6 +29,7 @@ var BUFFER_TIMER: float = 0
 var GRAPPLING_TIMER: float = 0
 var grappling_conserve = 0.6
 signal done_grappling
+signal switched_item
 
 func _ready() -> void:
 	#position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
@@ -40,8 +41,6 @@ func _physics_process(delta: float) -> void:
 	
 	if !is_on_floor():
 		velocity.y += gravity * delta
-		if velocity.y > -200:
-			velocity.y += gravity * delta
 		if BUFFER_TIMER_START:
 			BUFFER_TIMER += delta
 		if BUFFER_TIMER > jump_buffer_time:
@@ -93,6 +92,7 @@ func _physics_process(delta: float) -> void:
 		handle_jump(DIRECTION)
 	if Input.is_action_just_pressed("switch_item"):
 		item = (item + 1) % 3
+		switched_item.emit()
 	handle_friction(DIRECTION,delta)
 	handle_movement(DIRECTION,delta)
 	if velocity.y > max_fall:
@@ -141,3 +141,8 @@ func handle_friction(DIR,delta) -> void:
 			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (air_friction + 0.1 * abs(velocity.x)))
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta * (air_friction + 0.1 * abs(velocity.x)))
+
+func die() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+	queue_free()

@@ -11,6 +11,7 @@ size = Vector2(10, 10)
 radius = 500.0
 
 [node name="BeeEnemy" type="RigidBody2D"]
+position = Vector2(1224, -7)
 gravity_scale = 0.0
 script = ExtResource("1_r1f3h")
 

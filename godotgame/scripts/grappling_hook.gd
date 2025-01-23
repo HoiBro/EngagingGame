@@ -16,6 +16,12 @@ signal raycast_result
 signal shoot_projectile
 
 func _input(event) -> void:
+	if event.is_action_pressed(&"switch_item"):
+		await player.switched_item
+		if player.item == 1 or player.item == 2:
+			graphook_sprite.show()
+		else:
+			graphook_sprite.hide()
 	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and (player.item == 1 or player.item == 2):
 		MPOS = get_local_mouse_position().normalized()
 		player.just_jumped = false

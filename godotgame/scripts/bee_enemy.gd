@@ -14,6 +14,11 @@ extends RigidBody2D
 var TIME: float = 0
 var DIRECTION
 
+signal kill
+
+func _ready() -> void:
+	if position == Vector2(1224, -7):
+		queue_free()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"fire shotgun"):
@@ -34,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	rotation = 0
 	if player_detection:
 		TIME -= delta
+		if (player.position - position).length() < 64:
+			player.die()
 		if TIME <= 0:
 			TARGET_POS = player.position
 			DIRECTION = player.position - self.position

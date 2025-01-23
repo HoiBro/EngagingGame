@@ -1,22 +1,29 @@
 extends Node2D
 
 @export var reload_time = 1.8
-@export var recoil = 1000
+@export var recoil = 1500
 @export var ready_to_fire: bool = true
 @export var raycast_length = 1000
 @export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."
+@onready var shotgun_sprite: Sprite2D = $"../PlayerSprite/ShotgunSprite"
 
 var MPOS: Vector2 = Vector2(0, 0)
 var v_relative = Vector2(0,0)
 var angle
-var bounce = 0.25
+var bounce = 0.1
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 signal raycast_result
 
 func _input(event) -> void:
+	if event.is_action_pressed(&"switch_item"):
+		await player.switched_item
+		if player.item == 0 or player.item == 2:
+			shotgun_sprite.show()
+		else:
+			shotgun_sprite.hide()
 	if event.is_action_pressed(&"fire shotgun") and ready_to_fire and (player.item == 0 or player.item == 2):
 		MPOS = get_local_mouse_position().normalized()
 		angle = MPOS.angle_to(Vector2(0,-1))
