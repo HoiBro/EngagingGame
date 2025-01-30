@@ -6,8 +6,8 @@ extends Node2D
 
 var spike_positions = [
 	[0, 1],
-	[10000, -1500],
-	[9500, -1500]
+	[10000, -1300],
+	[9500, -1400]
 ]
 
 func _ready() -> void:

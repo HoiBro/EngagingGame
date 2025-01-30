@@ -5,7 +5,7 @@ extends Camera2D
 @export var zoom_factor = 1
 @export var smoothing_speed = 10
 
-var zoom_start = 0.5
+var zoom_start = 0.2
 
 var ZOOM_EXPONENT: float = log(zoom_factor)/log(2) + log(zoom_start)/log(2)
 

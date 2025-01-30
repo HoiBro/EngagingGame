@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
-@export var max_speed = 1000
+@export var max_speed = 1500
 @export var acceleration_air = 5000
 @export var acceleration_ground = 6000
 @export var jump_velocity = 1000
-@export var air_friction = 400
-@export var ground_friction = 1000
-@export var dir_fric_mult = 0.5
+@export var air_friction = 2000
+@export var ground_friction = 5000
+@export var dir_fric_mult = 0.15
 @export var gravity = 2500
 @export var max_fall = 5000
 @export var jump_buffer_time = 0.03
 @export var bunnyhop_speed = 100
 @export var coyote_time = 0.1
-@export var pull_strength = 5000
+@export var pull_strength = 3000
 @export var grappling_time = 1.5
 
 @export var item: int = 2
@@ -40,7 +40,10 @@ func _physics_process(delta: float) -> void:
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
 	if !is_on_floor():
-		velocity.y += gravity * delta
+		if not is_grappling:
+			velocity.y += gravity * delta
+		else:
+			velocity.y += gravity * delta * 0.6
 		if BUFFER_TIMER_START:
 			BUFFER_TIMER += delta
 		if BUFFER_TIMER > jump_buffer_time:
@@ -93,7 +96,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_item"):
 		item = (item + 1) % 3
 		switched_item.emit()
-	handle_friction(DIRECTION,delta)
+	if not is_grappling:
+		handle_friction(DIRECTION,delta)
 	handle_movement(DIRECTION,delta)
 	if velocity.y > max_fall:
 		velocity.y = move_toward(velocity.y, max_fall, 5)
@@ -132,12 +136,12 @@ func handle_movement(DIR,delta) -> void:
 
 func handle_friction(DIR,delta) -> void:
 	if is_on_floor():
-		if DIR == velocity.x:
+		if abs(DIR - velocity.normalized().x) < 1 and DIR != 0:
 			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (ground_friction + 0.1 * abs(velocity.x)))
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta * (ground_friction + 0.1 * abs(velocity.x)))
 	else:
-		if DIR == velocity.x:
+		if abs(DIR - velocity.normalized().x) < 1 and DIR != 0:
 			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (air_friction + 0.1 * abs(velocity.x)))
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta * (air_friction + 0.1 * abs(velocity.x)))

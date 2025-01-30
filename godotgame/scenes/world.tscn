@@ -748,3 +748,4 @@ shape = SubResource("CircleShape2D_vy7g5")
 
 [node name="GrapplingProjectile" type="Sprite2D" parent="GrapplingProjectile"]
 texture = ExtResource("9_vgubj")
+offset = Vector2(-32, 0)

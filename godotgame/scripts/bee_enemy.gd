@@ -14,8 +14,6 @@ extends RigidBody2D
 var TIME: float = 0
 var DIRECTION
 
-signal kill
-
 func _ready() -> void:
 	if position == Vector2(1224, -7):
 		queue_free()

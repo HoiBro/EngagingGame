@@ -29,7 +29,7 @@ func _input(event) -> void:
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		
-		projectile.position = player.position + graphook_sprite.position
+		# projectile.position = player.position + graphook_sprite.position
 		shoot_projectile.emit()
 		await projectile.projectile_result
 		
