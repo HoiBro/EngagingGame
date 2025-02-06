@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 				enemy_stats.health -= 10
 		if enemy_stats.health <= 0:
 			queue_free()
-		print(enemy_stats.health, position)
+		#print(enemy_stats.health, position)
 
 func player_detected(rid, body, body_index, local_index):
 	if body == player and player.get_rid() == rid:

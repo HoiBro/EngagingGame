@@ -28,5 +28,5 @@ func _input(event: InputEvent) -> void:
 			#else:
 				#OLD_POS = NEW_POS
 				#print($GrapplingProjectile.position, position)
-		print($GrapplingProjectile.position, position)
+		#print($GrapplingProjectile.position, position)
 		projectile_result.emit()
