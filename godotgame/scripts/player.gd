@@ -40,10 +40,12 @@ func _physics_process(delta: float) -> void:
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
 	if !is_on_floor():
-		if not is_grappling:
-			velocity.y += gravity * delta
-		else:
+		if is_grappling:
 			velocity.y += gravity * delta * 0.6
+		elif just_jumped and velocity.y < -500:
+			velocity.y += gravity * delta * 0.3
+		else:
+			velocity.y += gravity * delta
 		if BUFFER_TIMER_START:
 			BUFFER_TIMER += delta
 		if BUFFER_TIMER > jump_buffer_time:
@@ -84,8 +86,10 @@ func _physics_process(delta: float) -> void:
 			if V_relative.y > 0:
 				velocity = Vector2(V_relative.x, grappling_conserve *V_relative.y).rotated(-angle)
 			is_grappling = true
+			just_jumped = false
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
 			GRAPPLING_TIMER += delta
+			HAS_JUMPED = true
 	
 	if Input.is_action_just_released("fire grappling hook") and (item == 1 or item == 2):
 		is_grappling = false
@@ -116,14 +120,14 @@ func _physics_process(delta: float) -> void:
 
 func handle_jump(DIR) -> void:
 	if is_on_floor():
-		velocity.y = -jump_velocity
+		velocity.y += -jump_velocity
 		velocity.x += DIR * bunnyhop_speed
 		HAS_JUMPED = true
 		just_jumped = true
 	else:
 		BUFFER_TIMER_START = true
 		if COYOTE_TIMER != 0 && COYOTE_TIMER <= coyote_time:
-			velocity.y = -jump_velocity
+			velocity.y += -jump_velocity
 			velocity.x += DIR * bunnyhop_speed
 			COYOTE_TIMER = 0
 			HAS_JUMPED = true

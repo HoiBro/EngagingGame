@@ -716,6 +716,7 @@ tile_map_data = PackedByteArray("AAD//wAAAgAFAAAAAAAAAAAAAgAFAAAAAAD+/wAAAgAFAAA
 tile_set = SubResource("TileSet_yl6q5")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
+visible = false
 
 [node name="PauseMenu" type="Node2D" parent="."]
 script = ExtResource("3_6mtiv")
