@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxtn88d3xvpha"]
+[gd_scene load_steps=8 format=3 uid="uid://cxtn88d3xvpha"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
 [ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
 [ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
 [ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
-[ext_resource type="Texture2D" uid="uid://4k5fpnwid8n7" path="res://textures/paralax background.png" id="4_pbyog"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
 [ext_resource type="Script" path="res://scripts/grappling_hook.gd" id="6_e0hap"]
 
@@ -20,26 +19,8 @@ script = ExtResource("1_s1vd6")
 shape = SubResource("RectangleShape2D_5gqgi")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 script = ExtResource("3_5iy3g")
-
-[node name="ColorRect" type="ColorRect" parent="PlayerCamera"]
-custom_minimum_size = Vector2(50000, 7000)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -350.0
-offset_right = 600.0
-offset_bottom = 350.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ParalaxBackground" type="Sprite2D" parent="PlayerCamera"]
-position = Vector2(41, 58)
-scale = Vector2(22.9688, 14.8038)
-texture = ExtResource("4_pbyog")
 
 [node name="Shotgun" type="Node2D" parent="."]
 script = ExtResource("4_d5ahc")

@@ -12,7 +12,6 @@ var ZOOM_EXPONENT: float = log(zoom_factor)/log(2) + log(zoom_start)/log(2)
 func _ready() -> void:
 	position.y = camera_height
 	zoom = Vector2(zoom_start, zoom_start)
-	position_smoothing_enabled = true
 	position_smoothing_speed = smoothing_speed
 
 func _input(event) -> void:

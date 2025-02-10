@@ -117,17 +117,20 @@ func _physics_process(delta: float) -> void:
 		BUFFER_TIMER_START = false
 	
 	move_and_slide()
+	
+	if get_real_velocity().y < 0:
+		velocity.y = get_real_velocity().y
 
 func handle_jump(DIR) -> void:
 	if is_on_floor():
-		velocity.y += -jump_velocity
+		velocity.y = -jump_velocity
 		velocity.x += DIR * bunnyhop_speed
 		HAS_JUMPED = true
 		just_jumped = true
 	else:
 		BUFFER_TIMER_START = true
 		if COYOTE_TIMER != 0 && COYOTE_TIMER <= coyote_time:
-			velocity.y += -jump_velocity
+			velocity.y = -jump_velocity
 			velocity.x += DIR * bunnyhop_speed
 			COYOTE_TIMER = 0
 			HAS_JUMPED = true
