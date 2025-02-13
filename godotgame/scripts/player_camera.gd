@@ -4,15 +4,18 @@ extends Camera2D
 @export var zoom_speed = 0.1
 @export var zoom_factor = 1
 @export var smoothing_speed = 10
+@export var player_speed_factor = -0.5
+
+@onready var player = $".."
 
 var zoom_start = 0.2
 
 var ZOOM_EXPONENT: float = log(zoom_factor)/log(2) + log(zoom_start)/log(2)
 
 func _ready() -> void:
-	position.y = camera_height
 	zoom = Vector2(zoom_start, zoom_start)
 	position_smoothing_speed = smoothing_speed
+
 
 func _input(event) -> void:
 	if event.is_action_pressed(&"zoom_in"):

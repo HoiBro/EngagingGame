@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=17 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_njhru"]
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="8_3h05f"]
 [ext_resource type="Script" path="res://scripts/grappling_projectile.gd" id="9_ps0nq"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="9_vgubj"]
-[ext_resource type="Texture2D" uid="uid://4k5fpnwid8n7" path="res://textures/paralax background.png" id="11_l00ax"]
-[ext_resource type="Script" path="res://scenes/paralax_background.gd" id="12_6uyy3"]
+[ext_resource type="Texture2D" uid="uid://de0r13g23dhh0" path="res://textures/background.png" id="11_mg532"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -753,8 +752,10 @@ shape = SubResource("CircleShape2D_vy7g5")
 texture = ExtResource("9_vgubj")
 offset = Vector2(-32, 0)
 
-[node name="ParalaxBackground" type="Sprite2D" parent="."]
+[node name="BackgroundTiling" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
-scale = Vector2(10, 10)
-texture = ExtResource("11_l00ax")
-script = ExtResource("12_6uyy3")
+texture_repeat = 2
+texture = ExtResource("11_mg532")
+region_enabled = true
+region_rect = Rect2(0, 0, 10000, 10000)
