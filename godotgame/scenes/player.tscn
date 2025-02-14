@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxtn88d3xvpha"]
+[gd_scene load_steps=11 format=3 uid="uid://cxtn88d3xvpha"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
 [ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
@@ -10,6 +10,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
 size = Vector2(60, 100)
+
+[sub_resource type="Gradient" id="Gradient_twujo"]
+offsets = PackedFloat32Array(0, 0.107143, 0.875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_lu1cp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -30,15 +34,16 @@ script = ExtResource("3_5iy3g")
 [node name="stars" type="CPUParticles2D" parent="PlayerCamera"]
 z_index = -2
 z_as_relative = false
-amount = 10000
+amount = 5000
 lifetime = 200.0
 preprocess = 100.0
 texture = ExtResource("4_jwtsm")
 emission_shape = 3
-emission_rect_extents = Vector2(30000, 10000)
+emission_rect_extents = Vector2(20000, 7000)
 direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
 scale_amount_min = 0.3
+color_ramp = SubResource("Gradient_twujo")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_lu1cp")
