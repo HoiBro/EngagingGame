@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="8_3h05f"]
 [ext_resource type="Script" path="res://scripts/grappling_projectile.gd" id="9_ps0nq"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="9_vgubj"]
-[ext_resource type="Texture2D" uid="uid://dfta78go506cu" path="res://textures/background best.png" id="11_w6sta"]
+[ext_resource type="Texture2D" uid="uid://ca5jw4x6r3bix" path="res://textures/tiles.png" id="11_7kq5v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -755,6 +755,7 @@ offset = Vector2(-32, 0)
 [node name="BackgroundTiling" type="Sprite2D" parent="."]
 z_index = -1
 texture_repeat = 2
-texture = ExtResource("11_w6sta")
+position = Vector2(256, 256)
+texture = ExtResource("11_7kq5v")
 region_enabled = true
 region_rect = Rect2(0, 0, 10000, 10000)
