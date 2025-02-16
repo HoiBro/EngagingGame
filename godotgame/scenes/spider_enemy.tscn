@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bppohfb38bi1s"]
+
+[ext_resource type="Script" path="res://scripts/spider_enemy.gd" id="1_vvtrt"]
+[ext_resource type="PackedScene" uid="uid://bmwn76h55boeo" path="res://scenes/spider_projectile.tscn" id="2_qrf22"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="3_geyqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jggis"]
+radius = 64.0
+height = 192.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbq83"]
+radius = 1000.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rtls"]
+radius = 64.0
+height = 192.0
+
+[node name="SpiderEnemy" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_vvtrt")
+projectile_scene = ExtResource("2_qrf22")
+
+[node name="SpiderSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1.00001)
+scale = Vector2(1, 1.46875)
+texture = ExtResource("3_geyqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jggis")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_mbq83")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+scale = Vector2(1.01, 1.01)
+shape = SubResource("CapsuleShape2D_6rtls")
+
+[node name="String" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0)
+
+[node name="Projectile" parent="." instance=ExtResource("2_qrf22")]
+
+[connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="body_collision"]

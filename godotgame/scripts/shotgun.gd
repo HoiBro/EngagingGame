@@ -17,6 +17,7 @@ var CAST: Dictionary = {}
 
 func _input(event) -> void:
 	if event.is_action_pressed(&"fire shotgun") and ready_to_fire:
+		#Funky shotgun shit
 		MPOS = get_local_mouse_position().normalized()
 		angle = MPOS.angle_to(Vector2(0,-1))
 		v_relative = player.velocity.rotated(angle)
@@ -26,7 +27,7 @@ func _input(event) -> void:
 			player.velocity += -MPOS * recoil
 		
 		player.just_jumped = false
-		player.HAS_JUMPED = true
+		player.has_jumped = true
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		

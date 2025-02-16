@@ -17,18 +17,16 @@ extends CharacterBody2D
 @export var grappling_conserve = 0.2
 
 @export var just_jumped: bool = false
+@export var has_jumped: bool = false
 @export var is_grappling: bool = false
 @export var has_grappled: bool = false
 
 var DIRECTION: float
 var POS_DELTA_MOUSE: Vector2
-var HAS_JUMPED: bool = false
 var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 var GRAPPLING_TIMER: float = 0
-
-signal done_grappling
 
 func _ready() -> void:
 	#position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
@@ -55,14 +53,14 @@ func _physics_process(delta: float) -> void:
 			BUFFER_TIMER_START = false
 		
 		#Coyote time checks
-		if !HAS_JUMPED:
+		if !has_jumped:
 			COYOTE_TIMER += delta
 			if COYOTE_TIMER > coyote_time:
 				COYOTE_TIMER = 0
-				HAS_JUMPED = true
+				has_jumped = true
 		
 	else: #If on floor
-		HAS_JUMPED = false
+		has_jumped = false
 		just_jumped = false
 		has_grappled = false
 		COYOTE_TIMER = 0
@@ -78,7 +76,6 @@ func _physics_process(delta: float) -> void:
 			is_grappling = false
 			has_grappled = true
 			GRAPPLING_TIMER = 0
-			done_grappling.emit()
 		else:
 			var angle = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
 			var V_relative = velocity.rotated(angle)
@@ -87,7 +84,7 @@ func _physics_process(delta: float) -> void:
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
 			GRAPPLING_TIMER += delta
 			just_jumped = false
-			HAS_JUMPED = true
+			has_jumped = true
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
@@ -124,7 +121,7 @@ func handle_jump(DIR) -> void:
 func jump(DIR) -> void:
 	velocity.y = -jump_velocity
 	velocity.x += DIR * bunnyhop_speed
-	HAS_JUMPED = true
+	has_jumped = true
 	just_jumped = true
 
 func handle_movement(DIR,delta) -> void:

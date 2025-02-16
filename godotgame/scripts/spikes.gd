@@ -1,7 +1,10 @@
-extends RigidBody2D
+extends StaticBody2D
 
 
-func hit(rid, body, body_index, local_index):
-	print("hit")
+func _ready() -> void:
+	if position == Vector2.ZERO:
+		queue_free()
+
+func hit(rid, body, _body_index, _local_index):
 	if body == $"../Player" and $"../Player".get_rid() == rid:
-		$"../Player".die()
+		$"../Player".death()

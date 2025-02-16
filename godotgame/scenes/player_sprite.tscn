@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon gun(4).png" id="4_64i0i"]
 [ext_resource type="Texture2D" uid="uid://bivxqemos3rtu" path="res://textures/player/shotgun(2).png" id="6_j5lxs"]
 
-[node name="player_sprite2" type="Node2D"]
+[node name="PlayerSprite" type="Node2D"]
 script = ExtResource("1_7piis")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
@@ -45,12 +45,6 @@ position = Vector2(-25, 45)
 scale = Vector2(1.5, 1.5)
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(10, 10, 10, -10, -10, -10, -10, 10)
-
-[node name="PolygonFace" type="Polygon2D" parent="PolygonBody"]
-position = Vector2(40, 0)
-scale = Vector2(2.25, 2.25)
-color = Color(1, 0, 1, 1)
-polygon = PackedVector2Array(5, 10, 5, -10, -5, -10, -5, 10)
 
 [node name="ShotgunSprite" type="Sprite2D" parent="."]
 z_index = 3

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmwn76h55boeo"]
+
+[ext_resource type="Script" path="res://scripts/spider_projectile.gd" id="1_ooojy"]
+[ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="1_xo557"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ok757"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t15a0"]
+
+[node name="Projectile" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ooojy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.875, -3.30414)
+scale = Vector2(0.0784005, 0.0770536)
+texture = ExtResource("1_xo557")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ok757")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+scale = Vector2(1.01, 1.01)
+shape = SubResource("CircleShape2D_t15a0")
+
+[connection signal="body_entered" from="CollisionArea" to="." method="collision"]
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="body_collision"]

@@ -1,17 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckbmbkq82mr7m"]
+[gd_scene load_steps=3 format=3 uid="uid://d2td7mykkq6jn"]
 
 [ext_resource type="Script" path="res://scripts/spikes.gd" id="1_2r0ca"]
 [ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/spikes(2).png" id="2_x0qon"]
 
-[node name="Spikes" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Spikes" type="StaticBody2D"]
 script = ExtResource("1_2r0ca")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_x0qon")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
 
-[connection signal="body_shape_entered" from="." to="." method="hit"]
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionArea"]
+scale = Vector2(1.1, 1.1)
+polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
+
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="hit"]

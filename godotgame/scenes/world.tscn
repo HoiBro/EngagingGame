@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=15 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_njhru"]
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://docvpk036si31" path="res://textures/purple_blobby.png" id="3_fmsww"]
 [ext_resource type="Texture2D" uid="uid://b882x5gxlpd0i" path="res://textures/purple_with_angles.png" id="5_sgc5v"]
 [ext_resource type="PackedScene" uid="uid://dcsy8io523sm2" path="res://scenes/enemy.tscn" id="6_vl8vc"]
-[ext_resource type="PackedScene" uid="uid://ckbmbkq82mr7m" path="res://scenes/spikes.tscn" id="7_mxp0w"]
+[ext_resource type="PackedScene" uid="uid://d2td7mykkq6jn" path="res://scenes/spikes.tscn" id="7_mxp0w"]
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="8_3h05f"]
+[ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/spider_enemy.tscn" id="10_r3f24"]
 [ext_resource type="Texture2D" uid="uid://ca5jw4x6r3bix" path="res://textures/tiles.png" id="11_7kq5v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
@@ -703,6 +704,7 @@ sources/2 = SubResource("TileSetAtlasSource_jv6mx")
 script = ExtResource("1_njhru")
 enemy_scene = ExtResource("6_vl8vc")
 bee_scene = ExtResource("8_3h05f")
+spider_scene = ExtResource("10_r3f24")
 spike_scene = ExtResource("7_mxp0w")
 
 [node name="BackgroundTiling" type="Sprite2D" parent="."]
@@ -740,6 +742,8 @@ unfocusable = true
 mass = 1000.0
 
 [node name="BeeEnemy" parent="." instance=ExtResource("8_3h05f")]
+
+[node name="SpiderEnemy" parent="." instance=ExtResource("10_r3f24")]
 
 [node name="Spikes" parent="." instance=ExtResource("7_mxp0w")]
 

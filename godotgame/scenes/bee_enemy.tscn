@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcxmjnd3wag0j"]
+[gd_scene load_steps=6 format=3 uid="uid://dcxmjnd3wag0j"]
 
 [ext_resource type="Script" path="res://scripts/bee_enemy.gd" id="1_r1f3h"]
 [ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_ntk0n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i22rd"]
-resource_local_to_scene = true
-size = Vector2(10, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jwkw"]
+radius = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vi0g0"]
 radius = 500.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpq20"]
+radius = 36.0
+
 [node name="BeeEnemy" type="RigidBody2D"]
-position = Vector2(1224, -7)
 gravity_scale = 0.0
 script = ExtResource("1_r1f3h")
 
@@ -19,15 +20,22 @@ script = ExtResource("1_r1f3h")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ntk0n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
-scale = Vector2(6, 6)
-shape = SubResource("RectangleShape2D_i22rd")
+shape = SubResource("CircleShape2D_7jwkw")
 debug_color = Color(1, 0, 1, 0.419608)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_vi0g0")
 
-[connection signal="body_shape_entered" from="Area2D" to="." method="player_detected"]
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(0, 10)
+scale = Vector2(1.01, 1.01)
+shape = SubResource("CircleShape2D_fpq20")
+
+[connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="body_collision"]

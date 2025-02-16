@@ -2,12 +2,11 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var bee_scene: PackedScene
+@export var spider_scene: PackedScene
 @export var spike_scene: PackedScene
 
 var spike_positions = [
-	[0, 1],
-	[10000, -1300],
-	[9500, -1400]
+	[9500, -1200]
 ]
 
 func _ready() -> void:
@@ -17,6 +16,11 @@ func _ready() -> void:
 		add_child(spike)
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"spawn_spider"):
+		var spider = spider_scene.instantiate()
+		spider.position = Vector2(12000, -1500)
+		add_child(spider)
+		print("spawned spider")
 	if event.is_action_pressed(&"spawn_bee"):
 		var bee = bee_scene.instantiate()
 		bee.position = Vector2(10000, -1500)
