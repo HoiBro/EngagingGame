@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=16 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_njhru"]
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="8_3h05f"]
 [ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/spider_enemy.tscn" id="10_r3f24"]
 [ext_resource type="Texture2D" uid="uid://ca5jw4x6r3bix" path="res://textures/tiles.png" id="11_7kq5v"]
+[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/spiky_enemy.tscn" id="11_thx2s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -703,6 +704,7 @@ sources/2 = SubResource("TileSetAtlasSource_jv6mx")
 [node name="World" type="Node2D"]
 script = ExtResource("1_njhru")
 enemy_scene = ExtResource("6_vl8vc")
+spiky_scene = ExtResource("11_thx2s")
 bee_scene = ExtResource("8_3h05f")
 spider_scene = ExtResource("10_r3f24")
 spike_scene = ExtResource("7_mxp0w")
@@ -740,6 +742,8 @@ unfocusable = true
 
 [node name="Enemy" parent="." instance=ExtResource("6_vl8vc")]
 mass = 1000.0
+
+[node name="SpikyEnemy" parent="." instance=ExtResource("11_thx2s")]
 
 [node name="BeeEnemy" parent="." instance=ExtResource("8_3h05f")]
 

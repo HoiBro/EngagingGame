@@ -12,7 +12,6 @@ var MPOS: Vector2 = Vector2.ZERO
 var GRAP_POS: Vector2 = Vector2.ZERO
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
-signal raycast_result(result: Dictionary)
 
 func _input(event) -> void:
 	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled:
@@ -29,13 +28,14 @@ func _input(event) -> void:
 		if CAST != {}: #put code that looks for an objects property in the raycast here
 			if CAST.collider != null:
 				$"../../Polygon2D".position = CAST.position
-				get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 				player.is_grappling = true
+				ready_to_fire = false
+				get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
+				if CAST.collider.get_class() == "RigidBody2D":
+					if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged
+						get_node(CAST.collider.get_path()).damage(10)
 		for i in CAST:
 			result[i] = CAST[i] #update global dictionary
-		raycast_result.emit(CAST)
-		
-		ready_to_fire = false
 
 func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true

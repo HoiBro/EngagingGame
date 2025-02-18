@@ -17,6 +17,7 @@ height = 192.0
 
 [node name="SpiderEnemy" type="RigidBody2D"]
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_vvtrt")
 projectile_scene = ExtResource("2_qrf22")
 
@@ -29,13 +30,17 @@ texture = ExtResource("3_geyqv")
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_mbq83")
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="CollisionDetection" type="Area2D" parent="."]
+input_pickable = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
 scale = Vector2(1.01, 1.01)
 shape = SubResource("CapsuleShape2D_6rtls")
 
@@ -46,4 +51,4 @@ points = PackedVector2Array(0, 0)
 [node name="Projectile" parent="." instance=ExtResource("2_qrf22")]
 
 [connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
-[connection signal="body_shape_entered" from="CollisionArea" to="." method="body_collision"]
+[connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]
