@@ -30,7 +30,7 @@ var GRAPPLING_TIMER: float = 0
 
 func _ready() -> void:
 	#position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
-	position = Vector2(10000, -1500)
+	position = Vector2(10000, -5000)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")

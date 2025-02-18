@@ -12,7 +12,7 @@
 size = Vector2(60, 100)
 
 [sub_resource type="Gradient" id="Gradient_twujo"]
-offsets = PackedFloat32Array(0, 0.107143, 0.875, 1)
+offsets = PackedFloat32Array(0, 0.294643, 0.6875, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_lu1cp"]
@@ -37,8 +37,8 @@ script = ExtResource("3_5iy3g")
 z_index = -2
 z_as_relative = false
 amount = 5000
-lifetime = 200.0
-preprocess = 100.0
+lifetime = 20.0
+preprocess = 10.0
 texture = ExtResource("4_jwtsm")
 emission_shape = 3
 emission_rect_extents = Vector2(20000, 7000)
