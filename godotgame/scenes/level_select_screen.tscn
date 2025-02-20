@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba8guxci3uwyq"]
+[gd_scene load_steps=2 format=3 uid="uid://ba8guxci3uwyq"]
 
 [ext_resource type="Script" path="res://scripts/color_rect.gd" id="1_peapi"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="2_jh08w"]
 
 [node name="LevelSelectScreen" type="Control"]
 layout_mode = 3
@@ -25,4 +24,3 @@ offset_right = 257.0
 offset_bottom = 151.0
 action_mode = 0
 text = "back"
-script = ExtResource("2_jh08w")

@@ -3,7 +3,6 @@ extends RigidBody2D
 @export var enemy_stats = {
 	"health": 20
 }
-@export var player_detection: bool = false
 @export var shoot_time = 1
 @export var projectile_scene: PackedScene
 
@@ -12,8 +11,6 @@ extends RigidBody2D
 
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
-
-var TIMER: float = 0
 
 func _ready() -> void:
 	if position == Vector2.ZERO:
@@ -31,23 +28,15 @@ func damage(amount: int) -> void:
 
 func player_detected(rid, body, _body_index, _local_index):
 	if body == player and player.get_rid() == rid:
-		player_detection = true
+		shoot()
+		$"DetectionArea".queue_free()
 		print("PLAYER PLAYER WEEWOO")
 
 func shoot():
 	var projectile = projectile_scene.instantiate()
 	projectile.player_pos = $"../Player".position
-	add_child(projectile)
-
-func _physics_process(delta: float) -> void:
-	rotation = 0
-	if player_detection:
-		TIMER -= delta
-		if (player.position - position).length() < 64:
-			player.death()
-		if TIMER <= 0:
-			shoot()
-			TIMER = shoot_time
+	call_deferred("add_child", projectile)
+	get_tree().create_timer(shoot_time, false).timeout.connect(shoot)
 
 func body_collision(rid, body, _body_index, _local_index) -> void:
 	if body == player and player.get_rid() == rid:

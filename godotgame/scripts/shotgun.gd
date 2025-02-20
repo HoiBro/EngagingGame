@@ -9,9 +9,9 @@ extends Node2D
 @onready var shotgun_sprite: Sprite2D = $"../PlayerSprite/ShotgunSprite"
 
 var MPOS: Vector2 = Vector2(0, 0)
-var v_relative = Vector2(0,0)
-var angle
-var bounce = 0.1
+var V_RELATIVE: Vector2 = Vector2(0,0)
+var ANGLE: float = 0
+var BOUNCE: float = 0.1
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 
@@ -19,10 +19,10 @@ func _input(event) -> void:
 	if event.is_action_pressed(&"fire shotgun") and ready_to_fire:
 		#Funky shotgun shit
 		MPOS = get_local_mouse_position().normalized()
-		angle = MPOS.angle_to(Vector2(0,-1))
-		v_relative = player.velocity.rotated(angle)
-		if v_relative.y < 0:
-			player.velocity = Vector2(v_relative.x,-bounce*v_relative.y).rotated(-angle) - MPOS * recoil
+		ANGLE = MPOS.angle_to(Vector2(0,-1))
+		V_RELATIVE = player.velocity.rotated(ANGLE)
+		if V_RELATIVE.y < 0:
+			player.velocity = Vector2(V_RELATIVE.x,-BOUNCE*V_RELATIVE.y).rotated(-ANGLE) - MPOS * recoil
 		else:
 			player.velocity += -MPOS * recoil
 		

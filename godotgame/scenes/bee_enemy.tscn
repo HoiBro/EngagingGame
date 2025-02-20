@@ -14,6 +14,7 @@ radius = 36.0
 
 [node name="BeeEnemy" type="RigidBody2D"]
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_r1f3h")
 
 [node name="BeeSprite" type="Sprite2D" parent="."]
@@ -26,16 +27,20 @@ shape = SubResource("CircleShape2D_7jwkw")
 debug_color = Color(1, 0, 1, 0.419608)
 
 [node name="DetectionArea" type="Area2D" parent="."]
+input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_vi0g0")
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="CollisionDetection" type="Area2D" parent="."]
+input_pickable = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
 position = Vector2(0, 10)
 scale = Vector2(1.01, 1.01)
 shape = SubResource("CircleShape2D_fpq20")
 
 [connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
-[connection signal="body_shape_entered" from="CollisionArea" to="." method="body_collision"]
+[connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]
