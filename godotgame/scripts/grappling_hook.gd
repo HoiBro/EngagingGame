@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var reload_time = 2.5 #Make sure this is longer than grappling_time in player script
+@export var reload_time = 1.5 #Make sure this is longer than grappling_time in player script
 @export var ready_to_fire: bool = true
-@export var raycast_length = 100000
+@export var raycast_length = 10000
 @export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."
@@ -33,7 +33,7 @@ func _input(event) -> void:
 				get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 				if CAST.collider.get_class() == "RigidBody2D":
 					if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged
-						get_node(CAST.collider.get_path()).damage(10)
+						get_node(CAST.collider.get_path()).damage(30)
 		for i in CAST:
 			result[i] = CAST[i] #update global dictionary
 
