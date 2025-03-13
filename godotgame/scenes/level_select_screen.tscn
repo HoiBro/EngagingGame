@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba8guxci3uwyq"]
+[gd_scene load_steps=3 format=3 uid="uid://ba8guxci3uwyq"]
 
-[ext_resource type="Script" path="res://scripts/color_rect.gd" id="1_peapi"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="1_wsede"]
+[ext_resource type="Script" path="res://scripts/level_1_button.gd" id="2_ffp0o"]
 
 [node name="LevelSelectScreen" type="Control"]
 layout_mode = 3
@@ -10,17 +11,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-offset_right = 1078.0
-offset_bottom = 568.0
-script = ExtResource("1_peapi")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wsede")
+centered = false
 
-[node name="Button" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 61.0
-offset_right = 257.0
-offset_bottom = 151.0
-action_mode = 0
-text = "back"
+[node name="Level_1_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.272
+anchor_top = 0.14
+anchor_right = 0.351
+anchor_bottom = 0.281
+offset_left = -0.344025
+offset_top = 0.279999
+offset_right = -0.35202
+offset_bottom = -0.0880127
+icon = ExtResource("1_wsede")
+expand_icon = true
+script = ExtResource("2_ffp0o")
+
+[connection signal="button_down" from="Level_1_Button" to="Level_1_Button" method="button_pressed"]

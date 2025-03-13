@@ -36,7 +36,7 @@ script = ExtResource("3_5iy3g")
 [node name="stars" type="CPUParticles2D" parent="PlayerCamera"]
 z_index = -2
 z_as_relative = false
-amount = 5000
+amount = 1000
 lifetime = 200.0
 preprocess = 100.0
 texture = ExtResource("4_jwtsm")
@@ -44,7 +44,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(20000, 7000)
 direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
-scale_amount_min = 0.3
+scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_twujo")
 hue_variation_min = -1.0
 hue_variation_max = 1.0

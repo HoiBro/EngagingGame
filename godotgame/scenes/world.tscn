@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cicu2igm1m3ux"]
+[gd_scene load_steps=16 format=4 uid="uid://cicu2igm1m3ux"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_njhru"]
 [ext_resource type="PackedScene" uid="uid://cxtn88d3xvpha" path="res://scenes/player.tscn" id="1_w1ley"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dvg050arqwhre" path="res://textures/gray_with_angles.png" id="9_gve7d"]
 [ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/spider_enemy.tscn" id="10_r3f24"]
 [ext_resource type="Texture2D" uid="uid://ca5jw4x6r3bix" path="res://textures/tiles.png" id="11_7kq5v"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="11_r5et7"]
 [ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/spiky_enemy.tscn" id="11_thx2s"]
+[ext_resource type="Script" path="res://scenes/level_select_button.gd" id="12_t6f5d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
@@ -559,6 +561,7 @@ tile_set = SubResource("TileSet_yl6q5")
 visible = false
 
 [node name="PauseMenu" type="Node2D" parent="."]
+z_index = 100
 script = ExtResource("3_6mtiv")
 
 [node name="Window" type="Window" parent="PauseMenu"]
@@ -570,6 +573,26 @@ unresizable = true
 borderless = true
 transparent = true
 unfocusable = true
+
+[node name="Control" type="Control" parent="PauseMenu/Window"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelSelectButton" type="Button" parent="PauseMenu/Window/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 500.0
+offset_right = 600.0
+offset_bottom = 100.0
+grow_horizontal = 2
+action_mode = 0
+icon = ExtResource("11_r5et7")
+expand_icon = true
+script = ExtResource("12_t6f5d")
 
 [node name="Enemy" parent="." instance=ExtResource("6_vl8vc")]
 mass = 1000.0
@@ -584,3 +607,5 @@ mass = 1000.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
+
+[connection signal="pressed" from="PauseMenu/Window/Control/LevelSelectButton" to="PauseMenu/Window/Control/LevelSelectButton" method="_on_pressed"]
