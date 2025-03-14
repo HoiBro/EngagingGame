@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://cxtn88d3xvpha"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_s1vd6"]
+[ext_resource type="Script" uid="uid://bmtbirigptbcu" path="res://scripts/player.gd" id="1_s1vd6"]
 [ext_resource type="PackedScene" uid="uid://cwt53j51gbysd" path="res://scenes/player_sprite.tscn" id="2_r7638"]
-[ext_resource type="Script" path="res://scripts/player_camera.gd" id="3_5iy3g"]
-[ext_resource type="Script" path="res://scripts/shotgun.gd" id="4_d5ahc"]
+[ext_resource type="Script" uid="uid://bmwuhbhny862" path="res://scripts/player_camera.gd" id="3_5iy3g"]
+[ext_resource type="Script" uid="uid://dk14svwbcjyne" path="res://scripts/shotgun.gd" id="4_d5ahc"]
 [ext_resource type="Texture2D" uid="uid://65b7ryapotnn" path="res://textures/ster.png" id="4_jwtsm"]
 [ext_resource type="AudioStream" uid="uid://c1qnlx5e1gy8f" path="res://sfx/shotgunfiring.mp3" id="6_drf0i"]
-[ext_resource type="Script" path="res://scripts/grappling_hook.gd" id="6_e0hap"]
+[ext_resource type="Script" uid="uid://bj1e112ksf0ub" path="res://scripts/grappling_hook.gd" id="6_e0hap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqgi"]
 size = Vector2(60, 100)
@@ -22,6 +22,7 @@ point_count = 1
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 3
+floor_snap_length = 0.0
 script = ExtResource("1_s1vd6")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_r7638")]
@@ -37,9 +38,9 @@ script = ExtResource("3_5iy3g")
 z_index = -2
 z_as_relative = false
 amount = 1000
+texture = ExtResource("4_jwtsm")
 lifetime = 200.0
 preprocess = 100.0
-texture = ExtResource("4_jwtsm")
 emission_shape = 3
 emission_rect_extents = Vector2(20000, 7000)
 direction = Vector2(0, 0)

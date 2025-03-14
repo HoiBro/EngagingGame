@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bybghesx2sm0f"
-path="res://.godot/imported/right leg.png-7afb89d21ce27861d63ff698c647ec0c.ctex"
+uid="uid://5xdiik77u2na"
+path="res://.godot/imported/spikes.png-2f35199f1f8545aadd2d8a02571f6980.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/right leg.png"
-dest_files=["res://.godot/imported/right leg.png-7afb89d21ce27861d63ff698c647ec0c.ctex"]
+source_file="res://textures/spikes.png"
+dest_files=["res://.godot/imported/spikes.png-2f35199f1f8545aadd2d8a02571f6980.ctex"]
 
 [params]
 

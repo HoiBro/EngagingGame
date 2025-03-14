@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clumcuel0v0b0"
-path="res://.godot/imported/SpiderJuices-01.png-26f95c31e07b7286fa84becbc0a3f5b0.ctex"
+uid="uid://cgcn7tlno0m53"
+path="res://.godot/imported/leg.png-f78e5f08aa5f493a11030cf73c917506.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/SpiderJuices-01.png"
-dest_files=["res://.godot/imported/SpiderJuices-01.png-26f95c31e07b7286fa84becbc0a3f5b0.ctex"]
+source_file="res://textures/player/leg.png"
+dest_files=["res://.godot/imported/leg.png-f78e5f08aa5f493a11030cf73c917506.ctex"]
 
 [params]
 

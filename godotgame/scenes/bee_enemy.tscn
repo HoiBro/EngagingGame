@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcxmjnd3wag0j"]
 
-[ext_resource type="Script" path="res://scripts/bee_enemy.gd" id="1_r1f3h"]
+[ext_resource type="Script" uid="uid://byq6wvoagrye" path="res://scripts/bee_enemy.gd" id="1_r1f3h"]
 [ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_ntk0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jwkw"]

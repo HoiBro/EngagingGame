@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmwn76h55boeo"]
 
-[ext_resource type="Script" path="res://scripts/spider_projectile.gd" id="1_ooojy"]
-[ext_resource type="Texture2D" uid="uid://clumcuel0v0b0" path="res://textures/SpiderJuices-01.png" id="2_y3k8q"]
+[ext_resource type="Script" uid="uid://cos3oy5up02v2" path="res://scripts/spider_projectile.gd" id="1_ooojy"]
+[ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="2_5klee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ok757"]
 
@@ -13,9 +13,9 @@ collision_mask = 2
 script = ExtResource("1_ooojy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 0)
-scale = Vector2(0.007, 0.007)
-texture = ExtResource("2_y3k8q")
+position = Vector2(-2, -2)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_5klee")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ok757")

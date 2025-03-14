@@ -1,13 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://416bsa0jrlq3"]
 
-[ext_resource type="Script" path="res://scripts/spiky_enemy.gd" id="1_gjf4s"]
-[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="2_x07hh"]
+[ext_resource type="Script" uid="uid://b2n8sxr3jwmhc" path="res://scripts/spiky_enemy.gd" id="1_gjf4s"]
+[ext_resource type="Texture2D" uid="uid://b5r8xrarjyp56" path="res://textures/spiky_enemy.png" id="2_cym1x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mdhme"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6snl"]
 radius = 32.0
+height = 160.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m5qiq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2muqh"]
 radius = 32.0
+height = 160.0
 
 [node name="SpikyEnemy" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -15,11 +17,12 @@ lock_rotation = true
 script = ExtResource("1_gjf4s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_x07hh")
+position = Vector2(0, -15)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_cym1x")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mdhme")
+shape = SubResource("CapsuleShape2D_q6snl")
 
 [node name="CollisionDetection" type="Area2D" parent="."]
 input_pickable = false
@@ -27,4 +30,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
 scale = Vector2(1.01, 1.01)
-shape = SubResource("CircleShape2D_m5qiq")
+shape = SubResource("CapsuleShape2D_2muqh")
+
+[connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]

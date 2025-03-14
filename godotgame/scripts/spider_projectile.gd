@@ -13,5 +13,5 @@ func collision(body: Node2D) -> void:
 		queue_free()
 
 func body_collision(rid, body, _body_index, _local_index) -> void:
-	if body == $"../../Player" and $"../../Player".get_rid() == rid:
-		$"../../Player".death()
+	if body == $"../../../Player" and $"../../../Player".get_rid() == rid:
+		$"../../../Player".death()

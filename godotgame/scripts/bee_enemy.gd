@@ -6,26 +6,22 @@ extends RigidBody2D
 @export var accel = 500
 @export var charge_time = 1
 
-@onready var player = $"../Player"
-@onready var shotgun = $"../Player/Shotgun"
+@onready var player = $"../../Player"
+@onready var shotgun = $"../../Player/Shotgun"
 
 var TARGET_POS: Vector2 = Vector2.ZERO
 var DIRECTION: Vector2 = Vector2.ZERO
 
-func _ready() -> void:
-	if position == Vector2.ZERO:
-		queue_free()
-
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
+		remove_child($Hitbox)
 		queue_free()
 
 func player_detected(rid, body, _body_index, _local_index):
 	if body == player and player.get_rid() == rid:
 		movement_start()
 		$"DetectionArea".queue_free()
-		print("PLAYER PLAYER WEEWOO")
 
 func movement_start() -> void:
 	TARGET_POS = player.position

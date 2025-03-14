@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var dir_fric_mult = 0.30
 @export var gravity = 2500
 @export var max_fall = 5000
-@export var jump_buffer_time = 0.03
+@export var jump_buffer_time = 0.06
 @export var bunnyhop_speed = 100
 @export var coyote_time = 0.1
 @export var pull_strength = 3000
@@ -102,8 +102,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if get_real_velocity().y > 0:
-		velocity.x = get_real_velocity().x
+	#if get_real_velocity().y > 0:
+		#velocity.x = get_real_velocity().x
 	velocity.y = get_real_velocity().y
 
 func handle_jump(DIR) -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c74fjmxmoi17q"
-path="res://.godot/imported/left hand.png-044afba0848382feb30a22ca06d5c3c2.ctex"
+uid="uid://ce04wcj5q5xj8"
+path="res://.godot/imported/harpoon gun.png-4def16338c81470d1583ddc6205a8aeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/left hand.png"
-dest_files=["res://.godot/imported/left hand.png-044afba0848382feb30a22ca06d5c3c2.ctex"]
+source_file="res://textures/player/harpoon gun.png"
+dest_files=["res://.godot/imported/harpoon gun.png-4def16338c81470d1583ddc6205a8aeb.ctex"]
 
 [params]
 

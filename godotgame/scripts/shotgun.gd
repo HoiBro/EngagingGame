@@ -33,9 +33,11 @@ func _input(event) -> void:
 		
 		$AudioStreamPlayer.play()
 		
+		$"../../SpreadSprite".position = player.position
+		$"../../SpreadSprite".rotation = PI-MPOS.angle_to(Vector2(-1, 0))
 		
 		for i in range(9):
-			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + Vector2(MPOS * raycast_length).rotated(-0.1 * PI + i * 0.025 * PI), 1, [player])
+			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + (MPOS * raycast_length).rotated(-0.1 * PI + i * 0.025 * PI), 1, [player])
 			CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
 			if CAST != {} and CAST.collider != null and CAST.collider.get_class() == "RigidBody2D":
 				if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bppohfb38bi1s"]
 
-[ext_resource type="Script" path="res://scripts/spider_enemy.gd" id="1_vvtrt"]
+[ext_resource type="Script" uid="uid://b7t48htwcj8ji" path="res://scripts/spider_enemy.gd" id="1_vvtrt"]
 [ext_resource type="PackedScene" uid="uid://bmwn76h55boeo" path="res://scenes/spider_projectile.tscn" id="2_qrf22"]
-[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="3_geyqv"]
+[ext_resource type="Texture2D" uid="uid://dkt5d3ygyitxm" path="res://textures/spider_enemy.png" id="3_apgm7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jggis"]
 radius = 64.0
@@ -22,11 +22,10 @@ script = ExtResource("1_vvtrt")
 projectile_scene = ExtResource("2_qrf22")
 
 [node name="SpiderSprite" type="Sprite2D" parent="."]
-position = Vector2(0, 1.00001)
-scale = Vector2(1, 1.46875)
-texture = ExtResource("3_geyqv")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_apgm7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]

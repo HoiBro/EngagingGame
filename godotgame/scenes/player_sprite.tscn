@@ -1,27 +1,41 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwt53j51gbysd"]
+[gd_scene load_steps=7 format=3 uid="uid://cwt53j51gbysd"]
 
-[ext_resource type="Script" path="res://scripts/player_sprite.gd" id="1_7piis"]
-[ext_resource type="Texture2D" uid="uid://td37bu0c0bwr" path="res://textures/player/eyes.png" id="2_uvbe1"]
+[ext_resource type="Script" uid="uid://b5t84aic68umi" path="res://scripts/player_sprite.gd" id="1_7piis"]
+[ext_resource type="Texture2D" uid="uid://bxcwsx1xn5kws" path="res://textures/player/eyes.png" id="2_uvbe1"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="3_78pv8"]
-[ext_resource type="Script" path="res://scripts/weapon_sprite.gd" id="3_jqnmc"]
-[ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon gun(4).png" id="4_64i0i"]
-[ext_resource type="Texture2D" uid="uid://cgcn7tlno0m53" path="res://textures/player/left leg.png" id="6_2b4bn"]
-[ext_resource type="Texture2D" uid="uid://bybghesx2sm0f" path="res://textures/player/right leg.png" id="7_niphw"]
+[ext_resource type="Script" uid="uid://c1vdpmeuxbxn0" path="res://scripts/weapon_sprite.gd" id="3_jqnmc"]
+[ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon gun.png" id="4_64i0i"]
+[ext_resource type="Texture2D" uid="uid://cgcn7tlno0m53" path="res://textures/player/leg.png" id="6_2b4bn"]
 
 [node name="PlayerSprite" type="Node2D"]
 script = ExtResource("1_7piis")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-z_index = 2
+[node name="Eyes" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(10, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_uvbe1")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-z_index = 1
+[node name="Torso" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(-10, -10)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_78pv8")
+
+[node name="PolygonBody" type="Polygon2D" parent="."]
+color = Color(1, 0.00999999, 0.00999999, 1)
+texture = ExtResource("6_2b4bn")
+polygon = PackedVector2Array(48, 20, 20, 48, -20, 48, -48, 20, -48, -20, -20, -48, 20, -48, 48, -20)
+
+[node name="leftleg" type="Sprite2D" parent="PolygonBody"]
+z_index = 1
+position = Vector2(-28, 41)
+scale = Vector2(0.3125, 0.265625)
+
+[node name="leftleg2" type="Sprite2D" parent="PolygonBody"]
+z_index = 1
+position = Vector2(25, 38.5)
+scale = Vector2(0.328125, 0.320313)
 
 [node name="Grapplinghook" type="Sprite2D" parent="."]
 z_index = 4
@@ -31,26 +45,10 @@ texture = ExtResource("4_64i0i")
 offset = Vector2(20, 100)
 script = ExtResource("3_jqnmc")
 
-[node name="PolygonBody" type="Polygon2D" parent="."]
-color = Color(1, 0.00999999, 0.00999999, 1)
-texture = ExtResource("6_2b4bn")
-polygon = PackedVector2Array(48, 20, 20, 48, -20, 48, -48, 20, -48, -20, -20, -48, 20, -48, 48, -20)
-
-[node name="leftleg" type="Sprite2D" parent="PolygonBody"]
-position = Vector2(-28, 41)
-scale = Vector2(0.3125, 0.265625)
-texture = ExtResource("6_2b4bn")
-
-[node name="leftleg2" type="Sprite2D" parent="PolygonBody"]
-position = Vector2(25, 38.5)
-scale = Vector2(0.328125, 0.320313)
-texture = ExtResource("6_2b4bn")
-
 [node name="ShotgunSprite" type="Sprite2D" parent="."]
 z_index = 3
 position = Vector2(30, 20)
 scale = Vector2(0.075, 0.075)
-texture = ExtResource("7_niphw")
 script = ExtResource("3_jqnmc")
 
 [node name="PolygonHand" type="Polygon2D" parent="ShotgunSprite"]
