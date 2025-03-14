@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var acceleration_air = 5000
 @export var acceleration_ground = 6000
 @export var jump_velocity = 1000
-@export var air_friction = 2000
-@export var ground_friction = 5000
-@export var dir_fric_mult = 0.15
+@export var air_friction = 1000
+@export var ground_friction = 2500
+@export var dir_fric_mult = 0.30
 @export var gravity = 2500
 @export var max_fall = 5000
 @export var jump_buffer_time = 0.03
@@ -27,10 +27,6 @@ var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 var GRAPPLING_TIMER: float = 0
-
-func _ready() -> void:
-	#position = Vector2(0, -$CollisionShape2D.get_shape().get_rect().size.y/2)
-	position = Vector2(10000, -1500)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
@@ -106,8 +102,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	if get_real_velocity().y < 0:
-		velocity.y = get_real_velocity().y
+	if get_real_velocity().y > 0:
+		velocity.x = get_real_velocity().x
+	velocity.y = get_real_velocity().y
 
 func handle_jump(DIR) -> void:
 	if is_on_floor():

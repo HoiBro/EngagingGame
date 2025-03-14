@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://docvpk036si31"
-path="res://.godot/imported/purple_blobby.png-b2ecc78902850cc866e7b5144d56a947.ctex"
+uid="uid://bxcwsx1xn5kws"
+path="res://.godot/imported/eyess.png-eca60498c344464f1aa57134dd6657e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/purple_blobby.png"
-dest_files=["res://.godot/imported/purple_blobby.png-b2ecc78902850cc866e7b5144d56a947.ctex"]
+source_file="res://textures/eyess.png"
+dest_files=["res://.godot/imported/eyess.png-eca60498c344464f1aa57134dd6657e2.ctex"]
 
 [params]
 

@@ -12,6 +12,3 @@ func _input(event: InputEvent) -> void:
 			menu.hide()
 		else:
 			menu.show()
-
-func _process(_delta: float) -> void:
-	pass
