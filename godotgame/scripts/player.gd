@@ -22,14 +22,22 @@ extends CharacterBody2D
 @export var has_grappled: bool = false
 
 var DIRECTION: float
+var WALKING: bool = false
 var POS_DELTA_MOUSE: Vector2
 var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 var GRAPPLING_TIMER: float = 0
 
+signal died
+
+func _ready() -> void:
+	$PlayerCamera.make_current()
+
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
+	if DIRECTION == 0:
+		WALKING = false
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
 	if !is_on_floor():
@@ -102,8 +110,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	#if get_real_velocity().y > 0:
-		#velocity.x = get_real_velocity().x
+	if abs(get_real_velocity().x) > abs(velocity.x):
+		velocity.x = get_real_velocity().x
 	velocity.y = get_real_velocity().y
 
 func handle_jump(DIR) -> void:
@@ -120,27 +128,40 @@ func jump(DIR) -> void:
 	velocity.x += DIR * bunnyhop_speed
 	has_jumped = true
 	just_jumped = true
+	$Jump.play()
 
 func handle_movement(DIR,delta) -> void:
 	if DIR and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
 		if is_on_floor():
 			velocity.x += DIR * acceleration_ground * delta
+			if not WALKING:
+				WALKING = true
+				walking()
 		else:
 			velocity.x += DIR * acceleration_air * delta
+
+func walking():
+	if WALKING:
+		$Walk.play()
+		get_tree().create_timer(0.1, false).timeout.connect(walking)
 
 func handle_friction(DIR,delta) -> void:
 	if is_on_floor():
 		if abs(DIR - velocity.normalized().x) < 1 and DIR != 0:
-			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (ground_friction + 0.1 * abs(velocity.x)))
+			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (ground_friction + 1 * abs(velocity.x)))
 		else:
-			velocity.x = move_toward(velocity.x, 0, delta * (ground_friction + 0.1 * abs(velocity.x)))
+			velocity.x = move_toward(velocity.x, 0, delta * (ground_friction + 1 * abs(velocity.x)))
 	else:
 		if abs(DIR - velocity.normalized().x) < 1 and DIR != 0:
-			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (air_friction + 0.1 * abs(velocity.x)))
+			velocity.x = move_toward(velocity.x, 0, delta * dir_fric_mult * (air_friction + 0.35 * abs(velocity.x)))
 		else:
-			velocity.x = move_toward(velocity.x, 0, delta * (air_friction + 0.1 * abs(velocity.x)))
+			velocity.x = move_toward(velocity.x, 0, delta * (air_friction + 0.35 * abs(velocity.x)))
 
 func death() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
+	$"../WorldCamera".position = position
+	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
+	died.emit()
+	$"../PlayerDeath".play()
 	queue_free()

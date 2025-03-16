@@ -23,6 +23,7 @@ texture = ExtResource("2_ntk0n")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
+scale = Vector2(0.99, 0.99)
 shape = SubResource("CircleShape2D_7jwkw")
 debug_color = Color(1, 0, 1, 0.419608)
 
@@ -39,7 +40,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
 position = Vector2(0, 10)
-scale = Vector2(1.01, 1.01)
 shape = SubResource("CircleShape2D_fpq20")
 
 [connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]

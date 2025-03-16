@@ -7,6 +7,9 @@ extends Node2D
 
 @onready var player: CharacterBody2D = $".."
 @onready var shotgun_sprite: Sprite2D = $"../PlayerSprite/ShotgunSprite"
+@onready var graphook_sprite: Sprite2D = $"../PlayerSprite/Grapplinghook"
+@onready var grap_sprite: Sprite2D = $"../PlayerSprite/Grappling"
+@onready var hook_sprite: Sprite2D = $"../PlayerSprite/Hook"
 
 var MPOS: Vector2 = Vector2(0, 0)
 var V_RELATIVE: Vector2 = Vector2(0,0)
@@ -31,7 +34,12 @@ func _input(event) -> void:
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		
-		$AudioStreamPlayer.play()
+		$Shotgun.play()
+		
+		shotgun_sprite.show()
+		graphook_sprite.hide()
+		grap_sprite.hide()
+		hook_sprite.hide()
 		
 		$"../../SpreadSprite".position = player.position
 		$"../../SpreadSprite".rotation = PI-MPOS.angle_to(Vector2(-1, 0))
@@ -39,7 +47,7 @@ func _input(event) -> void:
 		for i in range(9):
 			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + (MPOS * raycast_length).rotated(-0.1 * PI + i * 0.025 * PI), 1, [player])
 			CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
-			if CAST != {} and CAST.collider != null and CAST.collider.get_class() == "RigidBody2D":
+			if CAST != {} and CAST.collider != null and CAST.collider is RigidBody2D:
 				if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged
 					get_node(CAST.collider.get_path()).damage(10)
 		
@@ -47,3 +55,4 @@ func _input(event) -> void:
 
 func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true
+	$Reload.play()

@@ -22,6 +22,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_cym1x")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99, 0.99)
 shape = SubResource("CapsuleShape2D_q6snl")
 
 [node name="CollisionDetection" type="Area2D" parent="."]
@@ -29,7 +30,6 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
-scale = Vector2(1.01, 1.01)
 shape = SubResource("CapsuleShape2D_2muqh")
 
 [connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]

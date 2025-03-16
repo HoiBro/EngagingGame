@@ -26,6 +26,7 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_apgm7")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99, 0.99)
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -40,12 +41,12 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
-scale = Vector2(1.01, 1.01)
 shape = SubResource("CapsuleShape2D_6rtls")
 
 [node name="String" type="Line2D" parent="."]
 z_index = -1
-points = PackedVector2Array(0, 0)
+points = PackedVector2Array(0, -100)
+default_color = Color(0.447059, 0.823529, 0.917647, 1)
 
 [node name="Projectile" parent="." instance=ExtResource("2_qrf22")]
 

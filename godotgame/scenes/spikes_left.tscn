@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn1a5evo6rb5s"]
+
+[ext_resource type="Script" uid="uid://dp6enrvp10xil" path="res://scripts/spikes.gd" id="1_as1vm"]
+[ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/spikes.png" id="2_8gats"]
+
+[node name="Spikes" type="StaticBody2D"]
+rotation = -1.5708
+script = ExtResource("1_as1vm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_8gats")
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.99, 0.99)
+polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionArea"]
+polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
+
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="hit"]

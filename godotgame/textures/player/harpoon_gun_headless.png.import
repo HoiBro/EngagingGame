@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bneg1mrqr6hl4"
-path="res://.godot/imported/lab_tileset.png-ff04349fcc4d87c07319d5cfb47b00aa.ctex"
+uid="uid://tbt1ees0g81d"
+path="res://.godot/imported/harpoon_gun_headless.png-8c6cfc3c0fa977ae33cfe26e6c5198c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/lab_tileset.png"
-dest_files=["res://.godot/imported/lab_tileset.png-ff04349fcc4d87c07319d5cfb47b00aa.ctex"]
+source_file="res://textures/player/harpoon_gun_headless.png"
+dest_files=["res://.godot/imported/harpoon_gun_headless.png-8c6cfc3c0fa977ae33cfe26e6c5198c8.ctex"]
 
 [params]
 

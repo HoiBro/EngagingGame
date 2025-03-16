@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ba8guxci3uwyq"]
 
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="1_wsede"]
-[ext_resource type="Script" uid="uid://blncpyhbwcgwi" path="res://scripts/level_1_button.gd" id="2_ffp0o"]
+[ext_resource type="Script" uid="uid://blncpyhbwcgwi" path="res://scripts/level1_button.gd" id="2_ffp0o"]
 
 [node name="LevelSelectScreen" type="Control"]
 layout_mode = 3
@@ -15,7 +15,7 @@ grow_vertical = 2
 texture = ExtResource("1_wsede")
 centered = false
 
-[node name="Level_1_Button" type="Button" parent="."]
+[node name="Level1Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.272
@@ -30,4 +30,4 @@ icon = ExtResource("1_wsede")
 expand_icon = true
 script = ExtResource("2_ffp0o")
 
-[connection signal="button_down" from="Level_1_Button" to="Level_1_Button" method="button_pressed"]
+[connection signal="button_down" from="Level1Button" to="Level1Button" method="button_pressed"]
