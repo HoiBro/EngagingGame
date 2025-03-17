@@ -6,7 +6,7 @@ extends RigidBody2D
 @export var shoot_time = 1
 @export var projectile_scene: PackedScene
 
-@onready var player = $"../..".get_child(-1)
+@onready var player = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
 var SHOOTING: bool = false
 var QUERY: PhysicsRayQueryParameters2D
@@ -16,11 +16,6 @@ func _ready() -> void:
 	$"Projectile".queue_free()
 	player.died.connect(player_death)
 	get_tree().create_timer(0.01, false).timeout.connect(string_spawn)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"respawn"):
-		if $"../..".get_child(-1) is not CharacterBody2D:
-			get_tree().create_timer(0.01).timeout.connect(respawn_check)
 
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount
@@ -50,10 +45,6 @@ func string_spawn():
 	CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
 	if CAST != {}:
 		$"String".add_point(CAST.position - position)
-
-func respawn_check():
-	player = $"../..".get_child(-1)
-	player.died.connect(player_death)
 
 func player_death():
 	SHOOTING = false

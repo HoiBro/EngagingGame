@@ -34,7 +34,7 @@ func _input(event) -> void:
 				graphook_sprite.hide()
 				shotgun_sprite.hide()
 				hook_sprite.position = CAST.position
-				hook_sprite.rotation =  PI-MPOS.angle_to(Vector2(-1, 0))
+				hook_sprite.rotation = PI-MPOS.angle_to(Vector2(-1, 0))
 				hook_sprite.show()
 				
 				$GrapplingHook.play()
@@ -51,5 +51,5 @@ func _on_reload_timer_timeout() -> void:
 	if grap_sprite.visible:
 		graphook_sprite.show()
 		grap_sprite.hide()
-		hook_sprite.hide()
+	hook_sprite.hide()
 	ready_to_fire = true

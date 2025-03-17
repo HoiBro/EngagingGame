@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxawjmuwj4v04"]
+
+[ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
+[ext_resource type="PackedScene" uid="uid://brql76bch2dd" path="res://scenes/level_1.tscn" id="2_g3eks"]
+[ext_resource type="PackedScene" uid="uid://cicu2igm1m3ux" path="res://scenes/world.tscn" id="3_v86rl"]
+[ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_13sgg"]
+[ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="5_i6lef"]
+
+[node name="Menu" type="Control"]
+process_mode = 3
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+script = ExtResource("1_4ytvr")
+levels = Array[PackedScene]([ExtResource("2_g3eks")])
+world_scene = ExtResource("3_v86rl")
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture_normal = ExtResource("4_13sgg")
+texture_hover = ExtResource("5_i6lef")
+stretch_mode = 0
+
+[node name="Level1Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_top = 152.0
+offset_right = 110.0
+offset_bottom = 195.0
+texture_normal = ExtResource("4_13sgg")
+
+[connection signal="pressed" from="ReturnButton" to="." method="returns"]
+[connection signal="pressed" from="Level1Button" to="." method="load_level" binds= [1]]

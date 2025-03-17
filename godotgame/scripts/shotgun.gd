@@ -39,7 +39,6 @@ func _input(event) -> void:
 		shotgun_sprite.show()
 		graphook_sprite.hide()
 		grap_sprite.hide()
-		hook_sprite.hide()
 		
 		$"../../SpreadSprite".position = player.position
 		$"../../SpreadSprite".rotation = PI-MPOS.angle_to(Vector2(-1, 0))
