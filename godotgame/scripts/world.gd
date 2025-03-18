@@ -2,11 +2,11 @@ extends Node2D
 
 @export var player_scene: PackedScene
 
-@export var current_level: int
+@export var current_level: int = 0
 
-@onready var menu = $"../Menu"
+@onready var menu: Node = $"../Menu"
 
-var PLAYER
+var LEVEL: Node
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause"):
@@ -14,20 +14,22 @@ func _input(event: InputEvent) -> void:
 			get_tree().paused = true
 			menu.position = find_children("*", "CharacterBody2D", false, false)[0].position - 0.5*menu.size
 			menu.show()
-		else:
+		elif find_children("*", "CharacterBody2D", false, false) != []:
 			get_tree().paused = false
 			menu.hide()
 	
 	if event.is_action_pressed(&"respawn"):
 		if find_children("*", "CharacterBody2D", false, false) != []: #remove current player
-			PLAYER = find_children("*", "CharacterBody2D", false, false)[0]
-			PLAYER.remove_child(PLAYER.find_child("Hitbox"))
-			PLAYER.queue_free()
-		find_children("*", "TileMapLayer", false, false)[0].queue_free()
+			remove_child(find_children("*", "CharacterBody2D", false, false)[0])
+		LEVEL = find_children("*", "TileMapLayer", false, false)[0]
+		LEVEL.remove_child(LEVEL.get_child(-1))
 		var player = player_scene.instantiate()
 		add_child(player)
 		var level = menu.levels[current_level].instantiate()
-		add_child(level)
+		var etileset = level.get_child(-1)
+		level.remove_child(etileset)
+		LEVEL.add_child(etileset)
+		
 		get_tree().paused = false
 		menu.hide()
 		print("respawned")

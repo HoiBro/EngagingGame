@@ -1,43 +1,41 @@
 extends CharacterBody2D
 
-@export var max_speed = 1500
-@export var acceleration_air = 5000
-@export var acceleration_ground = 6000
-@export var jump_velocity = 1000
-@export var air_friction = 1000
-@export var ground_friction = 2500
-@export var dir_fric_mult = 0.30
-@export var gravity = 2500
-@export var max_fall = 5000
-@export var jump_buffer_time = 0.06
-@export var bunnyhop_speed = 100
-@export var coyote_time = 0.1
-@export var pull_strength = 3000
-@export var grappling_time = 1.5
-@export var grappling_conserve = 0.2
+@export var max_speed: int = 1500
+@export var acceleration_air: int = 5000
+@export var acceleration_ground: int = 6000
+@export var jump_velocity: int = 1000
+@export var air_friction: int = 1000
+@export var ground_friction: int = 2500
+@export var dir_fric_mult: float = 0.30
+@export var gravity: int = 2500
+@export var max_fall: int = 5000
+@export var jump_buffer_time: float = 0.06
+@export var bunnyhop_speed: int = 100
+@export var coyote_time: float = 0.1
+@export var pull_strength: int = 3000
+@export var grappling_conserve: float = 0.2
 
 @export var just_jumped: bool = false
 @export var has_jumped: bool = false
 @export var is_grappling: bool = false
 @export var has_grappled: bool = false
 
-var DIRECTION: float
-var WALKING: bool = false
-var POS_DELTA_MOUSE: Vector2
+var DIRECTION: float = 0
+var POS_DELTA_MOUSE: Vector2 = Vector2.ZERO
 var BUFFER_TIMER_START: bool = false
 var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
-var GRAPPLING_TIMER: float = 0
+var GRAP_ANGLE: float = 0
+var GRAP_V_REL: Vector2 = Vector2.ZERO
 
 signal died
+signal done_grappling
 
 func _ready() -> void:
 	$PlayerCamera.make_current()
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
-	if DIRECTION == 0:
-		WALKING = false
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
 	if !is_on_floor():
@@ -76,17 +74,16 @@ func _physics_process(delta: float) -> void:
 	#Grappling physics
 	if is_grappling:
 		#Grappling done
-		if GRAPPLING_TIMER >= grappling_time or !Input.is_action_pressed(&"fire grappling hook"):
+		if !Input.is_action_pressed(&"fire grappling hook"):
 			is_grappling = false
 			has_grappled = true
-			GRAPPLING_TIMER = 0
+			done_grappling.emit()
 		else:
-			var angle = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
-			var V_relative = velocity.rotated(angle)
-			if V_relative.y > 0:
-				velocity = Vector2(V_relative.x, grappling_conserve * V_relative.y).rotated(-angle)
+			GRAP_ANGLE = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
+			GRAP_V_REL = velocity.rotated(GRAP_ANGLE)
+			if GRAP_V_REL.y > 0:
+				velocity = Vector2(GRAP_V_REL.x, grappling_conserve * GRAP_V_REL.y).rotated(-GRAP_ANGLE)
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
-			GRAPPLING_TIMER += delta
 			just_jumped = false
 			has_jumped = true
 	
@@ -134,16 +131,8 @@ func handle_movement(DIR,delta) -> void:
 	if DIR and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
 		if is_on_floor():
 			velocity.x += DIR * acceleration_ground * delta
-			if not WALKING:
-				WALKING = true
-				walking()
 		else:
 			velocity.x += DIR * acceleration_air * delta
-
-func walking():
-	if WALKING:
-		$Walk.play()
-		get_tree().create_timer(0.1, false).timeout.connect(walking)
 
 func handle_friction(DIR,delta) -> void:
 	if is_on_floor():
@@ -164,4 +153,15 @@ func death() -> void:
 	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
 	died.emit()
 	$"../PlayerDeath".play()
+	queue_free()
+
+func win():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+	$"../WorldCamera".position = position
+	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
+	died.emit()
+	$"../PlayerWin".play()
+	$"../../Menu".position = position - 0.5*$"../../Menu".size
+	$"../../Menu".show()
 	queue_free()

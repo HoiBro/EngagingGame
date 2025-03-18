@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-@export var enemy_stats = {
+@export var enemy_stats: Dictionary = {
 	"health": 30
 }
-@export var shoot_time = 1
+@export var shoot_time: float = 1
 @export var projectile_scene: PackedScene
 
-@onready var player = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
+@onready var player: Node = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
 var SHOOTING: bool = false
 var QUERY: PhysicsRayQueryParameters2D

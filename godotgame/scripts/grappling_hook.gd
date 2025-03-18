@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var reload_time = 1.5 #Make sure this is longer than grappling_time in player script
+@export var reload_time: float = 1.5
 @export var ready_to_fire: bool = true
-@export var raycast_length = 10000
+@export var raycast_length: int = 10000
 @export var result: Dictionary = {} #global dictionary for raycasting
 
 @onready var player: CharacterBody2D = $".."
@@ -17,7 +17,7 @@ var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled:
+	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled:# and $"../..".current_level != 0:
 		MPOS = get_local_mouse_position().normalized()
 		if MPOS.x <= 0:
 			GRAP_POS = player.position - graphook_sprite.position
@@ -48,6 +48,8 @@ func _input(event) -> void:
 			result[i] = CAST[i] #update global dictionary
 
 func _on_reload_timer_timeout() -> void:
+	if player.is_grappling:
+		await player.done_grappling
 	if grap_sprite.visible:
 		graphook_sprite.show()
 		grap_sprite.hide()

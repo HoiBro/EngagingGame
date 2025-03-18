@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var player_pos: Vector2 = Vector2.ZERO
 
-@onready var player = $"../../../..".find_children("*", "CharacterBody2D", false, false)[-1]
+@onready var player: Node = $"../../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
 func _physics_process(delta: float) -> void:
 	position += 1000 * (player_pos - $"..".global_position).normalized() * delta

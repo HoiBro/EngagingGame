@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-@export var enemy_stats = {
+@export var enemy_stats: Dictionary = {
 	"health": 10
 }
-@export var accel = 500
-@export var charge_time = 1
+@export var accel: int = 750
+@export var charge_time: float = 1
 
-@onready var player = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
+@onready var player: Node = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
 var MOVING: bool = false
 var TARGET_POS: Vector2 = Vector2.ZERO

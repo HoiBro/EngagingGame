@@ -28,6 +28,8 @@ polygon = PackedVector2Array(1902, -618, 1944, -466, 1975, -312, 1993, -156, 200
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_xo05s")
 
+[node name="PlayerWin" type="AudioStreamPlayer" parent="."]
+
 [node name="WorldCamera" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_w1ley")]

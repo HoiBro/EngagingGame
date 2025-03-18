@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var reload_time = 1.8
-@export var recoil = 1500
+@export var reload_time: float = 1.8
+@export var recoil: int = 1500
 @export var ready_to_fire: bool = true
-@export var raycast_length = 2000
+@export var raycast_length: int = 2000
 
 @onready var player: CharacterBody2D = $".."
 @onready var shotgun_sprite: Sprite2D = $"../PlayerSprite/ShotgunSprite"
@@ -54,4 +54,5 @@ func _input(event) -> void:
 
 func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true
-	$Reload.play()
+	if is_inside_tree():
+		$Reload.play()

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3ehtel8e51l7"]
+
+[ext_resource type="Script" uid="uid://b0tc0wnpxpb5b" path="res://scripts/level_end.gd" id="1_07sjm"]
+[ext_resource type="Texture2D" uid="uid://c2efdcnskwk6o" path="res://textures/closed_door.png" id="2_07sjm"]
+[ext_resource type="Texture2D" uid="uid://b6i6xmjdqvmjy" path="res://textures/open_door.png" id="3_jgevt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_07sjm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgevt"]
+radius = 64.0
+
+[node name="LevelEnd" type="StaticBody2D"]
+script = ExtResource("1_07sjm")
+
+[node name="Closed" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.167, 0.167)
+texture = ExtResource("2_07sjm")
+
+[node name="Open" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 32)
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("3_jgevt")
+
+[node name="EnemyCounter" type="Label" parent="."]
+offset_left = -5.0
+offset_top = -12.0
+offset_right = 287.0
+offset_bottom = 337.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 256
+text = "0"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_07sjm")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+shape = SubResource("CircleShape2D_jgevt")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="hit"]

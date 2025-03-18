@@ -1,10 +1,10 @@
 extends RigidBody2D
 
-@export var enemy_stats = {
+@export var enemy_stats: Dictionary = {
 	"health": 20
 }
 
-@onready var player = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
+@onready var player: Node = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount

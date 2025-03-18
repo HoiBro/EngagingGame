@@ -36,6 +36,7 @@ shape = SubResource("RectangleShape2D_5gqgi")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("3_5iy3g")
 
 [node name="stars" type="CPUParticles2D" parent="PlayerCamera"]
@@ -71,8 +72,6 @@ script = ExtResource("6_e0hap")
 
 [node name="GrapplingHook" type="AudioStreamPlayer" parent="GrapplingHook"]
 stream = ExtResource("8_ur7pv")
-
-[node name="Walk" type="AudioStreamPlayer" parent="."]
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_smehm")
