@@ -1,21 +1,21 @@
 [gd_scene load_steps=17 format=4 uid="uid://brql76bch2dd"]
 
-[ext_resource type="PackedScene" uid="uid://b3ehtel8e51l7" path="res://scenes/level_end.tscn" id="1_e3sih"]
-[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/spiky_enemy.tscn" id="1_pa8r4"]
-[ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/bee_enemy.tscn" id="2_15mv3"]
-[ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/spider_enemy.tscn" id="3_e3sih"]
-[ext_resource type="PackedScene" uid="uid://d2td7mykkq6jn" path="res://scenes/spikes_up.tscn" id="4_2y5yt"]
-[ext_resource type="PackedScene" uid="uid://be5p0m6yqxf68" path="res://scenes/spikes_down.tscn" id="5_2os1m"]
-[ext_resource type="PackedScene" uid="uid://cn1a5evo6rb5s" path="res://scenes/spikes_left.tscn" id="6_go7sj"]
-[ext_resource type="PackedScene" uid="uid://d8v17upqpwvj" path="res://scenes/spikes_right.tscn" id="7_7gny6"]
-[ext_resource type="Texture2D" uid="uid://bneg1mrqr6hl4" path="res://textures/lab_tileset.png" id="8_15mv3"]
+[ext_resource type="PackedScene" uid="uid://d2td7mykkq6jn" path="res://scenes/enemy_scenes/spikes_up.tscn" id="1_qvco3"]
+[ext_resource type="PackedScene" uid="uid://be5p0m6yqxf68" path="res://scenes/enemy_scenes/spikes_down.tscn" id="2_gq3wq"]
+[ext_resource type="PackedScene" uid="uid://cn1a5evo6rb5s" path="res://scenes/enemy_scenes/spikes_left.tscn" id="3_c0jg4"]
+[ext_resource type="PackedScene" uid="uid://d8v17upqpwvj" path="res://scenes/enemy_scenes/spikes_right.tscn" id="4_4c3nj"]
+[ext_resource type="PackedScene" uid="uid://b3ehtel8e51l7" path="res://scenes/level_end.tscn" id="5_tc21k"]
+[ext_resource type="Texture2D" uid="uid://bneg1mrqr6hl4" path="res://textures/lab_tileset.png" id="6_dsnp0"]
+[ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/enemy_scenes/bee_enemy.tscn" id="7_juemu"]
+[ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/enemy_scenes/spider_enemy.tscn" id="8_o67nt"]
+[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/enemy_scenes/spiky_enemy.tscn" id="9_og6l8"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_2aecg"]
-scenes/1/scene = ExtResource("4_2y5yt")
-scenes/2/scene = ExtResource("5_2os1m")
-scenes/3/scene = ExtResource("6_go7sj")
-scenes/4/scene = ExtResource("7_7gny6")
-scenes/5/scene = ExtResource("1_e3sih")
+scenes/1/scene = ExtResource("1_qvco3")
+scenes/2/scene = ExtResource("2_gq3wq")
+scenes/3/scene = ExtResource("3_c0jg4")
+scenes/4/scene = ExtResource("4_4c3nj")
+scenes/5/scene = ExtResource("5_tc21k")
 
 [sub_resource type="TileSet" id="TileSet_6dial"]
 tile_size = Vector2i(64, 64)
@@ -25,7 +25,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_2aecg")
 bounce = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e3sih"]
-texture = ExtResource("8_15mv3")
+texture = ExtResource("6_dsnp0")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:1/0 = 0
@@ -658,9 +658,9 @@ terrain_set_0/terrain_1/color = Color(1, 0.05, 0, 1)
 sources/2 = SubResource("TileSetAtlasSource_e3sih")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_15mv3"]
-scenes/1/scene = ExtResource("2_15mv3")
-scenes/2/scene = ExtResource("3_e3sih")
-scenes/3/scene = ExtResource("1_pa8r4")
+scenes/1/scene = ExtResource("7_juemu")
+scenes/2/scene = ExtResource("8_o67nt")
+scenes/3/scene = ExtResource("9_og6l8")
 
 [sub_resource type="TileSet" id="TileSet_e3sih"]
 tile_size = Vector2i(128, 128)

@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bppohfb38bi1s"]
+[gd_scene load_steps=8 format=3 uid="uid://bppohfb38bi1s"]
 
-[ext_resource type="Script" uid="uid://b7t48htwcj8ji" path="res://scripts/spider_enemy.gd" id="1_vvtrt"]
-[ext_resource type="PackedScene" uid="uid://bmwn76h55boeo" path="res://scenes/spider_projectile.tscn" id="2_qrf22"]
-[ext_resource type="Texture2D" uid="uid://dkt5d3ygyitxm" path="res://textures/spider_enemy.png" id="3_apgm7"]
+[ext_resource type="Script" uid="uid://b7t48htwcj8ji" path="res://scripts/spider_enemy.gd" id="1_vudl6"]
+[ext_resource type="PackedScene" uid="uid://bmwn76h55boeo" path="res://scenes/enemy_scenes/spider_projectile.tscn" id="2_ci8yp"]
+[ext_resource type="Texture2D" uid="uid://dkt5d3ygyitxm" path="res://textures/spider_enemy.png" id="3_f52wa"]
+[ext_resource type="AudioStream" uid="uid://d36j8vbr8vpb8" path="res://sfx/spider_shoot.mp3" id="4_ci8yp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jggis"]
 radius = 64.0
 height = 192.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbq83"]
-radius = 1000.0
+radius = 1500.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rtls"]
 radius = 64.0
@@ -18,12 +19,12 @@ height = 192.0
 [node name="SpiderEnemy" type="RigidBody2D"]
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_vvtrt")
-projectile_scene = ExtResource("2_qrf22")
+script = ExtResource("1_vudl6")
+projectile_scene = ExtResource("2_ci8yp")
 
 [node name="SpiderSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_apgm7")
+texture = ExtResource("3_f52wa")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(0.99, 0.99)
@@ -48,7 +49,10 @@ z_index = -1
 points = PackedVector2Array(0, -100)
 default_color = Color(0.447059, 0.823529, 0.917647, 1)
 
-[node name="Projectile" parent="." instance=ExtResource("2_qrf22")]
+[node name="Projectile" parent="." instance=ExtResource("2_ci8yp")]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ci8yp")
 
 [connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
 [connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]

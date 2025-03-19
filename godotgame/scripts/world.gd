@@ -8,6 +8,9 @@ extends Node2D
 
 var LEVEL: Node
 
+func _ready() -> void:
+	$Soundtrack.play()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause"):
 		if not get_tree().paused:

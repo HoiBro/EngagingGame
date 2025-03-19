@@ -12,21 +12,16 @@ extends Node2D
 @onready var hook_sprite: Sprite2D = $"../PlayerSprite/Hook"
 
 var MPOS: Vector2 = Vector2.ZERO
-var GRAP_POS: Vector2 = Vector2.ZERO
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled:# and $"../..".current_level != 0:
+	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled and $"../..".current_level != 0:
 		MPOS = get_local_mouse_position().normalized()
-		if MPOS.x <= 0:
-			GRAP_POS = player.position - graphook_sprite.position
-		else:
-			GRAP_POS = player.position + graphook_sprite.position
 		player.just_jumped = false
 		
 		result = {}
-		QUERY = PhysicsRayQueryParameters2D.create(GRAP_POS, GRAP_POS + MPOS * raycast_length, 1, [player])
+		QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + MPOS * raycast_length, 1, [player])
 		CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
 		if CAST != {}: #put code that looks for an objects property in the raycast here
 			if CAST.collider != null:
@@ -55,3 +50,5 @@ func _on_reload_timer_timeout() -> void:
 		grap_sprite.hide()
 	hook_sprite.hide()
 	ready_to_fire = true
+	if is_inside_tree():
+		$Reload.play()

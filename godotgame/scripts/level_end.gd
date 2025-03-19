@@ -10,6 +10,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"fire shotgun"):
 		get_tree().create_timer(0.01).timeout.connect(enemy_check)
+	if event.is_action_pressed(&"fire grappling hook"):
+		get_tree().create_timer(0.01).timeout.connect(enemy_check)
 	if event.is_action_pressed(&"respawn"):
 		get_tree().create_timer(0.01).timeout.connect(respawn_check)
 

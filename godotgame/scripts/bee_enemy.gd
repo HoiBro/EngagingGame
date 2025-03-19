@@ -19,7 +19,10 @@ func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
 		remove_child($Hitbox)
+		$"../../../BeeDeath".play()
 		queue_free()
+		return
+	$"../../../EnemyHit".play()
 
 func player_detected(rid, body, _body_index, _local_index):
 	if body == player and player.get_rid() == rid:

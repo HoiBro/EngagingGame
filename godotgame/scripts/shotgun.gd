@@ -33,6 +33,7 @@ func _input(event) -> void:
 		player.has_jumped = true
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
+		get_tree().create_timer(0.1, false).timeout.connect(spread_reset)
 		
 		$Shotgun.play()
 		
@@ -40,15 +41,17 @@ func _input(event) -> void:
 		graphook_sprite.hide()
 		grap_sprite.hide()
 		
-		$"../../SpreadSprite".position = player.position
-		$"../../SpreadSprite".rotation = PI-MPOS.angle_to(Vector2(-1, 0))
-		
-		for i in range(9):
-			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + (MPOS * raycast_length).rotated(-0.1 * PI + i * 0.025 * PI), 1, [player])
+		for i in range(11):
+			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + (MPOS * raycast_length).rotated(-0.075 * PI + i * 0.015 * PI), 1, [player])
 			CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
-			if CAST != {} and CAST.collider != null and CAST.collider is RigidBody2D:
-				if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged
-					get_node(CAST.collider.get_path()).damage(10)
+			$SpreadLine.add_point(player.position)
+			if CAST != {} and CAST.collider != null:
+				$SpreadLine.add_point(CAST.position)
+				if CAST.collider is RigidBody2D:
+					if get_node(CAST.collider.get_path()).has_method("damage"): #Check whether the node can be damaged
+						get_node(CAST.collider.get_path()).damage(10)
+			elif CAST == {}:
+				$SpreadLine.add_point(player.position + (MPOS * raycast_length).rotated(-0.075 * PI + i * 0.015 * PI))
 		
 		ready_to_fire = false
 
@@ -56,3 +59,6 @@ func _on_reload_timer_timeout() -> void:
 	ready_to_fire = true
 	if is_inside_tree():
 		$Reload.play()
+
+func spread_reset():
+	$SpreadLine.clear_points()

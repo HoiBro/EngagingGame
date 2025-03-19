@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://416bsa0jrlq3"]
 
-[ext_resource type="Script" uid="uid://b2n8sxr3jwmhc" path="res://scripts/spiky_enemy.gd" id="1_gjf4s"]
-[ext_resource type="Texture2D" uid="uid://b5r8xrarjyp56" path="res://textures/spiky_enemy.png" id="2_cym1x"]
+[ext_resource type="Script" uid="uid://b2n8sxr3jwmhc" path="res://scripts/spiky_enemy.gd" id="1_s205j"]
+[ext_resource type="Texture2D" uid="uid://b5r8xrarjyp56" path="res://textures/spiky_enemy.png" id="2_pctqt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6snl"]
 radius = 32.0
@@ -14,12 +14,12 @@ height = 160.0
 [node name="SpikyEnemy" type="RigidBody2D"]
 lock_rotation = true
 freeze = true
-script = ExtResource("1_gjf4s")
+script = ExtResource("1_s205j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_cym1x")
+texture = ExtResource("2_pctqt")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(0.99, 0.99)

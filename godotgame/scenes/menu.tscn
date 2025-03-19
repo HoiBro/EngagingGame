@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=8 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
-[ext_resource type="PackedScene" uid="uid://brql76bch2dd" path="res://scenes/level_1.tscn" id="2_g3eks"]
+[ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun_tutorial.tscn" id="2_v86rl"]
+[ext_resource type="PackedScene" uid="uid://dsa4204jfbwen" path="res://scenes/level_scenes/level_grappling_tutorial.tscn" id="3_13sgg"]
 [ext_resource type="PackedScene" uid="uid://cicu2igm1m3ux" path="res://scenes/world.tscn" id="3_v86rl"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_13sgg"]
+[ext_resource type="PackedScene" uid="uid://bvnjsbsbevlxm" path="res://scenes/level_scenes/level_beetower.tscn" id="4_i6lef"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="5_i6lef"]
 
 [node name="Menu" type="Control"]
@@ -21,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
 script = ExtResource("1_4ytvr")
-levels = Array[PackedScene]([ExtResource("2_g3eks")])
+levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_i6lef")])
 world_scene = ExtResource("3_v86rl")
 
 [node name="ReturnButton" type="TextureButton" parent="."]
@@ -39,5 +41,23 @@ offset_right = 110.0
 offset_bottom = 195.0
 texture_normal = ExtResource("4_13sgg")
 
+[node name="Level2Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 152.0
+offset_right = 283.0
+offset_bottom = 280.0
+texture_normal = ExtResource("4_13sgg")
+
+[node name="Level3Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 152.0
+offset_right = 437.0
+offset_bottom = 280.0
+texture_normal = ExtResource("4_13sgg")
+
 [connection signal="pressed" from="ReturnButton" to="." method="returns"]
 [connection signal="pressed" from="Level1Button" to="." method="load_level" binds= [1]]
+[connection signal="pressed" from="Level2Button" to="." method="load_level" binds= [2]]
+[connection signal="pressed" from="Level3Button" to="." method="load_level" binds= [3]]

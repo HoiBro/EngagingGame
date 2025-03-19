@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcxmjnd3wag0j"]
 
-[ext_resource type="Script" uid="uid://byq6wvoagrye" path="res://scripts/bee_enemy.gd" id="1_r1f3h"]
-[ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_ntk0n"]
+[ext_resource type="Script" uid="uid://byq6wvoagrye" path="res://scripts/bee_enemy.gd" id="1_8xkbu"]
+[ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_e7p21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jwkw"]
 radius = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vi0g0"]
-radius = 500.0
+radius = 1000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpq20"]
 radius = 36.0
@@ -15,11 +15,11 @@ radius = 36.0
 [node name="BeeEnemy" type="RigidBody2D"]
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_r1f3h")
+script = ExtResource("1_8xkbu")
 
 [node name="BeeSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ntk0n")
+texture = ExtResource("2_e7p21")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)

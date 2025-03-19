@@ -13,7 +13,7 @@ var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 
 func _ready() -> void:
-	$"Projectile".queue_free()
+	$Projectile.queue_free()
 	player.died.connect(player_death)
 	get_tree().create_timer(0.01, false).timeout.connect(string_spawn)
 
@@ -21,7 +21,10 @@ func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
 		remove_child($Hitbox)
+		$"../../../SpiderDeath".play()
 		queue_free()
+		return
+	$"../../../EnemyHit".play()
 
 func player_detected(rid, body, _body_index, _local_index):
 	if body == player and player.get_rid() == rid:
@@ -34,6 +37,7 @@ func shoot():
 		var projectile = projectile_scene.instantiate()
 		projectile.player_pos = player.position
 		call_deferred("add_child", projectile)
+		$Shoot.play()
 		get_tree().create_timer(shoot_time, false).timeout.connect(shoot)
 
 func body_collision(rid, body, _body_index, _local_index) -> void:
