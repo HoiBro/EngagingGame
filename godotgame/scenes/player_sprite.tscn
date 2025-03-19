@@ -78,7 +78,7 @@ texture = ExtResource("6_ikvri")
 [node name="Hook" type="Sprite2D" parent="."]
 visible = false
 top_level = true
-scale = Vector2(0.075, 0.075)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("9_cus7x")
 
 [node name="ShotgunSprite" type="Sprite2D" parent="."]

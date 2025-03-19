@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var enemy_stats: Dictionary = {
-	"health": 30
+	"health": 40
 }
 @export var shoot_time: float = 1
 @export var projectile_scene: PackedScene

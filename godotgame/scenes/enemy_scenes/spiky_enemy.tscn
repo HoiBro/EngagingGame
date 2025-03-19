@@ -18,7 +18,7 @@ script = ExtResource("1_s205j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -15)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_pctqt")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

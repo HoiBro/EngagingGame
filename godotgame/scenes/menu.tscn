@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=10 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun_tutorial.tscn" id="2_v86rl"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cicu2igm1m3ux" path="res://scenes/world.tscn" id="3_v86rl"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_13sgg"]
 [ext_resource type="PackedScene" uid="uid://bvnjsbsbevlxm" path="res://scenes/level_scenes/level_beetower.tscn" id="4_i6lef"]
-[ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="5_i6lef"]
+[ext_resource type="PackedScene" uid="uid://bw2lq81qkui3x" path="res://scenes/level_scenes/level_spiderswing.tscn" id="5_13sgg"]
+[ext_resource type="PackedScene" path="res://scenes/level_scenes/level_maze.tscn" id="6_i6lef"]
+[ext_resource type="Texture2D" uid="uid://brh3bxrdy3lyn" path="res://textures/menu_sprites/resume.png" id="8_i6lef"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -21,18 +23,17 @@ offset_right = -576.0
 offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(6.7, 6.7)
 pivot_offset = Vector2(576, 324)
 script = ExtResource("1_4ytvr")
-levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_i6lef")])
+levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("5_13sgg"), ExtResource("4_i6lef"), ExtResource("6_i6lef")])
 world_scene = ExtResource("3_v86rl")
 
-[node name="ReturnButton" type="TextureButton" parent="."]
+[node name="ResumeButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
-texture_normal = ExtResource("4_13sgg")
-texture_hover = ExtResource("5_i6lef")
-stretch_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("8_i6lef")
 
 [node name="Level1Button" type="TextureButton" parent="."]
 layout_mode = 0
@@ -57,7 +58,25 @@ offset_right = 437.0
 offset_bottom = 280.0
 texture_normal = ExtResource("4_13sgg")
 
-[connection signal="pressed" from="ReturnButton" to="." method="returns"]
+[node name="Level4Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 152.0
+offset_right = 587.0
+offset_bottom = 280.0
+texture_normal = ExtResource("4_13sgg")
+
+[node name="Level5Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 152.0
+offset_right = 731.0
+offset_bottom = 280.0
+texture_normal = ExtResource("4_13sgg")
+
+[connection signal="pressed" from="ResumeButton" to="." method="returns"]
 [connection signal="pressed" from="Level1Button" to="." method="load_level" binds= [1]]
 [connection signal="pressed" from="Level2Button" to="." method="load_level" binds= [2]]
 [connection signal="pressed" from="Level3Button" to="." method="load_level" binds= [3]]
+[connection signal="pressed" from="Level4Button" to="." method="load_level" binds= [4]]
+[connection signal="pressed" from="Level5Button" to="." method="load_level" binds= [5]]

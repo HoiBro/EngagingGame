@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 		if not get_tree().paused:
 			get_tree().paused = true
 			menu.position = find_children("*", "CharacterBody2D", false, false)[0].position - 0.5*menu.size
+			menu.scale = Vector2((1/$"Player/PlayerCamera".zoom.x)*201/200, (1/$"Player/PlayerCamera".zoom.x)*201/200)
 			menu.show()
 		elif find_children("*", "CharacterBody2D", false, false) != []:
 			get_tree().paused = false
@@ -24,6 +25,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"respawn"):
 		if find_children("*", "CharacterBody2D", false, false) != []: #remove current player
 			remove_child(find_children("*", "CharacterBody2D", false, false)[0])
+		else:
+			$DeathScreen.hide()
 		LEVEL = find_children("*", "TileMapLayer", false, false)[0]
 		LEVEL.remove_child(LEVEL.get_child(-1))
 		var player = player_scene.instantiate()

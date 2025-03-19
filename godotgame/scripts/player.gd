@@ -33,6 +33,7 @@ signal done_grappling
 
 func _ready() -> void:
 	$PlayerCamera.make_current()
+	position = Vector2(32, 80)
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
@@ -75,6 +76,10 @@ func _physics_process(delta: float) -> void:
 	if is_grappling:
 		#Grappling done
 		if !Input.is_action_pressed(&"fire grappling hook"):
+			$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
+			$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
+			$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
+			$"GrapplingHook/RopeOutline".set_point_position(1, Vector2.ZERO)
 			is_grappling = false
 			has_grappled = true
 			done_grappling.emit()
@@ -84,8 +89,19 @@ func _physics_process(delta: float) -> void:
 			if GRAP_V_REL.y > 0:
 				velocity = Vector2(GRAP_V_REL.x, grappling_conserve * GRAP_V_REL.y).rotated(-GRAP_ANGLE)
 			velocity += delta * ($GrapplingHook.result.position - position).normalized() * pull_strength
+			$"GrapplingHook/Rope".set_point_position(0, position)
+			$"GrapplingHook/RopeOutline".set_point_position(0, position)
+			$"PlayerSprite/Hook".rotation = PI-($GrapplingHook.result.position - position).angle_to(Vector2(-1, 0))
 			just_jumped = false
 			has_jumped = true
+			if ($GrapplingHook.result.position - position).length() <= 74:
+				$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
+				$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
+				$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
+				$"GrapplingHook/RopeOutline".set_point_position(1, Vector2.ZERO)
+				is_grappling = false
+				has_grappled = true
+				done_grappling.emit()
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
@@ -151,6 +167,9 @@ func death() -> void:
 	get_tree().paused = true
 	$"../WorldCamera".position = position
 	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
+	$"../DeathScreen".position = position
+	$"../DeathScreen".scale = Vector2((1/$PlayerCamera.zoom.x)*72/100, (1/$PlayerCamera.zoom.x)*72/100)
+	$"../DeathScreen".show()
 	died.emit()
 	$"../PlayerDeath".play()
 	queue_free()

@@ -32,10 +32,8 @@ floor_snap_length = 0.0
 script = ExtResource("1_s1vd6")
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_r7638")]
-position = Vector2(32, 80)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(32, 80)
 shape = SubResource("RectangleShape2D_5gqgi")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
@@ -77,6 +75,18 @@ stream = ExtResource("7_y4r1p")
 
 [node name="GrapplingHook" type="Node2D" parent="."]
 script = ExtResource("6_e0hap")
+
+[node name="RopeOutline" type="Line2D" parent="GrapplingHook"]
+top_level = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 26.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Rope" type="Line2D" parent="GrapplingHook"]
+top_level = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 12.0
+default_color = Color(0.780392, 0.780392, 0.886275, 1)
 
 [node name="GrapplingHook" type="AudioStreamPlayer" parent="GrapplingHook"]
 stream = ExtResource("8_ur7pv")

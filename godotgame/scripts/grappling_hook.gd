@@ -29,8 +29,9 @@ func _input(event) -> void:
 				graphook_sprite.hide()
 				shotgun_sprite.hide()
 				hook_sprite.position = CAST.position
-				hook_sprite.rotation = PI-MPOS.angle_to(Vector2(-1, 0))
 				hook_sprite.show()
+				$Rope.set_point_position(1, CAST.position)
+				$RopeOutline.set_point_position(1, CAST.position)
 				
 				$GrapplingHook.play()
 				player.is_grappling = true

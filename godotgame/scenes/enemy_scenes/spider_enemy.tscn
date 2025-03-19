@@ -45,9 +45,8 @@ monitorable = false
 shape = SubResource("CapsuleShape2D_6rtls")
 
 [node name="String" type="Line2D" parent="."]
-z_index = -1
 points = PackedVector2Array(0, -100)
-default_color = Color(0.447059, 0.823529, 0.917647, 1)
+default_color = Color(0, 0.796078, 1, 1)
 
 [node name="Projectile" parent="." instance=ExtResource("2_ci8yp")]
 
