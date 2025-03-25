@@ -6,10 +6,14 @@ extends RigidBody2D
 
 @onready var player: Node = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 
+var HITBOX: Node2D
+
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
-		remove_child($Hitbox)
+		HITBOX = $Hitbox
+		remove_child(HITBOX)
+		HITBOX.queue_free()
 		$"../../../SpikyDeath".play()
 		queue_free()
 		return

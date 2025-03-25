@@ -18,7 +18,7 @@ script = ExtResource("1_njhru")
 player_scene = ExtResource("1_w1ley")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1.05, 1.05)
+scroll_scale = Vector2(1.03, 1.03)
 
 [node name="BackgroundTiling" type="Sprite2D" parent="Parallax2D"]
 modulate = Color(0.59, 0.59, 0.59, 1)

@@ -11,6 +11,7 @@ extends RigidBody2D
 var SHOOTING: bool = false
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
+var HITBOX: Node2D
 
 func _ready() -> void:
 	$Projectile.queue_free()
@@ -20,7 +21,9 @@ func _ready() -> void:
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
-		remove_child($Hitbox)
+		HITBOX = $Hitbox
+		remove_child(HITBOX)
+		HITBOX.queue_free()
 		$"../../../SpiderDeath".play()
 		queue_free()
 		return

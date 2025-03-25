@@ -11,6 +11,7 @@ extends RigidBody2D
 var MOVING: bool = false
 var TARGET_POS: Vector2 = Vector2.ZERO
 var DIRECTION: Vector2 = Vector2.ZERO
+var HITBOX: Node2D
 
 func _ready() -> void:
 	player.died.connect(player_death)
@@ -18,7 +19,9 @@ func _ready() -> void:
 func damage(amount: int) -> void:
 	enemy_stats.health -= amount
 	if enemy_stats.health <= 0:
-		remove_child($Hitbox)
+		HITBOX = $Hitbox
+		remove_child(HITBOX)
+		HITBOX.queue_free()
 		$"../../../BeeDeath".play()
 		queue_free()
 		return
