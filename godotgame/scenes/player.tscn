@@ -37,6 +37,7 @@ script = ExtResource("1_s1vd6")
 shape = SubResource("RectangleShape2D_5gqgi")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+zoom = Vector2(0.15, 0.15)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("3_5iy3g")

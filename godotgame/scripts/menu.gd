@@ -22,9 +22,14 @@ func returns():
 
 func load_level(number: int):
 	#Reinstantiate the correct level and player
-	if world.find_children("*", "CharacterBody2D", false, false) != []:
-		world.remove_child(world.find_children("*", "CharacterBody2D", false, false)[0])
-	world.remove_child(world.find_children("*", "TileMapLayer", false, false)[0])
+	var old_player = world.find_children("*", "CharacterBody2D", false, false)
+	if old_player != []:
+		world.remove_child(old_player[0])
+		old_player[0].queue_free()
+	var old_tilemap = world.find_children("*", "TileMapLayer", false, false)[0]
+	world.remove_child(old_tilemap)
+	old_tilemap.queue_free()
+	
 	var player = world.player_scene.instantiate()
 	world.add_child(player)
 	var level = levels[number-1].instantiate()

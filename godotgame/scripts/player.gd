@@ -20,6 +20,7 @@ extends CharacterBody2D
 @export var is_grappling: bool = false
 @export var has_grappled: bool = false
 
+var TIME: float = 0
 var DIRECTION: float = 0
 var POS_DELTA_MOUSE: Vector2 = Vector2.ZERO
 var BUFFER_TIMER_START: bool = false
@@ -38,6 +39,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
+	
+	TIME += delta
+	$"../HUD/SpeedrunTimer".text = time_to_string()
 	
 	if !is_on_floor():
 		#Apply gravity in the air
@@ -94,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			$"PlayerSprite/Hook".rotation = PI-($GrapplingHook.result.position - position).angle_to(Vector2(-1, 0))
 			just_jumped = false
 			has_jumped = true
-			if ($GrapplingHook.result.position - position).length() <= 74:
+			if ($GrapplingHook.result.position - position).length() <= 84:
 				$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
 				$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
 				$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
@@ -166,7 +170,7 @@ func death() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	$"../WorldCamera".position = position
-	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
+	$"../WorldCamera".zoom = $PlayerCamera.zoom
 	$"../DeathScreen".position = position
 	$"../DeathScreen".scale = Vector2((1/$PlayerCamera.zoom.x)*72/100, (1/$PlayerCamera.zoom.x)*72/100)
 	$"../DeathScreen".show()
@@ -178,9 +182,20 @@ func win():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	$"../WorldCamera".position = position
-	$"../WorldCamera".zoom = $PlayerCamera.zoom + Vector2(0.01, 0.01)
+	$"../WorldCamera".zoom = $PlayerCamera.zoom
 	died.emit()
 	$"../PlayerWin".play()
 	$"../../Menu".position = position - 0.5*$"../../Menu".size
 	$"../../Menu".show()
 	queue_free()
+
+func time_to_string() -> String:
+	var msec = fmod(TIME, 1) * 1000
+	var sec = fmod(TIME, 60)
+	var minut = TIME / 60
+	var format_string = "%02d : %02d . %02d"
+	var string = format_string % [minut, sec, msec]
+	if msec < 100:
+		string = string.insert(10, "0")
+	return string
+	
