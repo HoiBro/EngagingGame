@@ -20,6 +20,7 @@ extends CharacterBody2D
 @export var is_grappling: bool = false
 @export var has_grappled: bool = false
 
+var STARTED: bool = false
 var TIME: float = 0
 var DIRECTION: float = 0
 var POS_DELTA_MOUSE: Vector2 = Vector2.ZERO
@@ -33,15 +34,22 @@ signal died
 signal done_grappling
 
 func _ready() -> void:
+	$"../HUD/SpeedrunTimer".text = "00 : 00 . 000"
 	$PlayerCamera.make_current()
 	position = Vector2(32, 80)
+
+func _input(event: InputEvent) -> void:
+	if !STARTED:
+		if event.is_action_pressed(&"fire grappling hook") or event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right"):
+			STARTED = true
 
 func _physics_process(delta: float) -> void:
 	DIRECTION = Input.get_axis("move_left", "move_right")
 	POS_DELTA_MOUSE = position - get_global_mouse_position()
 	
-	TIME += delta
-	$"../HUD/SpeedrunTimer".text = time_to_string()
+	if STARTED:
+		TIME += delta
+		$"../HUD/SpeedrunTimer".text = time_to_string()
 	
 	if !is_on_floor():
 		#Apply gravity in the air
