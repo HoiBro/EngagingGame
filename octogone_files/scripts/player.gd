@@ -32,6 +32,7 @@ var GRAP_V_REL: Vector2 = Vector2.ZERO
 
 signal died
 signal done_grappling
+signal grapple_reload
 
 func _ready() -> void:
 	$"../HUD/SpeedrunTimer".text = "00 : 00 . 000"
@@ -40,7 +41,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !STARTED:
-		if event.is_action_pressed(&"fire grappling hook") or event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right"):
+		if DIRECTION != 0 or event.is_action_pressed(&"fire grappling hook") or event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right"):
 			STARTED = true
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +78,8 @@ func _physics_process(delta: float) -> void:
 	else: #If on floor
 		has_jumped = false
 		just_jumped = false
+		if has_grappled:
+			grapple_reload.emit()
 		has_grappled = false
 		COYOTE_TIMER = 0
 		if BUFFER_TIMER != 0 and BUFFER_TIMER <= jump_buffer_time:
@@ -156,7 +159,7 @@ func jump(DIR) -> void:
 	$Jump.play()
 
 func handle_movement(DIR,delta) -> void:
-	if DIR and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
+	if DIR != 0 and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
 		if is_on_floor():
 			velocity.x += DIR * acceleration_ground * delta
 		else:

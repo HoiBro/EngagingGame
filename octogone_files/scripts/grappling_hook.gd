@@ -46,6 +46,8 @@ func _input(event) -> void:
 func _on_reload_timer_timeout() -> void:
 	if player.is_grappling:
 		await player.done_grappling
+	if !player.is_on_floor():
+		await player.grapple_reload
 	if grap_sprite.visible:
 		graphook_sprite.show()
 		grap_sprite.hide()
