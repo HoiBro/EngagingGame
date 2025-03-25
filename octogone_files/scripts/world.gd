@@ -6,7 +6,12 @@ extends Node2D
 
 @onready var menu: Node = $"../Menu"
 
-var LEVEL: Node
+var OLD_PLAYER: Array = []
+var OLD_LEVEL: Node2D
+var OLD_TILEMAP: Node2D
+var NEW_PLAYER: Node2D
+var NEW_LEVEL: Node2D
+var ETILESET: Node2D
 
 func _ready() -> void:
 	$Soundtrack.play()
@@ -23,25 +28,24 @@ func _input(event: InputEvent) -> void:
 			menu.hide()
 	
 	if event.is_action_pressed(&"respawn"):
-		var old_player = find_children("*", "CharacterBody2D", false, false)
-		if old_player != []: #remove current player
-			remove_child(old_player[0])
-			old_player[0].queue_free()
+		OLD_PLAYER = find_children("*", "CharacterBody2D", false, false)
+		if OLD_PLAYER != []: #remove current player
+			remove_child(OLD_PLAYER[0])
+			OLD_PLAYER[0].queue_free()
 		else:
 			$DeathScreen.hide()
-		LEVEL = find_children("*", "TileMapLayer", false, false)[0]
-		var old_tilemap = LEVEL.get_child(-1)
-		LEVEL.remove_child(old_tilemap)
-		old_tilemap.queue_free()
+		OLD_LEVEL = find_children("*", "TileMapLayer", false, false)[0]
+		OLD_TILEMAP = OLD_LEVEL.get_child(-1)
+		OLD_LEVEL.remove_child(OLD_TILEMAP)
+		OLD_TILEMAP.queue_free()
 		
-		var player = player_scene.instantiate()
-		add_child(player)
-		var level = menu.levels[current_level].instantiate()
-		var etileset = level.get_child(-1)
-		level.remove_child(etileset)
-		LEVEL.add_child(etileset)
-		level.queue_free()
+		NEW_PLAYER = player_scene.instantiate()
+		add_child(NEW_PLAYER)
+		NEW_LEVEL = menu.levels[current_level].instantiate()
+		ETILESET = NEW_LEVEL.get_child(-1)
+		NEW_LEVEL.remove_child(ETILESET)
+		OLD_LEVEL.add_child(ETILESET)
+		NEW_LEVEL.queue_free()
 		
 		get_tree().paused = false
 		menu.hide()
-		print("respawned")

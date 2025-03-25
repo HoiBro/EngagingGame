@@ -5,6 +5,11 @@ extends Control
 
 @onready var world: Node
 
+var OLD_PLAYER: Array = []
+var OLD_TILEMAP: Node2D
+var NEW_PLAYER: Node2D
+var NEW_LEVEL: Node2D
+
 func _ready() -> void:
 	get_tree().paused = true
 	world = world_scene.instantiate()
@@ -22,18 +27,18 @@ func returns():
 
 func load_level(number: int):
 	#Reinstantiate the correct level and player
-	var old_player = world.find_children("*", "CharacterBody2D", false, false)
-	if old_player != []:
-		world.remove_child(old_player[0])
-		old_player[0].queue_free()
-	var old_tilemap = world.find_children("*", "TileMapLayer", false, false)[0]
-	world.remove_child(old_tilemap)
-	old_tilemap.queue_free()
+	OLD_PLAYER = world.find_children("*", "CharacterBody2D", false, false)
+	if OLD_PLAYER != []: #remove current player
+		world.remove_child(OLD_PLAYER[0])
+		OLD_PLAYER[0].queue_free()
+	OLD_TILEMAP = world.find_children("*", "TileMapLayer", false, false)[0]
+	world.remove_child(OLD_TILEMAP)
+	OLD_TILEMAP.queue_free()
 	
-	var player = world.player_scene.instantiate()
-	world.add_child(player)
-	var level = levels[number-1].instantiate()
-	world.add_child(level)
+	NEW_PLAYER = world.player_scene.instantiate()
+	world.add_child(NEW_PLAYER)
+	NEW_LEVEL = levels[number-1].instantiate()
+	world.add_child(NEW_LEVEL)
 	world.current_level = number-1
 	
 	get_tree().paused = false
