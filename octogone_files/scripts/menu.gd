@@ -20,11 +20,13 @@ func _ready() -> void:
 func world_config():
 	world = $"../World"
 
+##Continue the run
 func returns():
 	if world.find_children("*", "CharacterBody2D", false, false) != []:
 		get_tree().paused = false
 		$MenuLayer.hide()
 
+##Load a level using a provided number
 func load_level(number: int):
 	#Reinstantiate the correct level and player
 	OLD_PLAYER = world.find_children("*", "CharacterBody2D", false, false)

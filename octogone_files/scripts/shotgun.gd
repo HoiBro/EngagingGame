@@ -11,9 +11,9 @@ extends Node2D
 @onready var grap_sprite: Sprite2D = $"../PlayerSprite/Grappling"
 @onready var hook_sprite: Sprite2D = $"../PlayerSprite/Hook"
 
-var MPOS: Vector2 = Vector2(0, 0)
-var V_RELATIVE: Vector2 = Vector2(0,0)
+var MPOS: Vector2 = Vector2.ZERO
 var ANGLE: float = 0
+var V_RELATIVE: Vector2 = Vector2.ZERO
 var BOUNCE: float = 0.1
 var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
@@ -22,10 +22,10 @@ func _input(event) -> void:
 	if event.is_action_pressed(&"fire shotgun") and ready_to_fire:
 		#Funky shotgun shit
 		MPOS = get_local_mouse_position().normalized()
-		ANGLE = MPOS.angle_to(Vector2(0,-1))
+		ANGLE = MPOS.angle_to(Vector2.UP)
 		V_RELATIVE = player.velocity.rotated(ANGLE)
 		if V_RELATIVE.y < 0:
-			player.velocity = Vector2(V_RELATIVE.x,-BOUNCE*V_RELATIVE.y).rotated(-ANGLE) - MPOS * recoil
+			player.velocity = Vector2(V_RELATIVE.x, -BOUNCE * V_RELATIVE.y).rotated(-ANGLE) - MPOS * recoil
 		else:
 			player.velocity += -MPOS * recoil
 		
@@ -45,6 +45,7 @@ func _input(event) -> void:
 			QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + (MPOS * raycast_length).rotated(-0.075 * PI + i * 0.015 * PI), 1, [player])
 			CAST = get_world_2d().direct_space_state.intersect_ray(QUERY)
 			$SpreadLine.add_point(player.position)
+			
 			if CAST != {} and CAST.collider != null:
 				$SpreadLine.add_point(CAST.position)
 				if CAST.collider is RigidBody2D:
@@ -60,5 +61,6 @@ func _on_reload_timer_timeout() -> void:
 	if is_inside_tree():
 		$Reload.play()
 
+##Removes the shotgun spread
 func spread_reset():
 	$SpreadLine.clear_points()

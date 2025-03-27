@@ -19,6 +19,7 @@ func hit(rid, body, _body_index, _local_index):
 	if body == player and player.get_rid() == rid and $Open.visible:
 		player.win()
 
+##Reset player rid after respawn
 func respawn_check():
 	player = $"../../..".find_children("*", "CharacterBody2D", false, false)[-1]
 	enemy_count = $"../../EnemyTileset".find_children("*", "", false, false).size()
@@ -27,6 +28,7 @@ func respawn_check():
 	$EnemyCounter.show()
 	$Open.hide()
 
+##Check the amount of enemies left in the level
 func enemy_check():
 	enemy_count = $"../../EnemyTileset".find_children("*", "", false, false).size()
 	$EnemyCounter.text = str(enemy_count)

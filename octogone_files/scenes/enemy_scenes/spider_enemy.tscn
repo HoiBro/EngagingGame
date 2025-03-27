@@ -28,7 +28,7 @@ scale = Vector2(1.125, 1.125)
 texture = ExtResource("3_f52wa")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(1.499, 1.499)
+scale = Vector2(1.49, 1.49)
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]

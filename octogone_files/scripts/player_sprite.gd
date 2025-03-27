@@ -1,11 +1,10 @@
 extends Node2D
 
-@export var angle: float = 0
+var ANGLE: float = 0
 
-func _process(_delta: float) -> void:
-	angle = get_angle_to(get_global_mouse_position())
-	
-	if cos(angle) < 0:
-		scale.x = floor(cos(angle))
+func _physics_process(_delta: float) -> void:
+	ANGLE = get_angle_to(get_global_mouse_position())
+	if cos(ANGLE) < 0:
+		scale.x = floor(cos(ANGLE))
 	else:
-		scale.x = ceil(cos(angle))
+		scale.x = ceil(cos(ANGLE))

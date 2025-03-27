@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwt53j51gbysd"]
+[gd_scene load_steps=10 format=3 uid="uid://cwt53j51gbysd"]
 
-[ext_resource type="Script" uid="uid://b5t84aic68umi" path="res://scripts/player_sprite.gd" id="1_7piis"]
 [ext_resource type="Texture2D" uid="uid://bxcwsx1xn5kws" path="res://textures/player/eyes.png" id="2_uvbe1"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="3_78pv8"]
 [ext_resource type="Script" uid="uid://c1vdpmeuxbxn0" path="res://scripts/weapon_sprite.gd" id="3_jqnmc"]
@@ -12,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://n117jxuejmwx" path="res://textures/player/harpoon_head.png" id="9_cus7x"]
 
 [node name="PlayerSprite" type="Node2D"]
-script = ExtResource("1_7piis")
 
 [node name="Eyes" type="Sprite2D" parent="."]
 z_index = 3

@@ -77,3 +77,5 @@ stream = ExtResource("8_e3hyu")
 floor_max_angle = 1.0472
 
 [node name="PlaceholderTileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="PlaceholderTileMapLayer1" type="TileMapLayer" parent="PlaceholderTileMapLayer"]

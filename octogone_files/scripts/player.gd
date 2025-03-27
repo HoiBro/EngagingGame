@@ -41,7 +41,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !STARTED:
-		if (DIRECTION != 0 or event.is_action_pressed(&"fire grappling hook") or
+		if (event.is_action_pressed(&"fire grappling hook") or
 		event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or
 		event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right")):
 			STARTED = true
@@ -53,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	if STARTED:
 		TIME += delta
 		$"../HUD/SpeedrunTimer".text = time_to_string()
+	elif DIRECTION != 0:
+		STARTED = true
 	
 	if !is_on_floor():
 		#Apply gravity in the air
@@ -93,13 +95,7 @@ func _physics_process(delta: float) -> void:
 	if is_grappling:
 		#Grappling done
 		if !Input.is_action_pressed(&"fire grappling hook"):
-			$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
-			$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
-			$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
-			$"GrapplingHook/RopeOutline".set_point_position(1, Vector2.ZERO)
-			is_grappling = false
-			has_grappled = true
-			done_grappling.emit()
+			release_grapple()
 		else:
 			GRAP_ANGLE = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
 			GRAP_V_REL = velocity.rotated(GRAP_ANGLE)
@@ -112,17 +108,17 @@ func _physics_process(delta: float) -> void:
 			just_jumped = false
 			has_jumped = true
 			if ($GrapplingHook.result.position - position).length() <= 84:
-				$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
-				$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
-				$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
-				$"GrapplingHook/RopeOutline".set_point_position(1, Vector2.ZERO)
-				is_grappling = false
-				has_grappled = true
-				done_grappling.emit()
+				release_grapple()
 	
 	if Input.is_action_just_pressed("jump"):
 		handle_jump(DIRECTION)
-	handle_movement(DIRECTION,delta)
+	
+	#Movement code
+	if DIRECTION != 0 and (DIRECTION != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
+		if is_on_floor():
+			velocity.x += DIRECTION * acceleration_ground * delta
+		else:
+			velocity.x += DIRECTION * acceleration_air * delta
 	
 	if !is_grappling:
 		handle_friction(DIRECTION, delta)
@@ -160,13 +156,6 @@ func jump(DIR) -> void:
 	just_jumped = true
 	$Jump.play()
 
-func handle_movement(DIR,delta) -> void:
-	if DIR != 0 and (DIR != velocity.x/abs(velocity.x) or abs(velocity.x) < max_speed):
-		if is_on_floor():
-			velocity.x += DIR * acceleration_ground * delta
-		else:
-			velocity.x += DIR * acceleration_air * delta
-
 func handle_friction(DIR,delta) -> void:
 	if is_on_floor():
 		if abs(DIR - velocity.normalized().x) < 1 and DIR != 0:
@@ -179,6 +168,16 @@ func handle_friction(DIR,delta) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta * (air_friction + 0.35 * abs(velocity.x)))
 
+##Stops the grappling of the player
+func release_grapple() -> void:
+	$"GrapplingHook/Rope".set_point_position(0, Vector2.ZERO)
+	$"GrapplingHook/Rope".set_point_position(1, Vector2.ZERO)
+	$"GrapplingHook/RopeOutline".set_point_position(0, Vector2.ZERO)
+	$"GrapplingHook/RopeOutline".set_point_position(1, Vector2.ZERO)
+	is_grappling = false
+	has_grappled = true
+	done_grappling.emit()
+
 func death() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
@@ -189,15 +188,17 @@ func death() -> void:
 	$"../PlayerDeath".play()
 	queue_free()
 
-func win():
+func win() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	$"../WorldCamera".position = position
 	$"../WorldCamera".zoom = $PlayerCamera.zoom
+	$"../../Menu/MenuLayer".show()
 	died.emit()
 	$"../PlayerWin".play()
 	queue_free()
 
+##Convert a time to a string of the format "00 : 00 . 000"
 func time_to_string() -> String:
 	var msec = fmod(TIME, 1) * 1000
 	var sec = fmod(TIME, 60)
