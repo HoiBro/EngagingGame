@@ -5,6 +5,7 @@ extends Node2D
 @export var current_level: int = 0
 
 @onready var menu: Node = $"../Menu"
+@onready var menu_layer: Node = $"../Menu/MenuLayer"
 
 var OLD_PLAYER: Array = []
 var OLD_LEVEL: Node2D
@@ -20,12 +21,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause"):
 		if not get_tree().paused:
 			get_tree().paused = true
-			menu.position = find_children("*", "CharacterBody2D", false, false)[0].position - 0.5*menu.size
-			menu.scale = Vector2((1/$"Player/PlayerCamera".zoom.x)*201/200, (1/$"Player/PlayerCamera".zoom.x)*201/200)
-			menu.show()
+			menu_layer.show()
 		elif find_children("*", "CharacterBody2D", false, false) != []:
 			get_tree().paused = false
-			menu.hide()
+			menu_layer.hide()
 	
 	if event.is_action_pressed(&"respawn"):
 		OLD_PLAYER = find_children("*", "CharacterBody2D", false, false)
@@ -48,4 +47,4 @@ func _input(event: InputEvent) -> void:
 		NEW_LEVEL.queue_free()
 		
 		get_tree().paused = false
-		menu.hide()
+		menu_layer.hide()

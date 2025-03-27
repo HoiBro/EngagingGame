@@ -41,6 +41,15 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
 text = "00 : 00 . 000"
 
+[node name="DeathScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DeathScreen" type="Sprite2D" parent="DeathScreen"]
+z_index = 9
+position = Vector2(576, 324)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("11_e3hyu")
+
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7r4gi")
 
@@ -61,12 +70,6 @@ stream = ExtResource("9_w7kh3")
 
 [node name="SpiderDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_e3hyu")
-
-[node name="DeathScreen" type="Sprite2D" parent="."]
-visible = false
-z_index = 9
-scale = Vector2(4.8, 4.8)
-texture = ExtResource("11_e3hyu")
 
 [node name="WorldCamera" type="Camera2D" parent="."]
 

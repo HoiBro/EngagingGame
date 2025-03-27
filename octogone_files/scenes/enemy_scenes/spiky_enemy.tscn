@@ -17,12 +17,13 @@ freeze = true
 script = ExtResource("1_s205j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
-scale = Vector2(0.2, 0.2)
+position = Vector2(0, -79)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_pctqt")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(0.99, 0.99)
+position = Vector2(0, -40)
+scale = Vector2(1.499, 1.499)
 shape = SubResource("CapsuleShape2D_q6snl")
 
 [node name="CollisionDetection" type="Area2D" parent="."]
@@ -30,6 +31,8 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
+position = Vector2(0, -40)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_2muqh")
 
 [connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]

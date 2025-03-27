@@ -24,11 +24,11 @@ script = ExtResource("1_vudl6")
 projectile_scene = ExtResource("2_ci8yp")
 
 [node name="SpiderSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1.125, 1.125)
 texture = ExtResource("3_f52wa")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(0.99, 0.99)
+scale = Vector2(1.499, 1.499)
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -43,10 +43,12 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_6rtls")
 
 [node name="String" type="Line2D" parent="."]
-points = PackedVector2Array(0, -100)
+points = PackedVector2Array(0, -155)
+width = 15.0
 default_color = Color(0, 0.796078, 1, 1)
 
 [node name="Projectile" parent="." instance=ExtResource("2_ci8yp")]

@@ -3,7 +3,7 @@ extends Control
 @export var levels: Array[PackedScene]
 @export var world_scene: PackedScene
 
-@onready var world: Node
+var world: Node
 
 var OLD_PLAYER: Array = []
 var OLD_TILEMAP: Node2D
@@ -23,7 +23,7 @@ func world_config():
 func returns():
 	if world.find_children("*", "CharacterBody2D", false, false) != []:
 		get_tree().paused = false
-		hide()
+		$MenuLayer.hide()
 
 func load_level(number: int):
 	#Reinstantiate the correct level and player
@@ -42,4 +42,4 @@ func load_level(number: int):
 	world.current_level = number-1
 	
 	get_tree().paused = false
-	hide()
+	$MenuLayer.hide()

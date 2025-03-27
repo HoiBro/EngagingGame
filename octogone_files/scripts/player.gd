@@ -41,7 +41,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !STARTED:
-		if DIRECTION != 0 or event.is_action_pressed(&"fire grappling hook") or event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right"):
+		if (DIRECTION != 0 or event.is_action_pressed(&"fire grappling hook") or
+		event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or
+		event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right")):
 			STARTED = true
 
 func _physics_process(delta: float) -> void:
@@ -182,8 +184,6 @@ func death() -> void:
 	get_tree().paused = true
 	$"../WorldCamera".position = position
 	$"../WorldCamera".zoom = $PlayerCamera.zoom
-	$"../DeathScreen".position = position
-	$"../DeathScreen".scale = Vector2((1/$PlayerCamera.zoom.x)*72/100, (1/$PlayerCamera.zoom.x)*72/100)
 	$"../DeathScreen".show()
 	died.emit()
 	$"../PlayerDeath".play()
@@ -196,8 +196,6 @@ func win():
 	$"../WorldCamera".zoom = $PlayerCamera.zoom
 	died.emit()
 	$"../PlayerWin".play()
-	$"../../Menu".position = position - 0.5*$"../../Menu".size
-	$"../../Menu".show()
 	queue_free()
 
 func time_to_string() -> String:

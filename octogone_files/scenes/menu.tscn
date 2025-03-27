@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
-[ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun_tutorial.tscn" id="2_v86rl"]
-[ext_resource type="PackedScene" uid="uid://dsa4204jfbwen" path="res://scenes/level_scenes/level_grappling_tutorial.tscn" id="3_13sgg"]
+[ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun.tscn" id="2_v86rl"]
+[ext_resource type="PackedScene" uid="uid://dsa4204jfbwen" path="res://scenes/level_scenes/level_grappling.tscn" id="3_13sgg"]
 [ext_resource type="PackedScene" uid="uid://cicu2igm1m3ux" path="res://scenes/world.tscn" id="3_v86rl"]
 [ext_resource type="Texture2D" uid="uid://xsppxnbbbc8x" path="res://textures/icon.svg" id="4_13sgg"]
 [ext_resource type="PackedScene" uid="uid://bvnjsbsbevlxm" path="res://scenes/level_scenes/level_beetower.tscn" id="4_i6lef"]
@@ -29,54 +29,50 @@ script = ExtResource("1_4ytvr")
 levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("5_13sgg"), ExtResource("4_i6lef"), ExtResource("6_i6lef")])
 world_scene = ExtResource("3_v86rl")
 
-[node name="ResumeButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="ResumeButton" type="TextureButton" parent="MenuLayer"]
+offset_right = 1000.0
+offset_bottom = 155.0
 texture_normal = ExtResource("8_i6lef")
 
-[node name="Level1Button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_top = 152.0
-offset_right = 110.0
-offset_bottom = 195.0
+[node name="Level1Button" type="TextureButton" parent="MenuLayer"]
+offset_top = 200.0
+offset_right = 128.0
+offset_bottom = 328.0
 texture_normal = ExtResource("4_13sgg")
 
-[node name="Level2Button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 155.0
-offset_top = 152.0
-offset_right = 283.0
-offset_bottom = 280.0
+[node name="Level2Button" type="TextureButton" parent="MenuLayer"]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 328.0
+offset_bottom = 328.0
 texture_normal = ExtResource("4_13sgg")
 
-[node name="Level3Button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 309.0
-offset_top = 152.0
-offset_right = 437.0
-offset_bottom = 280.0
+[node name="Level3Button" type="TextureButton" parent="MenuLayer"]
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 528.0
+offset_bottom = 328.0
 texture_normal = ExtResource("4_13sgg")
 
-[node name="Level4Button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 152.0
-offset_right = 587.0
-offset_bottom = 280.0
+[node name="Level4Button" type="TextureButton" parent="MenuLayer"]
+offset_left = 600.0
+offset_top = 200.0
+offset_right = 728.0
+offset_bottom = 328.0
 texture_normal = ExtResource("4_13sgg")
 
-[node name="Level5Button" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 603.0
-offset_top = 152.0
-offset_right = 731.0
-offset_bottom = 280.0
+[node name="Level5Button" type="TextureButton" parent="MenuLayer"]
+offset_left = 800.0
+offset_top = 200.0
+offset_right = 928.0
+offset_bottom = 328.0
 texture_normal = ExtResource("4_13sgg")
 
-[connection signal="pressed" from="ResumeButton" to="." method="returns"]
-[connection signal="pressed" from="Level1Button" to="." method="load_level" binds= [1]]
-[connection signal="pressed" from="Level2Button" to="." method="load_level" binds= [2]]
-[connection signal="pressed" from="Level3Button" to="." method="load_level" binds= [3]]
-[connection signal="pressed" from="Level4Button" to="." method="load_level" binds= [4]]
-[connection signal="pressed" from="Level5Button" to="." method="load_level" binds= [5]]
+[connection signal="pressed" from="MenuLayer/ResumeButton" to="." method="returns"]
+[connection signal="pressed" from="MenuLayer/Level1Button" to="." method="load_level" binds= [1]]
+[connection signal="pressed" from="MenuLayer/Level2Button" to="." method="load_level" binds= [2]]
+[connection signal="pressed" from="MenuLayer/Level3Button" to="." method="load_level" binds= [3]]
+[connection signal="pressed" from="MenuLayer/Level4Button" to="." method="load_level" binds= [4]]
+[connection signal="pressed" from="MenuLayer/Level5Button" to="." method="load_level" binds= [5]]
