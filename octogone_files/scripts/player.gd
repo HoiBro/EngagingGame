@@ -196,6 +196,13 @@ func win() -> void:
 	$"../../Menu/MenuLayer".show()
 	died.emit()
 	$"../PlayerWin".play()
+	#var save_data = FileAccess.open("res://save_files/test.txt", FileAccess.READ_WRITE)
+	#var lines = save_data.get_as_text().split("\n")
+	#var level_record = lines[$"..".current_level].split(":")[1].split(",")[0]
+	#if level_record.to_float() > TIME:
+		#save_data.seek_end()
+		#save_data.store_line("Shotgun: " + str(snapped(TIME, 0.001)) + ", g")
+	#save_data.close()
 	queue_free()
 
 ##Convert a time to a string of the format "00 : 00 . 000"
