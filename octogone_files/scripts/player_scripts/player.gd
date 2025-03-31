@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var save_data: Dictionary = SaveSystem.current_state_dictionary
+
 @export var max_speed: int = 1500
 @export var acceleration_air: int = 5000
 @export var acceleration_ground: int = 6000
@@ -29,6 +31,11 @@ var COYOTE_TIMER: float = 0
 var BUFFER_TIMER: float = 0
 var GRAP_ANGLE: float = 0
 var GRAP_V_REL: Vector2 = Vector2.ZERO
+
+var LEVEL_PATH: String = ""
+var LEVEL_NAME: String = ""
+var LEVEL_RECORD: float = 0
+var MEDAL_TIMES: Array = []
 
 signal died
 signal done_grappling
@@ -196,14 +203,29 @@ func win() -> void:
 	$"../../Menu/MenuLayer".show()
 	died.emit()
 	$"../PlayerWin".play()
-	#var save_data = FileAccess.open("res://save_files/test.txt", FileAccess.READ_WRITE)
-	#var lines = save_data.get_as_text().split("\n")
-	#var level_record = lines[$"..".current_level].split(":")[1].split(",")[0]
-	#if level_record.to_float() > TIME:
-		#save_data.seek_end()
-		#save_data.store_line("Shotgun: " + str(snapped(TIME, 0.001)) + ", g")
-	#save_data.close()
+	
+	LEVEL_PATH = $"../../Menu".levels[$"..".current_level].get_path()
+	LEVEL_NAME = LEVEL_PATH.right(-LEVEL_PATH.rfind("/") - 1).left(-5)
+	#Check for level save
+	if save_data.get(LEVEL_NAME) == null:
+		var SAVE_FORMAT := SaveFormat.new()
+		SaveSystem.set_var("%s" % LEVEL_NAME, SAVE_FORMAT)
+		set_records()
+	else:
+		LEVEL_RECORD = SaveSystem.get_var("%s:record" % LEVEL_NAME)
+		if TIME < LEVEL_RECORD:
+			set_records()
 	queue_free()
+
+func set_records():
+	SaveSystem.set_var("%s:record" % LEVEL_NAME, ceil(1000*TIME)/1000)
+	
+	MEDAL_TIMES = $"../../Menu".medal_times.get(LEVEL_NAME)
+	for i in range(MEDAL_TIMES.size()):
+		if TIME < MEDAL_TIMES[i]:
+			SaveSystem.set_var("%s:medal" % LEVEL_NAME, i+1)
+	
+	SaveSystem.save()
 
 ##Convert a time to a string of the format "00 : 00 . 000"
 func time_to_string() -> String:
@@ -215,4 +237,3 @@ func time_to_string() -> String:
 	if msec < 100:
 		string = string.insert(10, "0")
 	return string
-	

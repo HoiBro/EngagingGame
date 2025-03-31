@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcxmjnd3wag0j"]
 
-[ext_resource type="Script" uid="uid://byq6wvoagrye" path="res://scripts/bee_enemy.gd" id="1_8xkbu"]
-[ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/b-bot.png" id="2_e7p21"]
+[ext_resource type="Script" uid="uid://byq6wvoagrye" path="res://scripts/enemy_scripts/bee_enemy.gd" id="1_8xkbu"]
+[ext_resource type="Texture2D" uid="uid://tddteceqksmk" path="res://textures/enemy_sprites/b-bot.png" id="2_e7p21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jwkw"]
 radius = 36.0
@@ -17,11 +17,11 @@ gravity_scale = 0.0
 script = ExtResource("1_8xkbu")
 
 [node name="BeeSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_e7p21")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 15)
 scale = Vector2(1.49, 1.49)
 shape = SubResource("CircleShape2D_7jwkw")
 debug_color = Color(1, 0, 1, 0.419608)
@@ -38,7 +38,7 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
-position = Vector2(0, 10)
+position = Vector2(0, 15)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_fpq20")
 

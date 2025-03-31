@@ -1,6 +1,16 @@
 extends Control
 
 @export var levels: Array[PackedScene]
+@export var medal_times: Dictionary = {
+	"level_shotgun": [30, 20, 15, 10, 8.5],
+	"level_grappling": [30, 20, 15, 10, 8],
+	"level_zigzag": [40, 30, 20, 15, 12],
+	"level_buzz": [40, 30, 20, 15, 13],
+	"level_spiderswing": [45, 30, 20, 13, 10],
+	"level_beetower": [60, 40, 25, 15, 8],
+	"level_escape": [45, 30, 20, 15, 12],
+	"level_maze": [300, 120, 60, 50, 40]
+}
 @export var world_scene: PackedScene
 
 var world: Node

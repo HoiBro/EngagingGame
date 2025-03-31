@@ -1,7 +1,0 @@
-Shotgun: 10.923, g
-Grappling:
-Spiderswing:
-Bee_tower:
-Escape:
-Maze:
-Shotgun: 9.386, g

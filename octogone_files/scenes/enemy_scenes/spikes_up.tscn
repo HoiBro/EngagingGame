@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2td7mykkq6jn"]
 
-[ext_resource type="Script" uid="uid://dp6enrvp10xil" path="res://scripts/spikes.gd" id="1_lqsb8"]
-[ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/spikes.png" id="2_xihjh"]
+[ext_resource type="Script" uid="uid://dp6enrvp10xil" path="res://scripts/enemy_scripts/spikes.gd" id="1_lqsb8"]
+[ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/enemy_sprites/spikes.png" id="2_xihjh"]
 
 [node name="Spikes" type="StaticBody2D"]
 script = ExtResource("1_lqsb8")

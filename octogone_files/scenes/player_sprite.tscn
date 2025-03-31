@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bxcwsx1xn5kws" path="res://textures/player/eyes.png" id="2_uvbe1"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="3_78pv8"]
-[ext_resource type="Script" uid="uid://c1vdpmeuxbxn0" path="res://scripts/weapon_sprite.gd" id="3_jqnmc"]
+[ext_resource type="Script" uid="uid://c1vdpmeuxbxn0" path="res://scripts/player_scripts/weapon_sprite.gd" id="3_jqnmc"]
 [ext_resource type="Texture2D" uid="uid://ce04wcj5q5xj8" path="res://textures/player/harpoon_gun.png" id="4_64i0i"]
 [ext_resource type="Texture2D" uid="uid://cgcn7tlno0m53" path="res://textures/player/leg.png" id="6_2b4bn"]
 [ext_resource type="Texture2D" uid="uid://c74fjmxmoi17q" path="res://textures/player/hand.png" id="6_ikvri"]

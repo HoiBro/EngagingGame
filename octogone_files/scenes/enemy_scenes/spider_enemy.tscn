@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bppohfb38bi1s"]
 
-[ext_resource type="Script" uid="uid://b7t48htwcj8ji" path="res://scripts/spider_enemy.gd" id="1_vudl6"]
+[ext_resource type="Script" uid="uid://b7t48htwcj8ji" path="res://scripts/enemy_scripts/spider_enemy.gd" id="1_vudl6"]
 [ext_resource type="PackedScene" uid="uid://bmwn76h55boeo" path="res://scenes/enemy_scenes/spider_projectile.tscn" id="2_ci8yp"]
-[ext_resource type="Texture2D" uid="uid://dkt5d3ygyitxm" path="res://textures/spider_enemy.png" id="3_f52wa"]
+[ext_resource type="Texture2D" uid="uid://dkt5d3ygyitxm" path="res://textures/enemy_sprites/spider_enemy.png" id="3_f52wa"]
 [ext_resource type="AudioStream" uid="uid://d36j8vbr8vpb8" path="res://sfx/spider_shoot.mp3" id="4_ci8yp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jggis"]

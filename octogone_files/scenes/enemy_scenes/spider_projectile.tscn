@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmwn76h55boeo"]
 
-[ext_resource type="Script" uid="uid://cos3oy5up02v2" path="res://scripts/spider_projectile.gd" id="1_3i26f"]
+[ext_resource type="Script" uid="uid://cos3oy5up02v2" path="res://scripts/enemy_scripts/spider_projectile.gd" id="1_3i26f"]
 [ext_resource type="Texture2D" uid="uid://ctpk512oujc2t" path="res://textures/player/torso.png" id="2_n4y3s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ok757"]

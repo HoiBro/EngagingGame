@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d8v17upqpwvj"]
 
-[ext_resource type="Script" uid="uid://dp6enrvp10xil" path="res://scripts/spikes.gd" id="1_5cso5"]
-[ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/spikes.png" id="2_myc0q"]
+[ext_resource type="Script" uid="uid://dp6enrvp10xil" path="res://scripts/enemy_scripts/spikes.gd" id="1_5cso5"]
+[ext_resource type="Texture2D" uid="uid://5xdiik77u2na" path="res://textures/enemy_sprites/spikes.png" id="2_myc0q"]
 
 [node name="Spikes" type="StaticBody2D"]
 rotation = 1.5708

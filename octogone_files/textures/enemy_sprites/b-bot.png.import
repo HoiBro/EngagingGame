@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tddteceqksmk"
-path="res://.godot/imported/b-bot.png-d660d2223121d5e786d7e573453d3564.ctex"
+path="res://.godot/imported/b-bot.png-466f855beb617d62d86d116b14679788.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/b-bot.png"
-dest_files=["res://.godot/imported/b-bot.png-d660d2223121d5e786d7e573453d3564.ctex"]
+source_file="res://textures/enemy_sprites/b-bot.png"
+dest_files=["res://.godot/imported/b-bot.png-466f855beb617d62d86d116b14679788.ctex"]
 
 [params]
 
