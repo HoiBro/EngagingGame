@@ -22,7 +22,7 @@ texture = ExtResource("2_e7p21")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
-scale = Vector2(1.49, 1.49)
+scale = Vector2(1.45, 1.45)
 shape = SubResource("CircleShape2D_7jwkw")
 debug_color = Color(1, 0, 1, 0.419608)
 

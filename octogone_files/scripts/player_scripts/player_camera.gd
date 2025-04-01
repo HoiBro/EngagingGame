@@ -11,6 +11,7 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event.is_action_pressed(&"zoom_in"):
 		if zoom.x < 1:
+			print($"..".COYOTE_TIMER)
 			ZOOM_EXPONENT += Input.get_action_strength("zoom_in") * zoom_speed
 			zoom = Vector2(pow(2, ZOOM_EXPONENT), pow(2, ZOOM_EXPONENT))
 	if event.is_action_pressed(&"zoom_out"):

@@ -12,7 +12,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_l83i7")
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.99, 0.99)
+scale = Vector2(0.95, 0.95)
 polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
 
 [node name="CollisionArea" type="Area2D" parent="."]

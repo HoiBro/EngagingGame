@@ -388,7 +388,7 @@ func _get_parent_dictionary(key_path : String, carried_dict : Dictionary = curre
 
 
 # Initiates recursive search for a variable.
-func _get_variable_at_path(key_path : String, carried_dict : Dictionary = current_state_dictionary):
+func _get_variable_at_path(key_path : String, _carried_dict : Dictionary = current_state_dictionary):
 	key_path = _sanitize_key_path(key_path)
 	var parent_dict = _get_parent_dictionary(key_path)
 	if parent_dict != null:

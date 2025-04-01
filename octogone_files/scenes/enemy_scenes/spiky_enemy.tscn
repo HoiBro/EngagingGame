@@ -23,7 +23,7 @@ texture = ExtResource("2_pctqt")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -40)
-scale = Vector2(1.49, 1.49)
+scale = Vector2(1.45, 1.45)
 shape = SubResource("CapsuleShape2D_q6snl")
 
 [node name="CollisionDetection" type="Area2D" parent="."]

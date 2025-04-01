@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@onready var save_data: Dictionary = SaveSystem.current_state_dictionary
-
 @export var max_speed: int = 1500
 @export var acceleration_air: int = 5000
 @export var acceleration_ground: int = 6000
@@ -36,6 +34,11 @@ var LEVEL_PATH: String = ""
 var LEVEL_NAME: String = ""
 var LEVEL_RECORD: float = 0
 var MEDAL_TIMES: Array = []
+var MSEC: int = 0
+var SEC: int = 0
+var MIN: int = 0
+var FORMAT_STR: String = "%02d : %02d . %02d"
+var ACT_STR: String = ""
 
 signal died
 signal done_grappling
@@ -113,7 +116,6 @@ func _physics_process(delta: float) -> void:
 			$"GrapplingHook/RopeOutline".set_point_position(0, position)
 			$"PlayerSprite/Hook".rotation = PI-($GrapplingHook.result.position - position).angle_to(Vector2(-1, 0))
 			just_jumped = false
-			has_jumped = true
 			if ($GrapplingHook.result.position - position).length() <= 84:
 				release_grapple()
 	
@@ -207,7 +209,7 @@ func win() -> void:
 	LEVEL_PATH = $"../../Menu".levels[$"..".current_level].get_path()
 	LEVEL_NAME = LEVEL_PATH.right(-LEVEL_PATH.rfind("/") - 1).left(-5)
 	#Check for level save
-	if save_data.get(LEVEL_NAME) == null:
+	if SaveSystem.current_state_dictionary.get(LEVEL_NAME) == null:
 		var SAVE_FORMAT := SaveFormat.new()
 		SaveSystem.set_var("%s" % LEVEL_NAME, SAVE_FORMAT)
 		set_records()
@@ -220,6 +222,7 @@ func win() -> void:
 func set_records():
 	SaveSystem.set_var("%s:record" % LEVEL_NAME, ceil(1000*TIME)/1000)
 	
+	#Medal checks
 	MEDAL_TIMES = $"../../Menu".medal_times.get(LEVEL_NAME)
 	for i in range(MEDAL_TIMES.size()):
 		if TIME < MEDAL_TIMES[i]:
@@ -229,11 +232,10 @@ func set_records():
 
 ##Convert a time to a string of the format "00 : 00 . 000"
 func time_to_string() -> String:
-	var msec = fmod(TIME, 1) * 1000
-	var sec = fmod(TIME, 60)
-	var minut = TIME / 60
-	var format_string = "%02d : %02d . %02d"
-	var string = format_string % [minut, sec, msec]
-	if msec < 100:
-		string = string.insert(10, "0")
-	return string
+	MSEC = fmod(TIME, 1) * 1000
+	SEC = fmod(TIME, 60)
+	MIN = TIME / 60
+	ACT_STR = FORMAT_STR % [MIN, SEC, MSEC]
+	if MSEC < 100:
+		ACT_STR = ACT_STR.insert(10, "0")
+	return ACT_STR

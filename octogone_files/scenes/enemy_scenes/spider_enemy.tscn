@@ -28,7 +28,7 @@ scale = Vector2(1.125, 1.125)
 texture = ExtResource("3_f52wa")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(1.49, 1.49)
+scale = Vector2(1.45, 1.45)
 shape = SubResource("CapsuleShape2D_jggis")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -53,8 +53,10 @@ default_color = Color(0, 0.796078, 1, 1)
 
 [node name="Projectile" parent="." instance=ExtResource("2_ci8yp")]
 
-[node name="Shoot" type="AudioStreamPlayer" parent="."]
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+z_index = 20
 stream = ExtResource("4_ci8yp")
+max_distance = 4096.0
 
 [connection signal="body_shape_entered" from="DetectionArea" to="." method="player_detected"]
 [connection signal="body_shape_entered" from="CollisionDetection" to="." method="body_collision"]

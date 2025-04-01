@@ -18,7 +18,6 @@ var CAST: Dictionary = {}
 func _input(event) -> void:
 	if event.is_action_pressed(&"fire grappling hook") and ready_to_fire and !player.has_grappled and $"../..".current_level != 0:
 		MPOS = get_local_mouse_position().normalized()
-		player.just_jumped = false
 		
 		result = {}
 		QUERY = PhysicsRayQueryParameters2D.create(player.position, player.position + MPOS * raycast_length, 1, [player])
