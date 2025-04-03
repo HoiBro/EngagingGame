@@ -21,6 +21,7 @@ texture = ExtResource("2_n4y3s")
 shape = SubResource("CircleShape2D_ok757")
 
 [node name="CollisionArea" type="Area2D" parent="."]
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 scale = Vector2(1.05, 1.05)

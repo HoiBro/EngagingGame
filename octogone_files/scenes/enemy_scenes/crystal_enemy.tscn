@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://416bsa0jrlq3"]
 
-[ext_resource type="Script" uid="uid://b2n8sxr3jwmhc" path="res://scripts/enemy_scripts/spiky_enemy.gd" id="1_s205j"]
-[ext_resource type="Texture2D" uid="uid://b5r8xrarjyp56" path="res://textures/enemy_sprites/spiky_enemy.png" id="2_pctqt"]
+[ext_resource type="Script" uid="uid://b2n8sxr3jwmhc" path="res://scripts/enemy_scripts/crystal_enemy.gd" id="1_0bmij"]
+[ext_resource type="Texture2D" uid="uid://b5r8xrarjyp56" path="res://textures/enemy_sprites/crystal_enemy.png" id="2_cdide"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6snl"]
 radius = 32.0
@@ -11,15 +11,15 @@ height = 160.0
 radius = 32.0
 height = 160.0
 
-[node name="SpikyEnemy" type="RigidBody2D"]
+[node name="CrystalEnemy" type="RigidBody2D"]
 lock_rotation = true
 freeze = true
-script = ExtResource("1_s205j")
+script = ExtResource("1_0bmij")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -79)
 scale = Vector2(1.75, 1.75)
-texture = ExtResource("2_pctqt")
+texture = ExtResource("2_cdide")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -40)

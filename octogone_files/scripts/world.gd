@@ -22,6 +22,8 @@ func _input(event: InputEvent) -> void:
 		if not get_tree().paused:
 			get_tree().paused = true
 			menu_layer.show()
+		elif $DeathScreen.visible:
+			menu_layer.visible = !menu_layer.visible
 		elif find_children("*", "CharacterBody2D", false, false) != []:
 			get_tree().paused = false
 			menu_layer.hide()

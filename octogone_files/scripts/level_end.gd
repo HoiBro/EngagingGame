@@ -36,3 +36,5 @@ func enemy_check():
 		$Closed.hide()
 		$EnemyCounter.hide()
 		$Open.show()
+		if $Area2D.has_overlapping_bodies() and player:
+			player.win()

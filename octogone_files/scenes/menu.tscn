@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=30 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun.tscn" id="2_v86rl"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" path="res://scenes/level_scenes/level_buzz.tscn" id="6_6cdou"]
 [ext_resource type="PackedScene" uid="uid://cxry8x51vygqg" path="res://scenes/level_scenes/level_escape.tscn" id="6_70i5f"]
 [ext_resource type="PackedScene" uid="uid://bacj2fh7yyb6m" path="res://scenes/level_scenes/level_maze.tscn" id="6_i6lef"]
+[ext_resource type="PackedScene" path="res://scenes/level_scenes/level_backtrack.tscn" id="7_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://brh3bxrdy3lyn" path="res://textures/menu_sprites/resume.png" id="8_i6lef"]
+[ext_resource type="PackedScene" uid="uid://n0v60fn8ju8o" path="res://scenes/level_scenes/level_turbine.tscn" id="9_hwfsl"]
 [ext_resource type="PackedScene" uid="uid://chmst26m0hj6l" path="res://scenes/level_scenes/level_needle.tscn" id="10_6cdou"]
 [ext_resource type="Texture2D" uid="uid://x6wrli5g54b2" path="res://textures/menu_sprites/start scherm.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://bl5xr86tkqisf" path="res://textures/menu_sprites/shotgun.png" id="13_6wigr"]
@@ -24,6 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://ct63rvxtb5kwl" path="res://textures/menu_sprites/maze.png" id="20_hwfsl"]
 [ext_resource type="Texture2D" uid="uid://mfnqf1jsbqau" path="res://textures/menu_sprites/needle.png" id="21_a04p5"]
 [ext_resource type="Texture2D" uid="uid://ce5jkdl1mpo1k" path="res://textures/menu_sprites/laboratory.png" id="22_b5gwo"]
+[ext_resource type="Texture2D" uid="uid://bf6xp2a480afy" path="res://textures/menu_sprites/level_select.png" id="23_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://cwbq72xkgbh4" path="res://textures/menu_sprites/levels.png" id="26_x16fv"]
+[ext_resource type="Texture2D" uid="uid://b18e4ac50ujwl" path="res://textures/menu_sprites/bronze.png" id="27_g54pe"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -41,10 +46,11 @@ grow_vertical = 2
 scale = Vector2(6.7, 6.7)
 pivot_offset = Vector2(576, 324)
 script = ExtResource("1_4ytvr")
-levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_ufwb2"), ExtResource("6_6cdou"), ExtResource("5_13sgg"), ExtResource("4_i6lef"), ExtResource("6_70i5f"), ExtResource("6_i6lef"), ExtResource("10_6cdou")])
+levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_ufwb2"), ExtResource("6_6cdou"), ExtResource("5_13sgg"), ExtResource("7_vhsb5"), ExtResource("4_i6lef"), ExtResource("9_hwfsl"), ExtResource("6_70i5f"), ExtResource("6_i6lef"), ExtResource("10_6cdou")])
 world_scene = ExtResource("3_v86rl")
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="StartScreen" type="Control" parent="MenuLayer"]
 visible = false
@@ -71,6 +77,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Level1Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
 offset_top = 200.0
 offset_right = 2326.0
@@ -84,10 +91,11 @@ texture = ExtResource("13_6wigr")
 centered = false
 
 [node name="Level2Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 250.0
-offset_right = 1100.0
-offset_bottom = 331.0
+offset_top = 240.0
+offset_right = 2326.0
+offset_bottom = 368.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
@@ -97,10 +105,11 @@ centered = false
 offset = Vector2(32, 32)
 
 [node name="Level3Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 300.0
-offset_right = 675.0
-offset_bottom = 364.0
+offset_top = 280.0
+offset_right = 2326.0
+offset_bottom = 408.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
@@ -110,10 +119,11 @@ centered = false
 offset = Vector2(32, 32)
 
 [node name="Level4Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 350.0
-offset_right = 585.0
-offset_bottom = 414.0
+offset_top = 320.0
+offset_right = 2326.0
+offset_bottom = 448.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
@@ -123,10 +133,11 @@ centered = false
 offset = Vector2(32, 32)
 
 [node name="Level5Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 400.0
-offset_right = 991.0
-offset_bottom = 481.0
+offset_top = 360.0
+offset_right = 2326.0
+offset_bottom = 488.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
@@ -136,59 +147,116 @@ centered = false
 offset = Vector2(32, 32)
 
 [node name="Level6Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 450.0
-offset_right = 856.0
-offset_bottom = 514.0
+offset_top = 400.0
+offset_right = 2326.0
+offset_bottom = 528.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Beetower" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level6Button"]
+[node name="Level7Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 440.0
+offset_right = 2326.0
+offset_bottom = 568.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("13_lnf0i")
+
+[node name="Beetower" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level7Button"]
 texture = ExtResource("18_48ryc")
 centered = false
 offset = Vector2(32, 32)
 
-[node name="Level7Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+[node name="Level8Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 500.0
-offset_right = 716.0
-offset_bottom = 581.0
+offset_top = 480.0
+offset_right = 2326.0
+offset_bottom = 608.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Escape" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level7Button"]
+[node name="Level9Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 520.0
+offset_right = 2326.0
+offset_bottom = 648.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("13_lnf0i")
+
+[node name="Escape" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level9Button"]
 texture = ExtResource("19_vhsb5")
 centered = false
 offset = Vector2(32, 32)
 
-[node name="Level8Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+[node name="Level10Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 550.0
-offset_right = 629.0
-offset_bottom = 614.0
+offset_top = 560.0
+offset_right = 2326.0
+offset_bottom = 688.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Maze" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level8Button"]
+[node name="Maze" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level10Button"]
 texture = ExtResource("20_hwfsl")
 centered = false
 offset = Vector2(32, 32)
 
-[node name="Level9Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+[node name="LevelSelect" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
+position = Vector2(576, 75)
+texture = ExtResource("23_ffqrc")
+
+[node name="Laboratory" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
+position = Vector2(576, 160)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("22_b5gwo")
+
+[node name="LevelSelectLabBonus" type="Control" parent="MenuLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level11Button" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
+layout_mode = 0
 offset_left = 326.0
-offset_top = 600.0
-offset_right = 701.0
-offset_bottom = 664.0
+offset_top = 200.0
+offset_right = 2326.0
+offset_bottom = 328.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Needle" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level9Button"]
+[node name="Maze" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus/Level11Button"]
+texture = ExtResource("20_hwfsl")
+centered = false
+offset = Vector2(32, 32)
+
+[node name="Level12Button" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 240.0
+offset_right = 2326.0
+offset_bottom = 368.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("13_lnf0i")
+
+[node name="Needle" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus/Level12Button"]
 texture = ExtResource("21_a04p5")
 centered = false
 offset = Vector2(32, 32)
 
-[node name="Laboratory" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
-position = Vector2(576, 100)
+[node name="LevelSelect" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
+position = Vector2(576, 75)
+texture = ExtResource("23_ffqrc")
+
+[node name="Laboratory" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
+position = Vector2(576, 160)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("22_b5gwo")
 
 [node name="Options" type="Control" parent="MenuLayer"]
@@ -205,15 +273,52 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ResumeButton" type="TextureButton" parent="MenuLayer/Pause"]
+layout_mode = 0
 offset_right = 413.0
 offset_bottom = 64.0
 texture_normal = ExtResource("8_i6lef")
 
 [node name="WinScreen" type="Control" parent="MenuLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="LevelSelectButton" type="TextureButton" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 396.5
+offset_top = 50.0
+offset_right = 755.5
+offset_bottom = 114.0
+texture_normal = ExtResource("26_x16fv")
+
+[node name="MedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen"]
+position = Vector2(150, 150)
+texture = ExtResource("27_g54pe")
+
+[node name="MedalLabel" type="Label" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 270.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 50
+text = "Bronze"
+
+[node name="RecordLabel" type="Label" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 256.0
+offset_bottom = 369.0
+theme_override_font_sizes/font_size = 50
+text = "00.000"
+
+[node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer"]
+z_index = -1
+color = Color(0, 0, 0, 0.752941)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level1Button" to="." method="load_level" binds= [1]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level2Button" to="." method="load_level" binds= [2]]
@@ -224,4 +329,8 @@ offset_bottom = 40.0
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level7Button" to="." method="load_level" binds= [7]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level8Button" to="." method="load_level" binds= [8]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level9Button" to="." method="load_level" binds= [9]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLab/Level10Button" to="." method="load_level" binds= [10]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level11Button" to="." method="load_level" binds= [11]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level12Button" to="." method="load_level" binds= [12]]
 [connection signal="pressed" from="MenuLayer/Pause/ResumeButton" to="." method="returns"]
+[connection signal="pressed" from="MenuLayer/WinScreen/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]

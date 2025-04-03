@@ -34,9 +34,9 @@ var LEVEL_PATH: String = ""
 var LEVEL_NAME: String = ""
 var LEVEL_RECORD: float = 0
 var MEDAL_TIMES: Array = []
-var MSEC: int = 0
-var SEC: int = 0
-var MIN: int = 0
+var MSEC: float = 0
+var SEC: float = 0
+var MIN: float = 0
 var FORMAT_STR: String = "%02d : %02d . %02d"
 var ACT_STR: String = ""
 
@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 			$"GrapplingHook/RopeOutline".set_point_position(0, position)
 			$"PlayerSprite/Hook".rotation = PI-($GrapplingHook.result.position - position).angle_to(Vector2(-1, 0))
 			just_jumped = false
-			if ($GrapplingHook.result.position - position).length() <= 84:
+			if ($GrapplingHook.result.position - position).length() <= 175:
 				release_grapple()
 	
 	if Input.is_action_just_pressed("jump"):
@@ -217,15 +217,17 @@ func win() -> void:
 		LEVEL_RECORD = SaveSystem.get_var("%s:record" % LEVEL_NAME)
 		if TIME < LEVEL_RECORD:
 			set_records()
+	$"../../Menu".win_screen(LEVEL_NAME)
 	queue_free()
 
+##Saves the records to the save data
 func set_records():
 	SaveSystem.set_var("%s:record" % LEVEL_NAME, ceil(1000*TIME)/1000)
 	
 	#Medal checks
 	MEDAL_TIMES = $"../../Menu".medal_times.get(LEVEL_NAME)
 	for i in range(MEDAL_TIMES.size()):
-		if TIME < MEDAL_TIMES[i]:
+		if TIME <= MEDAL_TIMES[i]:
 			SaveSystem.set_var("%s:medal" % LEVEL_NAME, i+1)
 	
 	SaveSystem.save()

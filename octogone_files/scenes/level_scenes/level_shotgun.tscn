@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/enemy_scenes/bee_enemy.tscn" id="5_172wr"]
 [ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/enemy_scenes/spider_enemy.tscn" id="6_g2hoc"]
 [ext_resource type="PackedScene" uid="uid://b3ehtel8e51l7" path="res://scenes/level_end.tscn" id="7_6kf3v"]
-[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/enemy_scenes/spiky_enemy.tscn" id="7_fldb1"]
+[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/enemy_scenes/crystal_enemy.tscn" id="7_fldb1"]
 [ext_resource type="Texture2D" uid="uid://bneg1mrqr6hl4" path="res://textures/lab_tileset.png" id="8_guvtl"]
 [ext_resource type="Texture2D" uid="uid://c0fc2ywu5u3o4" path="res://textures/level_sprites/shotgun_firing_tutorial.png" id="9_5k1aw"]
 
@@ -681,17 +681,17 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAA1APn/AgAJAAAAAAA2APn/AgAJAAAAAAAHAPj/AgACAAIAAAAIAPj/AgACAAIAAAAJAPj/AgACAAIAAAAKAPj/AgACAAIAAAADAPn/AgABAAQAAAACAPn/AgABAAQAAHACAPr/AgABAAQAAAABAPv/AgABAAQAAEAAAPv/AgABAAQAAHAAAPz/AgABAAQAAAD///z/AgABAAQAADD///3/AgABAAQAAEABAPr/AgABAAQAADASAP//AgAAAAMAAAAHAPb/AgACAAIAAAAIAPb/AgACAAIAAAAJAPb/AgACAAIAAAAKAPb/AgACAAIAAAATAP3/AgACAAIAAAATAP7/AgACAAMAAAATAP//AgACAAMAAAATAAAAAgACAAIAAAAVAP3/AgACAAIAAAAVAP7/AgACAAMAAAAVAP//AgACAAMAAAAVAAAAAgACAAIAAAAUAP7/AgACAAMAAAAUAP//AgACAAMAAAASAP7/AgAAAAMAAAARAP7/AgAAAAMAAAARAP//AgAAAAMAAABYAPr/AgADAAEAAAClAPX/AgAAAAMAAACnAPn/AgABAAQAAAB9APn/AgABAAQAAAB8APn/AgABAAQAABBcAPn/AgAJAAAAAADgAPH/AgAJAAAAAAABAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAHAPz/AgAAAAAAAAAKAPz/AgAAAAAAAAANAPz/AgAAAAAAAAAQAPz/AgAAAAAAAAARAPr/AgADAAIAAADCAPL/AgACAAAAAACJAPL/AgAAAAMAAACMAPL/AgAAAAMAAACcAOv/AgABAAQAABCdAOv/AgABAAQAAACGAPn/AgABAAMAAACGAPb/AgABAAMAAAA=")
 tile_set = SubResource("TileSet_yl6q5")
 
-[node name="Sprite2D" type="Sprite2D" parent="DecoTileset"]
+[node name="FireTutorial" type="Sprite2D" parent="DecoTileset"]
 position = Vector2(2701.75, -71.25)
 texture = ExtResource("9_5k1aw")
 
-[node name="Sprite2D2" type="Sprite2D" parent="DecoTileset"]
-position = Vector2(6761.75, -323.75)
-texture = ExtResource("3_nd1hf")
-
-[node name="Sprite2D3" type="Sprite2D" parent="DecoTileset"]
+[node name="BoostTutorial" type="Sprite2D" parent="DecoTileset"]
 position = Vector2(4267.5, -27.75)
 texture = ExtResource("4_k4af4")
+
+[node name="EnemyTutorial" type="Sprite2D" parent="DecoTileset"]
+position = Vector2(6761.75, -323.75)
+texture = ExtResource("3_nd1hf")
 
 [node name="StaticTileset" type="TileMapLayer" parent="."]
 z_index = 1

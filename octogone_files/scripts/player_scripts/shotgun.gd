@@ -30,7 +30,6 @@ func _input(event) -> void:
 			player.velocity += -MPOS * recoil
 		
 		player.just_jumped = false
-		player.has_jumped = true
 		
 		get_tree().create_timer(reload_time, false).timeout.connect(_on_reload_timer_timeout)
 		get_tree().create_timer(0.1, false).timeout.connect(spread_reset)

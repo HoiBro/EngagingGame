@@ -15,6 +15,8 @@ scale = Vector2(0.95, 0.95)
 polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)
 
 [node name="CollisionArea" type="Area2D" parent="."]
+input_pickable = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionArea"]
 polygon = PackedVector2Array(32, 32, 0, -32, -32, 32)

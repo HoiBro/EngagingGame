@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d8v17upqpwvj" path="res://scenes/enemy_scenes/spikes_right.tscn" id="6_1nacw"]
 [ext_resource type="PackedScene" uid="uid://dcxmjnd3wag0j" path="res://scenes/enemy_scenes/bee_enemy.tscn" id="7_mus68"]
 [ext_resource type="PackedScene" uid="uid://bppohfb38bi1s" path="res://scenes/enemy_scenes/spider_enemy.tscn" id="8_h7y6e"]
-[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/enemy_scenes/spiky_enemy.tscn" id="9_pbp0c"]
+[ext_resource type="PackedScene" uid="uid://416bsa0jrlq3" path="res://scenes/enemy_scenes/crystal_enemy.tscn" id="9_pbp0c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i4bi"]
 bounce = 1.0
