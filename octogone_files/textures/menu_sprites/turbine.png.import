@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbboilgylo8nn"
-path="res://.godot/imported/silver.png-b83a4b451d560f8777c5295757527bc7.ctex"
+uid="uid://djctwc1pgrd5w"
+path="res://.godot/imported/turbine.png-3d534ea334b3265b2c909697800913c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu_sprites/silver.png"
-dest_files=["res://.godot/imported/silver.png-b83a4b451d560f8777c5295757527bc7.ctex"]
+source_file="res://textures/menu_sprites/turbine.png"
+dest_files=["res://.godot/imported/turbine.png-3d534ea334b3265b2c909697800913c4.ctex"]
 
 [params]
 

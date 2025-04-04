@@ -217,19 +217,19 @@ func win() -> void:
 		LEVEL_RECORD = SaveSystem.get_var("%s:record" % LEVEL_NAME)
 		if TIME < LEVEL_RECORD:
 			set_records()
+	if SaveSystem.get_var("progress") < $"..".current_level + 2:
+		SaveSystem.set_var("progress", $"..".current_level + 2)
 	$"../../Menu".win_screen(LEVEL_NAME)
 	queue_free()
 
 ##Saves the records to the save data
 func set_records():
 	SaveSystem.set_var("%s:record" % LEVEL_NAME, ceil(1000*TIME)/1000)
-	
 	#Medal checks
 	MEDAL_TIMES = $"../../Menu".medal_times.get(LEVEL_NAME)
 	for i in range(MEDAL_TIMES.size()):
 		if TIME <= MEDAL_TIMES[i]:
 			SaveSystem.set_var("%s:medal" % LEVEL_NAME, i+1)
-	
 	SaveSystem.save()
 
 ##Convert a time to a string of the format "00 : 00 . 000"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6fqa23ihchfx"
-path="res://.godot/imported/ruby.png-5488cd75c2769ada22e1b2b50f856253.ctex"
+uid="uid://0k7nwgihuvei"
+path="res://.godot/imported/levelarrow.png-9b1aba337d8cb2596e42f6722b24fd2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu_sprites/ruby.png"
-dest_files=["res://.godot/imported/ruby.png-5488cd75c2769ada22e1b2b50f856253.ctex"]
+source_file="res://textures/menu_sprites/levelarrow.png"
+dest_files=["res://.godot/imported/levelarrow.png-9b1aba337d8cb2596e42f6722b24fd2e.ctex"]
 
 [params]
 

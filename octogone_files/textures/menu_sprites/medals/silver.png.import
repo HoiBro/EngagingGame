@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2r533p2sb6h0"
-path="res://.godot/imported/diamond.png-163bd5a64e4215242f316ada62c4cce7.ctex"
+uid="uid://dbboilgylo8nn"
+path="res://.godot/imported/silver.png-67cb9ded3898c69fffe1ade74d40a6f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu_sprites/diamond.png"
-dest_files=["res://.godot/imported/diamond.png-163bd5a64e4215242f316ada62c4cce7.ctex"]
+source_file="res://textures/menu_sprites/medals/silver.png"
+dest_files=["res://.godot/imported/silver.png-67cb9ded3898c69fffe1ade74d40a6f8.ctex"]
 
 [params]
 

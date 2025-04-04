@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=41 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun.tscn" id="2_v86rl"]
@@ -7,19 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://bvnjsbsbevlxm" path="res://scenes/level_scenes/level_beetower.tscn" id="4_i6lef"]
 [ext_resource type="PackedScene" uid="uid://73ecmpapfg40" path="res://scenes/level_scenes/level_zigzag.tscn" id="4_ufwb2"]
 [ext_resource type="PackedScene" uid="uid://bw2lq81qkui3x" path="res://scenes/level_scenes/level_spiderswing.tscn" id="5_13sgg"]
-[ext_resource type="PackedScene" path="res://scenes/level_scenes/level_buzz.tscn" id="6_6cdou"]
+[ext_resource type="PackedScene" uid="uid://i0cq58nurs5p" path="res://scenes/level_scenes/level_buzz.tscn" id="6_6cdou"]
 [ext_resource type="PackedScene" uid="uid://cxry8x51vygqg" path="res://scenes/level_scenes/level_escape.tscn" id="6_70i5f"]
 [ext_resource type="PackedScene" uid="uid://bacj2fh7yyb6m" path="res://scenes/level_scenes/level_maze.tscn" id="6_i6lef"]
-[ext_resource type="PackedScene" path="res://scenes/level_scenes/level_backtrack.tscn" id="7_vhsb5"]
+[ext_resource type="PackedScene" uid="uid://c8xeaosp38akk" path="res://scenes/level_scenes/level_backtrack.tscn" id="7_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://brh3bxrdy3lyn" path="res://textures/menu_sprites/resume.png" id="8_i6lef"]
+[ext_resource type="PackedScene" uid="uid://bgb5n8cj062sq" path="res://scenes/level_scenes/level_slide.tscn" id="8_mhjd8"]
 [ext_resource type="PackedScene" uid="uid://n0v60fn8ju8o" path="res://scenes/level_scenes/level_turbine.tscn" id="9_hwfsl"]
 [ext_resource type="PackedScene" uid="uid://chmst26m0hj6l" path="res://scenes/level_scenes/level_needle.tscn" id="10_6cdou"]
 [ext_resource type="Texture2D" uid="uid://x6wrli5g54b2" path="res://textures/menu_sprites/start scherm.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://bl5xr86tkqisf" path="res://textures/menu_sprites/shotgun.png" id="13_6wigr"]
 [ext_resource type="Texture2D" uid="uid://mishmy6gmjs5" path="res://textures/menu_sprites/levelbox.png" id="13_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://mv5223tavlnh" path="res://textures/menu_sprites/grapplinghook.png" id="14_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://bp0p1h1ka7041" path="res://textures/menu_sprites/exit_game.png" id="15_0qewb"]
 [ext_resource type="Texture2D" uid="uid://0dg5vhknwas3" path="res://textures/menu_sprites/zigzag.png" id="15_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://ckbmkwjustk0o" path="res://textures/menu_sprites/buzz.png" id="16_x16fv"]
+[ext_resource type="Texture2D" uid="uid://df6l3vidjntbb" path="res://textures/menu_sprites/medals/empty.png" id="17_0ndyk"]
 [ext_resource type="Texture2D" uid="uid://86riboi56xlb" path="res://textures/menu_sprites/spiderswing.png" id="17_g54pe"]
 [ext_resource type="Texture2D" uid="uid://bw8bv2h4l8sx3" path="res://textures/menu_sprites/beetower.png" id="18_48ryc"]
 [ext_resource type="Texture2D" uid="uid://dhy1t5ffatbj7" path="res://textures/menu_sprites/escape.png" id="19_vhsb5"]
@@ -27,8 +30,16 @@
 [ext_resource type="Texture2D" uid="uid://mfnqf1jsbqau" path="res://textures/menu_sprites/needle.png" id="21_a04p5"]
 [ext_resource type="Texture2D" uid="uid://ce5jkdl1mpo1k" path="res://textures/menu_sprites/laboratory.png" id="22_b5gwo"]
 [ext_resource type="Texture2D" uid="uid://bf6xp2a480afy" path="res://textures/menu_sprites/level_select.png" id="23_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://h3ij076f5sp6" path="res://textures/menu_sprites/backtrack.png" id="23_jlmas"]
+[ext_resource type="Texture2D" uid="uid://cs5rgy0vx33l6" path="res://textures/menu_sprites/slide.png" id="24_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://0k7nwgihuvei" path="res://textures/menu_sprites/levelarrow.png" id="25_d3h35"]
+[ext_resource type="Texture2D" uid="uid://djctwc1pgrd5w" path="res://textures/menu_sprites/turbine.png" id="26_spe5f"]
 [ext_resource type="Texture2D" uid="uid://cwbq72xkgbh4" path="res://textures/menu_sprites/levels.png" id="26_x16fv"]
-[ext_resource type="Texture2D" uid="uid://b18e4ac50ujwl" path="res://textures/menu_sprites/bronze.png" id="27_g54pe"]
+[ext_resource type="Texture2D" uid="uid://cusg73eosicdq" path="res://textures/menu_sprites/menubox.png" id="27_0ndyk"]
+[ext_resource type="Texture2D" uid="uid://d1kxjrubkoqho" path="res://textures/menu_sprites/options.png" id="30_0qewb"]
+[ext_resource type="Texture2D" uid="uid://ca41j06vsvfxp" path="res://textures/menu_sprites/main_menu.png" id="31_mhjd8"]
+[ext_resource type="Texture2D" uid="uid://b12ybecsinimi" path="res://textures/menu_sprites/paused.png" id="32_d3h35"]
+[ext_resource type="Texture2D" uid="uid://0igk5tkkmr7k" path="res://textures/menu_sprites/bonus.png" id="33_qfcyc"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -46,7 +57,7 @@ grow_vertical = 2
 scale = Vector2(6.7, 6.7)
 pivot_offset = Vector2(576, 324)
 script = ExtResource("1_4ytvr")
-levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_ufwb2"), ExtResource("6_6cdou"), ExtResource("5_13sgg"), ExtResource("7_vhsb5"), ExtResource("4_i6lef"), ExtResource("9_hwfsl"), ExtResource("6_70i5f"), ExtResource("6_i6lef"), ExtResource("10_6cdou")])
+levels = Array[PackedScene]([ExtResource("2_v86rl"), ExtResource("3_13sgg"), ExtResource("4_ufwb2"), ExtResource("6_6cdou"), ExtResource("5_13sgg"), ExtResource("7_vhsb5"), ExtResource("8_mhjd8"), ExtResource("4_i6lef"), ExtResource("9_hwfsl"), ExtResource("6_70i5f"), ExtResource("6_i6lef"), ExtResource("10_6cdou")])
 world_scene = ExtResource("3_v86rl")
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
@@ -65,12 +76,20 @@ scale = Vector2(0.72, 0.72)
 texture = ExtResource("12_i42df")
 
 [node name="Main" type="Control" parent="MenuLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ExitButton" type="TextureButton" parent="MenuLayer/Main"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("15_0qewb")
+
 [node name="LevelSelectLab" type="Control" parent="MenuLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -90,6 +109,23 @@ position = Vector2(32, 32)
 texture = ExtResource("13_6wigr")
 centered = false
 
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level1Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level1Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="Level2Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
 offset_left = 326.0
@@ -103,6 +139,23 @@ texture_normal = ExtResource("13_lnf0i")
 texture = ExtResource("14_lnf0i")
 centered = false
 offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level2Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level2Button"]
+position = Vector2(1865, 0)
+centered = false
 
 [node name="Level3Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
@@ -118,6 +171,23 @@ texture = ExtResource("15_ffqrc")
 centered = false
 offset = Vector2(32, 32)
 
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level3Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level3Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="Level4Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
 offset_left = 326.0
@@ -131,6 +201,23 @@ texture_normal = ExtResource("13_lnf0i")
 texture = ExtResource("16_x16fv")
 centered = false
 offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level4Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level4Button"]
+position = Vector2(1865, 0)
+centered = false
 
 [node name="Level5Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
@@ -146,6 +233,23 @@ texture = ExtResource("17_g54pe")
 centered = false
 offset = Vector2(32, 32)
 
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level5Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level5Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="Level6Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
 offset_left = 326.0
@@ -154,6 +258,28 @@ offset_right = 2326.0
 offset_bottom = 528.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
+
+[node name="Backtrack" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level6Button"]
+texture = ExtResource("23_jlmas")
+centered = false
+offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level6Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level6Button"]
+position = Vector2(1865, 0)
+centered = false
 
 [node name="Level7Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
@@ -164,10 +290,27 @@ offset_bottom = 568.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Beetower" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level7Button"]
-texture = ExtResource("18_48ryc")
+[node name="Slide" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level7Button"]
+texture = ExtResource("24_qfcyc")
 centered = false
 offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level7Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level7Button"]
+position = Vector2(1865, 0)
+centered = false
 
 [node name="Level8Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
@@ -178,6 +321,28 @@ offset_bottom = 608.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
+[node name="Beetower" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level8Button"]
+texture = ExtResource("18_48ryc")
+centered = false
+offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level8Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level8Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="Level9Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
 offset_left = 326.0
@@ -187,10 +352,27 @@ offset_bottom = 648.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Escape" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level9Button"]
-texture = ExtResource("19_vhsb5")
+[node name="Turbine" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level9Button"]
+texture = ExtResource("26_spe5f")
 centered = false
 offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level9Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level9Button"]
+position = Vector2(1865, 0)
+centered = false
 
 [node name="Level10Button" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
@@ -201,10 +383,37 @@ offset_bottom = 688.0
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("13_lnf0i")
 
-[node name="Maze" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level10Button"]
-texture = ExtResource("20_hwfsl")
+[node name="Escape" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level10Button"]
+texture = ExtResource("19_vhsb5")
 centered = false
 offset = Vector2(32, 32)
+
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLab/Level10Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLab/Level10Button"]
+position = Vector2(1865, 0)
+centered = false
+
+[node name="BonusButton" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 135.0
+offset_right = 960.0
+offset_bottom = 295.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("25_d3h35")
+flip_h = true
 
 [node name="LevelSelect" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
 position = Vector2(576, 75)
@@ -236,6 +445,23 @@ texture = ExtResource("20_hwfsl")
 centered = false
 offset = Vector2(32, 32)
 
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLabBonus/Level11Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus/Level11Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="Level12Button" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
 layout_mode = 0
 offset_left = 326.0
@@ -250,23 +476,188 @@ texture = ExtResource("21_a04p5")
 centered = false
 offset = Vector2(32, 32)
 
+[node name="Record" type="Label" parent="MenuLayer/LevelSelectLabBonus/Level12Button"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 9.0
+offset_right = 1847.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "-"
+horizontal_alignment = 1
+
+[node name="Medal" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus/Level12Button"]
+position = Vector2(1865, 0)
+centered = false
+
 [node name="LevelSelect" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
 position = Vector2(576, 75)
 texture = ExtResource("23_ffqrc")
 
-[node name="Laboratory" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
+[node name="Bonus" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
 position = Vector2(576, 160)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("22_b5gwo")
+texture = ExtResource("33_qfcyc")
+
+[node name="NormalButton" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 135.0
+offset_right = 460.0
+offset_bottom = 295.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("25_d3h35")
 
 [node name="Options" type="Control" parent="MenuLayer"]
+visible = false
 layout_mode = 3
+anchors_preset = 0
+offset_left = 230.4
+offset_top = 129.6
+offset_right = 270.4
+offset_bottom = 169.6
+scale = Vector2(0.6, 0.6)
+
+[node name="Audio" type="Control" parent="MenuLayer/Options"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Pause" type="Control" parent="MenuLayer"]
+[node name="Controls" type="Control" parent="MenuLayer/Options"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="JumpRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 100.0
+offset_right = 1300.0
+offset_bottom = 228.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Jump" type="Label" parent="MenuLayer/Options/Controls/JumpRebind"]
+layout_mode = 0
+offset_left = 274.5
+offset_top = -10.0
+offset_right = 525.5
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 100
+text = "Jump"
+
+[node name="Credits" type="Control" parent="MenuLayer/Options"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RebindScreen" type="Control" parent="MenuLayer/Options"]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer/Options/RebindScreen"]
+z_index = -1
+color = Color(0, 0, 0, 0.752941)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
+[node name="Label" type="Label" parent="MenuLayer/Options/RebindScreen"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 272.5
+offset_right = 1030.0
+offset_bottom = 375.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.254902, 0.505882, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 75
+text = "Press button to rebind to"
+
+[node name="Background" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+color = Color(0.2093, 0.477902, 0.91, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
+[node name="BackgroundOutline" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+color = Color(0.0156863, 0.0745098, 0.207843, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(10, 10, 1142, 10, 1142, 638, 10, 638)
+
+[node name="Outline1" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+color = Color(0.0156863, 0.0745098, 0.207843, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(10, 10, 285, 10, 285, 206, 10, 206)
+
+[node name="Outline2" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+position = Vector2(0, 206)
+color = Color(0.0156863, 0.0745098, 0.207843, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(10, 10, 285, 10, 285, 226, 10, 226)
+
+[node name="Outline3" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+position = Vector2(0, 432)
+color = Color(0.0156863, 0.0745098, 0.207843, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(10, 10, 285, 10, 285, 206, 10, 206)
+
+[node name="Outline4" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -1
+color = Color(0.0156863, 0.0745098, 0.207843, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(942, 10, 1142, 10, 1142, 100, 942, 100)
+
+[node name="SoundsButton" type="Button" parent="MenuLayer/Options"]
+layout_mode = 0
+offset_right = 295.0
+offset_bottom = 216.0
+theme_override_font_sizes/font_size = 50
+text = "Sounds"
+flat = true
+
+[node name="ControlsButton" type="Button" parent="MenuLayer/Options"]
+layout_mode = 0
+offset_top = 206.0
+offset_right = 295.0
+offset_bottom = 442.0
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+flat = true
+
+[node name="CreditsButton" type="Button" parent="MenuLayer/Options"]
+layout_mode = 0
+offset_top = 432.0
+offset_right = 295.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+flat = true
+
+[node name="BackButton" type="Button" parent="MenuLayer/Options"]
+layout_mode = 0
+offset_left = 932.0
+offset_right = 1152.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+flat = true
+
+[node name="Pause" type="Control" parent="MenuLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -274,9 +665,60 @@ offset_bottom = 40.0
 
 [node name="ResumeButton" type="TextureButton" parent="MenuLayer/Pause"]
 layout_mode = 0
-offset_right = 413.0
-offset_bottom = 64.0
-texture_normal = ExtResource("8_i6lef")
+offset_left = 376.0
+offset_top = 225.0
+offset_right = 1176.0
+offset_bottom = 353.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Resume" type="Sprite2D" parent="MenuLayer/Pause/ResumeButton"]
+position = Vector2(400, 64)
+texture = ExtResource("8_i6lef")
+
+[node name="LevelSelectButton" type="TextureButton" parent="MenuLayer/Pause"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 300.0
+offset_right = 1176.0
+offset_bottom = 428.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Levels" type="Sprite2D" parent="MenuLayer/Pause/LevelSelectButton"]
+position = Vector2(400, 64)
+texture = ExtResource("26_x16fv")
+
+[node name="OptionsButton" type="TextureButton" parent="MenuLayer/Pause"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 375.0
+offset_right = 1176.0
+offset_bottom = 503.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Options" type="Sprite2D" parent="MenuLayer/Pause/OptionsButton"]
+position = Vector2(400, 72.5)
+texture = ExtResource("30_0qewb")
+
+[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/Pause"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 450.0
+offset_right = 1176.0
+offset_bottom = 578.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="MainMenu" type="Sprite2D" parent="MenuLayer/Pause/MainMenuButton"]
+position = Vector2(400, 64)
+texture = ExtResource("31_mhjd8")
+
+[node name="Paused" type="Sprite2D" parent="MenuLayer/Pause"]
+position = Vector2(572, 125)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("32_d3h35")
 
 [node name="WinScreen" type="Control" parent="MenuLayer"]
 visible = false
@@ -295,7 +737,7 @@ texture_normal = ExtResource("26_x16fv")
 
 [node name="MedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen"]
 position = Vector2(150, 150)
-texture = ExtResource("27_g54pe")
+texture = ExtResource("17_0ndyk")
 
 [node name="MedalLabel" type="Label" parent="MenuLayer/WinScreen"]
 layout_mode = 0
@@ -304,7 +746,7 @@ offset_top = 200.0
 offset_right = 270.0
 offset_bottom = 269.0
 theme_override_font_sizes/font_size = 50
-text = "Bronze"
+text = "None"
 
 [node name="RecordLabel" type="Label" parent="MenuLayer/WinScreen"]
 layout_mode = 0
@@ -316,10 +758,11 @@ theme_override_font_sizes/font_size = 50
 text = "00.000"
 
 [node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer"]
-z_index = -1
+z_index = -2
 color = Color(0, 0, 0, 0.752941)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
+[connection signal="pressed" from="MenuLayer/Main/ExitButton" to="." method="quit"]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level1Button" to="." method="load_level" binds= [1]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level2Button" to="." method="load_level" binds= [2]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level3Button" to="." method="load_level" binds= [3]]
@@ -330,7 +773,17 @@ polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level8Button" to="." method="load_level" binds= [8]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level9Button" to="." method="load_level" binds= [9]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level10Button" to="." method="load_level" binds= [10]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLab/BonusButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLabBonus")]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level11Button" to="." method="load_level" binds= [11]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level12Button" to="." method="load_level" binds= [12]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/NormalButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/JumpRebind" to="." method="rebind" binds= ["jump"]]
+[connection signal="pressed" from="MenuLayer/Options/SoundsButton" to="." method="options_show" binds= ["Audio"]]
+[connection signal="pressed" from="MenuLayer/Options/ControlsButton" to="." method="options_show" binds= ["Controls"]]
+[connection signal="pressed" from="MenuLayer/Options/CreditsButton" to="." method="options_show" binds= ["Credits"]]
+[connection signal="pressed" from="MenuLayer/Options/BackButton" to="." method="back"]
 [connection signal="pressed" from="MenuLayer/Pause/ResumeButton" to="." method="returns"]
+[connection signal="pressed" from="MenuLayer/Pause/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
+[connection signal="pressed" from="MenuLayer/Pause/OptionsButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Options")]]
+[connection signal="pressed" from="MenuLayer/Pause/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
 [connection signal="pressed" from="MenuLayer/WinScreen/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]

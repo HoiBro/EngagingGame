@@ -21,8 +21,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause"):
 		if not get_tree().paused:
 			get_tree().paused = true
+			menu.show_single_screen("MenuLayer/Pause")
 			menu_layer.show()
 		elif $DeathScreen.visible:
+			menu.show_single_screen("MenuLayer/Pause")
 			menu_layer.visible = !menu_layer.visible
 		elif find_children("*", "CharacterBody2D", false, false) != []:
 			get_tree().paused = false
@@ -42,6 +44,8 @@ func _input(event: InputEvent) -> void:
 		
 		NEW_PLAYER = player_scene.instantiate()
 		add_child(NEW_PLAYER)
+		if current_level == 6:
+			NEW_PLAYER.position += Vector2(0, -15488)
 		NEW_LEVEL = menu.levels[current_level].instantiate()
 		ETILESET = NEW_LEVEL.get_child(-1)
 		NEW_LEVEL.remove_child(ETILESET)

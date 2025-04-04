@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b18e4ac50ujwl"
-path="res://.godot/imported/bronze.png-bf49a1db3864f00d57ccf456bdbfd61e.ctex"
+uid="uid://cusg73eosicdq"
+path="res://.godot/imported/menubox.png-ae8a4cf096dc7e96642a434a8fdb1c73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu_sprites/bronze.png"
-dest_files=["res://.godot/imported/bronze.png-bf49a1db3864f00d57ccf456bdbfd61e.ctex"]
+source_file="res://textures/menu_sprites/menubox.png"
+dest_files=["res://.godot/imported/menubox.png-ae8a4cf096dc7e96642a434a8fdb1c73.ctex"]
 
 [params]
 
