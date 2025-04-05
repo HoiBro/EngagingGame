@@ -51,8 +51,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !STARTED:
-		if (event.is_action_pressed(&"fire grappling hook") or
-		event.is_action_pressed(&"fire shotgun") or event.is_action_pressed(&"jump") or
+		if (event.is_action_pressed(&"fire_grappling_hook") or
+		event.is_action_pressed(&"fire_shotgun") or event.is_action_pressed(&"jump") or
 		event.is_action_pressed(&"move_left") or event.is_action_pressed(&"move_right")):
 			STARTED = true
 
@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	#Grappling physics
 	if is_grappling:
 		#Grappling done
-		if !Input.is_action_pressed(&"fire grappling hook"):
+		if !Input.is_action_pressed(&"fire_grappling_hook"):
 			release_grapple()
 		else:
 			GRAP_ANGLE = ($GrapplingHook.result.position - position).angle_to(Vector2(0, -1))
@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 			if ($GrapplingHook.result.position - position).length() <= 175:
 				release_grapple()
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed(&"jump"):
 		handle_jump(DIRECTION)
 	
 	#Movement code
@@ -135,11 +135,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > max_fall:
 		velocity.y = move_toward(velocity.y, max_fall, 4000*delta)
 	
-	if Input.is_action_just_released("jump") and just_jumped and velocity.y < 0:
+	if Input.is_action_just_released(&"jump") and just_jumped and velocity.y < 0:
 		velocity.y = velocity.y/2
 		just_jumped = false
 	
-	if Input.is_action_just_released("jump") and BUFFER_TIMER != 0 and BUFFER_TIMER <= jump_buffer_time:
+	if Input.is_action_just_released(&"jump") and BUFFER_TIMER != 0 and BUFFER_TIMER <= jump_buffer_time:
 		BUFFER_TIMER = 0
 		BUFFER_TIMER_START = false
 	
@@ -210,7 +210,7 @@ func win() -> void:
 	LEVEL_NAME = LEVEL_PATH.right(-LEVEL_PATH.rfind("/") - 1).left(-5)
 	#Check for level save
 	if SaveSystem.current_state_dictionary.get(LEVEL_NAME) == null:
-		var SAVE_FORMAT := SaveFormat.new()
+		var SAVE_FORMAT := SaveFormatLevel.new()
 		SaveSystem.set_var("%s" % LEVEL_NAME, SAVE_FORMAT)
 		set_records()
 	else:

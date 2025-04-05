@@ -19,7 +19,7 @@ var QUERY: PhysicsRayQueryParameters2D
 var CAST: Dictionary = {}
 
 func _input(event) -> void:
-	if event.is_action_pressed(&"fire shotgun") and ready_to_fire:
+	if event.is_action_pressed(&"fire_shotgun") and ready_to_fire:
 		#Funky shotgun shit
 		MPOS = get_local_mouse_position().normalized()
 		ANGLE = MPOS.angle_to(Vector2.UP)

@@ -18,39 +18,40 @@ func _ready() -> void:
 	$Soundtrack.play()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"pause"):
-		if not get_tree().paused:
-			get_tree().paused = true
-			menu.show_single_screen("MenuLayer/Pause")
-			menu_layer.show()
-		elif $DeathScreen.visible:
-			menu.show_single_screen("MenuLayer/Pause")
-			menu_layer.visible = !menu_layer.visible
-		elif find_children("*", "CharacterBody2D", false, false) != []:
+	if not menu_layer.visible or $"../Menu/MenuLayer/Pause".visible or $"../Menu/MenuLayer/WinScreen".visible:
+		if event.is_action_pressed(&"pause"):
+			if not get_tree().paused:
+				get_tree().paused = true
+				menu.show_single_screen("MenuLayer/Pause")
+				menu_layer.show()
+			elif $DeathScreen.visible:
+				menu.show_single_screen("MenuLayer/Pause")
+				menu_layer.visible = !menu_layer.visible
+			elif find_children("*", "CharacterBody2D", false, false) != []:
+				get_tree().paused = false
+				menu_layer.hide()
+		
+		if event.is_action_pressed(&"respawn"):
+			OLD_PLAYER = find_children("*", "CharacterBody2D", false, false)
+			if OLD_PLAYER != []: #remove current player
+				remove_child(OLD_PLAYER[0])
+				OLD_PLAYER[0].queue_free()
+			else:
+				$DeathScreen.hide()
+			OLD_LEVEL = find_children("*", "TileMapLayer", false, false)[0]
+			OLD_TILEMAP = OLD_LEVEL.get_child(-1)
+			OLD_LEVEL.remove_child(OLD_TILEMAP)
+			OLD_TILEMAP.queue_free()
+			
+			NEW_PLAYER = player_scene.instantiate()
+			add_child(NEW_PLAYER)
+			if current_level == 6:
+				NEW_PLAYER.position += Vector2(0, -15488)
+			NEW_LEVEL = menu.levels[current_level].instantiate()
+			ETILESET = NEW_LEVEL.get_child(-1)
+			NEW_LEVEL.remove_child(ETILESET)
+			OLD_LEVEL.add_child(ETILESET)
+			NEW_LEVEL.queue_free()
+			
 			get_tree().paused = false
 			menu_layer.hide()
-	
-	if event.is_action_pressed(&"respawn"):
-		OLD_PLAYER = find_children("*", "CharacterBody2D", false, false)
-		if OLD_PLAYER != []: #remove current player
-			remove_child(OLD_PLAYER[0])
-			OLD_PLAYER[0].queue_free()
-		else:
-			$DeathScreen.hide()
-		OLD_LEVEL = find_children("*", "TileMapLayer", false, false)[0]
-		OLD_TILEMAP = OLD_LEVEL.get_child(-1)
-		OLD_LEVEL.remove_child(OLD_TILEMAP)
-		OLD_TILEMAP.queue_free()
-		
-		NEW_PLAYER = player_scene.instantiate()
-		add_child(NEW_PLAYER)
-		if current_level == 6:
-			NEW_PLAYER.position += Vector2(0, -15488)
-		NEW_LEVEL = menu.levels[current_level].instantiate()
-		ETILESET = NEW_LEVEL.get_child(-1)
-		NEW_LEVEL.remove_child(ETILESET)
-		OLD_LEVEL.add_child(ETILESET)
-		NEW_LEVEL.queue_free()
-		
-		get_tree().paused = false
-		menu_layer.hide()

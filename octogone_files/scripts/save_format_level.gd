@@ -1,4 +1,4 @@
-class_name SaveFormat
+class_name SaveFormatLevel
 extends Resource
 
 var record: float = 0

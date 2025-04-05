@@ -7,12 +7,12 @@ extends Control
 	"level_zigzag": [45, 35, 20, 15, 12],
 	"level_buzz": [45, 35, 25, 16, 13],
 	"level_spiderswing": [45, 30, 18, 14, 10],
-	"level_backtrack": [50, 40, 30, 22.5, 12],
+	"level_backtrack": [50, 40, 30, 20, 12],
 	"level_slide": [40, 30, 20, 15, 12],
 	"level_beetower": [60, 40, 25, 15, 8],
 	"level_turbine": [60, 30, 21, 14, 8],
 	"level_escape": [45, 30, 20, 15, 12],
-	"level_maze": [300, 120, 60, 50, 40],
+	"level_maze": [300, 120, 90, 60, 45],
 	"level_needle": [0, 0, 0, 0, 99999]
 }
 @export var level_indexes: Dictionary = {
@@ -48,7 +48,13 @@ var medal_sprites: Array = [
 	load("res://textures/menu_sprites/medals/diamond.png"),
 	load("res://textures/menu_sprites/medals/ruby.png")
 ]
+var level_boxes: Array = [
+	load("res://textures/menu_sprites/levelbox.png"),
+	load("res://textures/menu_sprites/levellockedbox.png")
+]
 
+var BUS_NAME: String = ""
+var BUS_INDEX: int = 0
 var REBINDING: bool = false
 var INPUT_REBIND: String = ""
 var PREVIOUS_SCREEN
@@ -74,6 +80,12 @@ func _ready() -> void:
 	if not SaveSystem.has("progress"):
 		SaveSystem.set_var("progress", 1)
 		SaveSystem.save()
+	if not SaveSystem.has("volume_settings"):
+		SaveSystem.set_var("volume_settings", {"Master": 1, "Music": 1, "Sfx": 1})
+		SaveSystem.save()
+	for i in range(3):
+		AudioServer.set_bus_volume_db(i, linear_to_db(SaveSystem.get_var("volume_settings:%s" % AudioServer.get_bus_name(i))))
+		$"MenuLayer/Options/Audio".get_child(i).value = SaveSystem.get_var("volume_settings:%s" % AudioServer.get_bus_name(i))
 	update_level_select()
 	world = world_scene.instantiate()
 	add_sibling.call_deferred(world)
@@ -84,6 +96,16 @@ func _input(event: InputEvent) -> void:
 		if event is not InputEventMouseMotion:
 			InputMap.action_add_event("%s" % INPUT_REBIND, event)
 			$"MenuLayer/Options/Controls".show()
+			$"MenuLayer/Options/Background".show()
+			$"MenuLayer/Options/BackgroundOutline".show()
+			$"MenuLayer/Options/Outline1".show()
+			$"MenuLayer/Options/Outline2".show()
+			$"MenuLayer/Options/Outline3".show()
+			$"MenuLayer/Options/Outline4".show()
+			$"MenuLayer/Options/AudioButton".show()
+			$"MenuLayer/Options/ControlsButton".show()
+			$"MenuLayer/Options/CreditsButton".show()
+			$"MenuLayer/Options/BackButton".show()
 			$"MenuLayer/Options/RebindScreen".hide()
 			REBINDING = false
 
@@ -98,6 +120,10 @@ func returns() -> void:
 		$MenuLayer.hide()
 
 func quit() -> void:
+	for i in range(3):
+		BUS_NAME = AudioServer.get_bus_name(i)
+		SaveSystem.set_var("volume_settings:%s" % BUS_NAME, AudioServer.get_bus_volume_linear(i))
+	SaveSystem.save()
 	get_tree().quit(0)
 
 ##Show a specific options screen
@@ -116,10 +142,15 @@ func options_show(node: String) -> void:
 	else:
 		$"MenuLayer/Options/Credits".show()
 
+func change_audio(value: float, bus_name: String) -> void:
+	BUS_INDEX = AudioServer.get_bus_index(bus_name)
+	AudioServer.set_bus_volume_db(BUS_INDEX, linear_to_db(value))
+
 func rebind(binding: String) -> void:
 	InputMap.action_erase_events(binding)
 	INPUT_REBIND = binding
-	$"MenuLayer/Options/Controls".hide()
+	for node in $"MenuLayer/Options".get_children():
+		node.hide()
 	$"MenuLayer/Options/RebindScreen".show()
 	REBINDING = true
 
@@ -163,18 +194,21 @@ func back() -> void:
 
 ##Updates the level select with the current best times in the save data
 func update_level_select() -> void:
-	for level in SaveSystem.current_state_dictionary:
-		if level == "progress":
-			continue
-		RECORD = SaveSystem.get_var("%s:record" % level)
-		MEDAL = SaveSystem.get_var("%s:medal" % level)
+	for level in level_indexes:
 		LEVEL_INDEX = level_indexes.get(level)
 		if LEVEL_INDEX <= 10:
 			LEVEL_BUTTON = $"MenuLayer/LevelSelectLab".get_child(LEVEL_INDEX - 1)
 		else:
 			LEVEL_BUTTON = $"MenuLayer/LevelSelectLabBonus".get_child(LEVEL_INDEX - 11)
-		LEVEL_BUTTON.get_child(1).text = record_to_string(RECORD)
-		LEVEL_BUTTON.get_child(2).texture = medal_sprites[MEDAL]
+		if SaveSystem.get_var("progress") < LEVEL_INDEX:
+			LEVEL_BUTTON.texture_normal = level_boxes[1]
+		else:
+			LEVEL_BUTTON.texture_normal = level_boxes[0]
+		if SaveSystem.current_state_dictionary.has(level):
+			RECORD = SaveSystem.get_var("%s:record" % level)
+			MEDAL = SaveSystem.get_var("%s:medal" % level)
+			LEVEL_BUTTON.get_child(1).text = record_to_string(RECORD)
+			LEVEL_BUTTON.get_child(2).texture = medal_sprites[MEDAL]
 
 ##Show the win screen with updated times and medal
 func win_screen(level_name: String) -> void:

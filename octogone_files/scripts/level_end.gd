@@ -8,11 +8,11 @@ func _ready() -> void:
 	get_tree().create_timer(0.01).timeout.connect(enemy_check)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"fire shotgun"):
+	if event.is_action_pressed(&"fire_shotgun"):
 		get_tree().create_timer(0.01).timeout.connect(enemy_check)
-	if event.is_action_pressed(&"fire grappling hook"):
+	if event.is_action_pressed(&"fire_grappling_hook"):
 		get_tree().create_timer(0.01).timeout.connect(enemy_check)
-	if event.is_action_pressed(&"respawn"):
+	if event.is_action_pressed(&"respawn") and (not $"../../../../Menu/MenuLayer".visible or $"../../../../Menu/MenuLayer/WinScreen".visible):
 		get_tree().create_timer(0.01).timeout.connect(respawn_check)
 
 func hit(rid, body, _body_index, _local_index):

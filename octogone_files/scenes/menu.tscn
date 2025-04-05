@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=47 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun.tscn" id="2_v86rl"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bgb5n8cj062sq" path="res://scenes/level_scenes/level_slide.tscn" id="8_mhjd8"]
 [ext_resource type="PackedScene" uid="uid://n0v60fn8ju8o" path="res://scenes/level_scenes/level_turbine.tscn" id="9_hwfsl"]
 [ext_resource type="PackedScene" uid="uid://chmst26m0hj6l" path="res://scenes/level_scenes/level_needle.tscn" id="10_6cdou"]
-[ext_resource type="Texture2D" uid="uid://x6wrli5g54b2" path="res://textures/menu_sprites/start scherm.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://bl5xr86tkqisf" path="res://textures/menu_sprites/shotgun.png" id="13_6wigr"]
 [ext_resource type="Texture2D" uid="uid://mishmy6gmjs5" path="res://textures/menu_sprites/levelbox.png" id="13_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://mv5223tavlnh" path="res://textures/menu_sprites/grapplinghook.png" id="14_lnf0i"]
@@ -27,10 +26,15 @@
 [ext_resource type="Texture2D" uid="uid://bw8bv2h4l8sx3" path="res://textures/menu_sprites/beetower.png" id="18_48ryc"]
 [ext_resource type="Texture2D" uid="uid://dhy1t5ffatbj7" path="res://textures/menu_sprites/escape.png" id="19_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://ct63rvxtb5kwl" path="res://textures/menu_sprites/maze.png" id="20_hwfsl"]
+[ext_resource type="Texture2D" uid="uid://di3t6r58j5lv" path="res://textures/menu_sprites/octogone_title.png" id="20_spe5f"]
 [ext_resource type="Texture2D" uid="uid://mfnqf1jsbqau" path="res://textures/menu_sprites/needle.png" id="21_a04p5"]
+[ext_resource type="Texture2D" uid="uid://ca5jw4x6r3bix" path="res://textures/tiles.png" id="21_jcbs5"]
+[ext_resource type="Texture2D" uid="uid://d134itcrkj4rd" path="res://textures/menu_sprites/octo_shotgun.png" id="21_nsg6j"]
 [ext_resource type="Texture2D" uid="uid://ce5jkdl1mpo1k" path="res://textures/menu_sprites/laboratory.png" id="22_b5gwo"]
+[ext_resource type="Texture2D" uid="uid://fpxoijlen05n" path="res://textures/menu_sprites/octo_grappling.png" id="22_qwtqu"]
 [ext_resource type="Texture2D" uid="uid://bf6xp2a480afy" path="res://textures/menu_sprites/level_select.png" id="23_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://h3ij076f5sp6" path="res://textures/menu_sprites/backtrack.png" id="23_jlmas"]
+[ext_resource type="Texture2D" uid="uid://65b7ryapotnn" path="res://textures/ster.png" id="23_qwtqu"]
 [ext_resource type="Texture2D" uid="uid://cs5rgy0vx33l6" path="res://textures/menu_sprites/slide.png" id="24_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://0k7nwgihuvei" path="res://textures/menu_sprites/levelarrow.png" id="25_d3h35"]
 [ext_resource type="Texture2D" uid="uid://djctwc1pgrd5w" path="res://textures/menu_sprites/turbine.png" id="26_spe5f"]
@@ -40,6 +44,14 @@
 [ext_resource type="Texture2D" uid="uid://ca41j06vsvfxp" path="res://textures/menu_sprites/main_menu.png" id="31_mhjd8"]
 [ext_resource type="Texture2D" uid="uid://b12ybecsinimi" path="res://textures/menu_sprites/paused.png" id="32_d3h35"]
 [ext_resource type="Texture2D" uid="uid://0igk5tkkmr7k" path="res://textures/menu_sprites/bonus.png" id="33_qfcyc"]
+
+[sub_resource type="Gradient" id="Gradient_dg0of"]
+offsets = PackedFloat32Array(0, 0.107143, 0.875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_21umf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -63,30 +75,102 @@ world_scene = ExtResource("3_v86rl")
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="StartScreen" type="Control" parent="MenuLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StartScreen" type="Sprite2D" parent="MenuLayer/StartScreen"]
-position = Vector2(576, 324)
-scale = Vector2(0.72, 0.72)
-texture = ExtResource("12_i42df")
-
 [node name="Main" type="Control" parent="MenuLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="LevelSelectButton" type="TextureButton" parent="MenuLayer/Main"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 300.0
+offset_right = 1176.0
+offset_bottom = 428.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Levels" type="Sprite2D" parent="MenuLayer/Main/LevelSelectButton"]
+position = Vector2(400, 64)
+texture = ExtResource("26_x16fv")
+
+[node name="OptionsButton" type="TextureButton" parent="MenuLayer/Main"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 375.0
+offset_right = 1176.0
+offset_bottom = 503.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="Options" type="Sprite2D" parent="MenuLayer/Main/OptionsButton"]
+position = Vector2(400, 72.5)
+texture = ExtResource("30_0qewb")
 
 [node name="ExitButton" type="TextureButton" parent="MenuLayer/Main"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("15_0qewb")
+offset_left = 376.0
+offset_top = 450.0
+offset_right = 1176.0
+offset_bottom = 578.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="ExitGame" type="Sprite2D" parent="MenuLayer/Main/ExitButton"]
+texture = ExtResource("15_0qewb")
+offset = Vector2(400, 64)
+
+[node name="Octogone" type="Sprite2D" parent="MenuLayer/Main"]
+position = Vector2(572, 125)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("20_spe5f")
+
+[node name="OctoShotgun" type="Sprite2D" parent="MenuLayer/Main"]
+position = Vector2(200, 260)
+rotation = -0.523599
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("21_nsg6j")
+
+[node name="OctoGrappling" type="Sprite2D" parent="MenuLayer/Main"]
+position = Vector2(900, 260)
+rotation = 0.261799
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("22_qwtqu")
+flip_h = true
+
+[node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/Main"]
+modulate = Color(0.59, 0.59, 0.59, 1)
+z_index = -1
+texture_repeat = 2
+position = Vector2(576, 324)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_jcbs5")
+region_enabled = true
+region_rect = Rect2(0, 0, 2304, 1296)
+
+[node name="Stars" type="CPUParticles2D" parent="MenuLayer/Main"]
+z_index = -2
+z_as_relative = false
+position = Vector2(576, 324)
+amount = 200
+texture = ExtResource("23_qwtqu")
+lifetime = 200.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 324)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_dg0of")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_21umf")
+
+[node name="BlackBackground" type="Polygon2D" parent="MenuLayer/Main"]
+z_index = -3
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
 [node name="LevelSelectLab" type="Control" parent="MenuLayer"]
 visible = false
@@ -424,6 +508,49 @@ position = Vector2(576, 160)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("22_b5gwo")
 
+[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 825.0
+offset_bottom = 153.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
+modulate = Color(0.59, 0.59, 0.59, 1)
+z_index = -1
+texture_repeat = 2
+position = Vector2(576, 324)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_jcbs5")
+region_enabled = true
+region_rect = Rect2(0, 0, 2304, 1296)
+
+[node name="Stars" type="CPUParticles2D" parent="MenuLayer/LevelSelectLab"]
+z_index = -2
+z_as_relative = false
+position = Vector2(576, 324)
+amount = 200
+texture = ExtResource("23_qwtqu")
+lifetime = 200.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 324)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_dg0of")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_21umf")
+
+[node name="BlackBackground" type="Polygon2D" parent="MenuLayer/LevelSelectLab"]
+z_index = -3
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
 [node name="LevelSelectLabBonus" type="Control" parent="MenuLayer"]
 visible = false
 layout_mode = 3
@@ -511,6 +638,49 @@ offset_bottom = 295.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("25_d3h35")
 
+[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 825.0
+offset_bottom = 153.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
+modulate = Color(0.59, 0.59, 0.59, 1)
+z_index = -1
+texture_repeat = 2
+position = Vector2(576, 324)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_jcbs5")
+region_enabled = true
+region_rect = Rect2(0, 0, 2304, 1296)
+
+[node name="Stars" type="CPUParticles2D" parent="MenuLayer/LevelSelectLabBonus"]
+z_index = -2
+z_as_relative = false
+position = Vector2(576, 324)
+amount = 200
+texture = ExtResource("23_qwtqu")
+lifetime = 200.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 324)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_dg0of")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_21umf")
+
+[node name="BlackBackground" type="Polygon2D" parent="MenuLayer/LevelSelectLabBonus"]
+z_index = -3
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
 [node name="Options" type="Control" parent="MenuLayer"]
 visible = false
 layout_mode = 3
@@ -526,36 +696,295 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Master" type="HSlider" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 716.0
+offset_bottom = 152.0
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.001
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Music" type="HSlider" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 200.0
+offset_right = 716.0
+offset_bottom = 352.0
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.001
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Sfx" type="HSlider" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 400.0
+offset_right = 716.0
+offset_bottom = 552.0
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.001
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MasterLabel" type="Label" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 75.0
+offset_right = 456.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 40
+text = "Master"
+
+[node name="MusicLabel" type="Label" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 275.0
+offset_right = 433.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 40
+text = "Music"
+
+[node name="SfxLabel" type="Label" parent="MenuLayer/Options/Audio"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 475.0
+offset_right = 456.0
+offset_bottom = 530.0
+theme_override_font_sizes/font_size = 40
+text = "Sound Effects"
+
 [node name="Controls" type="Control" parent="MenuLayer/Options"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="JumpRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+[node name="LeftRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 100.0
-offset_right = 1300.0
-offset_bottom = 228.0
+offset_left = 400.0
+offset_top = 120.0
+offset_right = 1000.0
+offset_bottom = 248.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Jump" type="Label" parent="MenuLayer/Options/Controls/JumpRebind"]
+[node name="Left" type="Label" parent="MenuLayer/Options/Controls/LeftRebind"]
 layout_mode = 0
-offset_left = 274.5
-offset_top = -10.0
-offset_right = 525.5
-offset_bottom = 127.0
+offset_left = -1.0
+offset_right = 599.0
+offset_bottom = 129.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 25
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 94
+text = "Left"
+horizontal_alignment = 1
+
+[node name="RightRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 120.0
+offset_right = 1325.0
+offset_bottom = 248.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Right" type="Label" parent="MenuLayer/Options/Controls/RightRebind"]
+layout_mode = 0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Right"
+horizontal_alignment = 1
+
+[node name="ShotgunRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 1000.0
+offset_bottom = 328.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Shotgun" type="Label" parent="MenuLayer/Options/Controls/ShotgunRebind"]
+layout_mode = 0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Shotgun"
+horizontal_alignment = 1
+
+[node name="GrapplingRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 200.0
+offset_right = 1325.0
+offset_bottom = 328.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Grappling" type="Label" parent="MenuLayer/Options/Controls/GrapplingRebind"]
+layout_mode = 0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Grappling"
+horizontal_alignment = 1
+
+[node name="JumpRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 562.5
+offset_top = 280.0
+offset_right = 1162.5
+offset_bottom = 408.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Jump" type="Label" parent="MenuLayer/Options/Controls/JumpRebind"]
+layout_mode = 0
+offset_right = 597.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
 text = "Jump"
+horizontal_alignment = 1
+
+[node name="ZoomInRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 420.0
+offset_right = 1000.0
+offset_bottom = 548.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ZoomIn" type="Label" parent="MenuLayer/Options/Controls/ZoomInRebind"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Zoom In"
+horizontal_alignment = 1
+
+[node name="ZoomOutRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 420.0
+offset_right = 1325.0
+offset_bottom = 548.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ZoomOut" type="Label" parent="MenuLayer/Options/Controls/ZoomOutRebind"]
+layout_mode = 0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Zoom Out"
+horizontal_alignment = 1
+
+[node name="RepawnRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 500.0
+offset_right = 1000.0
+offset_bottom = 628.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Respawn" type="Label" parent="MenuLayer/Options/Controls/RepawnRebind"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Respawn"
+horizontal_alignment = 1
+
+[node name="PauseRebind" type="TextureButton" parent="MenuLayer/Options/Controls"]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 500.0
+offset_right = 1325.0
+offset_bottom = 628.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Pause" type="Label" parent="MenuLayer/Options/Controls/PauseRebind"]
+layout_mode = 0
+offset_right = 599.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 94
+text = "Pause"
+horizontal_alignment = 1
 
 [node name="Credits" type="Control" parent="MenuLayer/Options"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Credits" type="Label" parent="MenuLayer/Options/Credits"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 25.0
+offset_right = 1129.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 30
+text = "Credits for assets in the game:
+
+-> ExceptRea on itch.io for making a big part of the tileset we used for our levels."
+autowrap_mode = 3
 
 [node name="RebindScreen" type="Control" parent="MenuLayer/Options"]
 visible = false
@@ -564,9 +993,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer/Options/RebindScreen"]
-z_index = -1
 color = Color(0, 0, 0, 0.752941)
-polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+polygon = PackedVector2Array(-384, -216, 1536, -216, 1536, 864, -384, 864)
 
 [node name="Label" type="Label" parent="MenuLayer/Options/RebindScreen"]
 layout_mode = 0
@@ -622,12 +1050,12 @@ invert_enabled = true
 invert_border = 10.0
 polygon = PackedVector2Array(942, 10, 1142, 10, 1142, 100, 942, 100)
 
-[node name="SoundsButton" type="Button" parent="MenuLayer/Options"]
+[node name="AudioButton" type="Button" parent="MenuLayer/Options"]
 layout_mode = 0
 offset_right = 295.0
 offset_bottom = 216.0
 theme_override_font_sizes/font_size = 50
-text = "Sounds"
+text = "Audio"
 flat = true
 
 [node name="ControlsButton" type="Button" parent="MenuLayer/Options"]
@@ -658,6 +1086,7 @@ text = "Back"
 flat = true
 
 [node name="Pause" type="Control" parent="MenuLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -733,7 +1162,7 @@ offset_left = 396.5
 offset_top = 50.0
 offset_right = 755.5
 offset_bottom = 114.0
-texture_normal = ExtResource("26_x16fv")
+texture_normal = ExtResource("23_ffqrc")
 
 [node name="MedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen"]
 position = Vector2(150, 150)
@@ -755,13 +1184,15 @@ offset_top = 300.0
 offset_right = 256.0
 offset_bottom = 369.0
 theme_override_font_sizes/font_size = 50
-text = "00.000"
+text = "00 : 00 . 000"
 
 [node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer"]
 z_index = -2
 color = Color(0, 0, 0, 0.752941)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
+[connection signal="pressed" from="MenuLayer/Main/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
+[connection signal="pressed" from="MenuLayer/Main/OptionsButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Options")]]
 [connection signal="pressed" from="MenuLayer/Main/ExitButton" to="." method="quit"]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level1Button" to="." method="load_level" binds= [1]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level2Button" to="." method="load_level" binds= [2]]
@@ -774,11 +1205,24 @@ polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level9Button" to="." method="load_level" binds= [9]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level10Button" to="." method="load_level" binds= [10]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/BonusButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLabBonus")]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLab/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level11Button" to="." method="load_level" binds= [11]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level12Button" to="." method="load_level" binds= [12]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/NormalButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
+[connection signal="value_changed" from="MenuLayer/Options/Audio/Master" to="." method="change_audio" binds= ["Master"]]
+[connection signal="value_changed" from="MenuLayer/Options/Audio/Music" to="." method="change_audio" binds= ["Music"]]
+[connection signal="value_changed" from="MenuLayer/Options/Audio/Sfx" to="." method="change_audio" binds= ["Sfx"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/LeftRebind" to="." method="rebind" binds= ["move_left"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/RightRebind" to="." method="rebind" binds= ["move_right"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/ShotgunRebind" to="." method="rebind" binds= ["fire_shotgun"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/GrapplingRebind" to="." method="rebind" binds= ["fire_grappling_hook"]]
 [connection signal="pressed" from="MenuLayer/Options/Controls/JumpRebind" to="." method="rebind" binds= ["jump"]]
-[connection signal="pressed" from="MenuLayer/Options/SoundsButton" to="." method="options_show" binds= ["Audio"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/ZoomInRebind" to="." method="rebind" binds= ["zoom_in"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/ZoomOutRebind" to="." method="rebind" binds= ["zoom_out"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/RepawnRebind" to="." method="rebind" binds= ["respawn"]]
+[connection signal="pressed" from="MenuLayer/Options/Controls/PauseRebind" to="." method="rebind" binds= ["pause"]]
+[connection signal="pressed" from="MenuLayer/Options/AudioButton" to="." method="options_show" binds= ["Audio"]]
 [connection signal="pressed" from="MenuLayer/Options/ControlsButton" to="." method="options_show" binds= ["Controls"]]
 [connection signal="pressed" from="MenuLayer/Options/CreditsButton" to="." method="options_show" binds= ["Credits"]]
 [connection signal="pressed" from="MenuLayer/Options/BackButton" to="." method="back"]
