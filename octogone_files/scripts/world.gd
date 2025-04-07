@@ -55,3 +55,4 @@ func _input(event: InputEvent) -> void:
 			
 			get_tree().paused = false
 			menu_layer.hide()
+			$"HUD/SpeedrunTimer".show()

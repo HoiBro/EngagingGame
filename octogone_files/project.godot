@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Octogone"
+config/version="1.1.0"
 run/main_scene="uid://bxawjmuwj4v04"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://textures/icon.svg"
+boot_splash/show_image=false
+config/icon="uid://dlua5075h1dn2"
+config/windows_native_icon="res://textures/menu_sprites/octo_icon.ico"
 
 [autoload]
 

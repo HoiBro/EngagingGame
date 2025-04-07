@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3g6jytucis3k"
-path="res://.godot/imported/boxes.png-b13e01917fc212ca93b9873ec69ce4fa.ctex"
+uid="uid://cadnmqbm1pf23"
+path="res://.godot/imported/level_complete.png-8c910fade335d03fe7e22760e202a2a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu_sprites/boxes.png"
-dest_files=["res://.godot/imported/boxes.png-b13e01917fc212ca93b9873ec69ce4fa.ctex"]
+source_file="res://textures/menu_sprites/level_complete.png"
+dest_files=["res://.godot/imported/level_complete.png-8c910fade335d03fe7e22760e202a2a7.ctex"]
 
 [params]
 

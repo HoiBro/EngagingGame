@@ -66,6 +66,8 @@ var NEW_LEVEL: Node2D
 
 var RECORD: float = 0
 var MEDAL: int = 0
+var CURRENT_MEDAL: int = 0
+var LEVEL_MEDALS: Array = []
 var LEVEL_INDEX: int = 0
 var LEVEL_BUTTON: Node
 
@@ -101,11 +103,13 @@ func _input(event: InputEvent) -> void:
 			$"MenuLayer/Options/Outline1".show()
 			$"MenuLayer/Options/Outline2".show()
 			$"MenuLayer/Options/Outline3".show()
-			$"MenuLayer/Options/Outline4".show()
 			$"MenuLayer/Options/AudioButton".show()
 			$"MenuLayer/Options/ControlsButton".show()
 			$"MenuLayer/Options/CreditsButton".show()
 			$"MenuLayer/Options/BackButton".show()
+			$"MenuLayer/Options/BackgroundTiling".show()
+			$"MenuLayer/Options/Stars".show()
+			$"MenuLayer/Options/BlackBackground".show()
 			$"MenuLayer/Options/RebindScreen".hide()
 			REBINDING = false
 
@@ -178,19 +182,29 @@ func load_level(number: int) -> void:
 	get_tree().paused = false
 	$MenuLayer.hide()
 	$"../World/DeathScreen".hide()
+	$"../World/HUD/SpeedrunTimer".show()
+
+##Loads the level in the game that is number steps further
+func load_relative_level(number: int) -> void:
+	load_level(world.current_level + 1 + number)
 
 ##Function to show a specific menu screen,
 ##NodePath needs to go from the Menu node
 func show_single_screen(node_path: NodePath) -> void:
 	for node in $MenuLayer.get_children():
-		if node.visible and node != $"MenuLayer/BackgroundBlur":
+		if node.visible and (node == $"MenuLayer/Main" or node == $"MenuLayer/Pause"):
 			PREVIOUS_SCREEN = self.get_path_to(node)
 		node.hide()
 	get_node(node_path).show()
 	$"MenuLayer/BackgroundBlur".show()
 
+##Returns to the previously seen screen, 
+##this is either the main menu or the pause menu
 func back() -> void:
-	show_single_screen(PREVIOUS_SCREEN)
+	if world.find_children("*", "CharacterBody2D", false, false) == [] and str(PREVIOUS_SCREEN) == "MenuLayer/Pause":
+		show_single_screen("MenuLayer/Main")
+	else:
+		show_single_screen(PREVIOUS_SCREEN)
 
 ##Updates the level select with the current best times in the save data
 func update_level_select() -> void:
@@ -211,16 +225,31 @@ func update_level_select() -> void:
 			LEVEL_BUTTON.get_child(2).texture = medal_sprites[MEDAL]
 
 ##Show the win screen with updated times and medal
-func win_screen(level_name: String) -> void:
+func win_screen(level_name: String, time: float) -> void:
 	update_level_select()
+	$"../World/HUD/SpeedrunTimer".hide()
+	
+	LEVEL_MEDALS = medal_times.get(level_name)
 	RECORD = SaveSystem.get_var("%s:record" % level_name)
 	MEDAL = SaveSystem.get_var("%s:medal" % level_name)
-	$"MenuLayer/WinScreen/RecordLabel".text = record_to_string(RECORD)
-	$"MenuLayer/WinScreen/MedalLabel".text = medals[MEDAL]
-	$"MenuLayer/WinScreen/MedalSprite".texture = medal_sprites[MEDAL]
+	CURRENT_MEDAL = 0
+	for i in range(LEVEL_MEDALS.size()):
+		if time <= LEVEL_MEDALS[i]:
+			CURRENT_MEDAL += 1
+	
+	$"MenuLayer/WinScreen/WinBox/LevelName".text = level_name[6].to_upper() + level_name.substr(7,-1)
+	$"MenuLayer/WinScreen/WinBox/GoldLabel".text = record_to_string(LEVEL_MEDALS[2])
+	$"MenuLayer/WinScreen/WinBox/SilverLabel".text = record_to_string(LEVEL_MEDALS[1])
+	$"MenuLayer/WinScreen/WinBox/BronzeLabel".text = record_to_string(LEVEL_MEDALS[0])
+	$"MenuLayer/WinScreen/WinBox/RecordLabel".text = record_to_string(RECORD)
+	$"MenuLayer/WinScreen/WinBox/RecordMedalLabel".text = medals[MEDAL]
+	$"MenuLayer/WinScreen/WinBox/RecordMedalSprite".texture = medal_sprites[MEDAL]
+	#don't take the SpeedrunTimer text here, it is sometimes wrong so we convert and check using record_to_string()
+	$"MenuLayer/WinScreen/CurrentLabel".text = record_to_string(ceil(1000*time)/1000)
+	$"MenuLayer/WinScreen/CurrentMedalSprite".texture = medal_sprites[CURRENT_MEDAL]
 	show_single_screen("MenuLayer/WinScreen")
 
-##Convert a record into a string of the format "00 : 00 . 000"
+##Convert a record/time into a string of the format "00 : 00 . 000"
 func record_to_string(record: float) -> String:
 	SEC = floor(fmod(record, 60))
 	MSEC = round((record - floor(record))*1000)

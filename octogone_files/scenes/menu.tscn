@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bxawjmuwj4v04"]
+[gd_scene load_steps=55 format=3 uid="uid://bxawjmuwj4v04"]
 
 [ext_resource type="Script" uid="uid://be0p22pyedimf" path="res://scripts/menu.gd" id="1_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://bojlnrciik1xi" path="res://scenes/level_scenes/level_shotgun.tscn" id="2_v86rl"]
@@ -44,6 +44,14 @@
 [ext_resource type="Texture2D" uid="uid://ca41j06vsvfxp" path="res://textures/menu_sprites/main_menu.png" id="31_mhjd8"]
 [ext_resource type="Texture2D" uid="uid://b12ybecsinimi" path="res://textures/menu_sprites/paused.png" id="32_d3h35"]
 [ext_resource type="Texture2D" uid="uid://0igk5tkkmr7k" path="res://textures/menu_sprites/bonus.png" id="33_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://cueuvr1qvjv3r" path="res://textures/menu_sprites/back_arrow.png" id="38_qwtqu"]
+[ext_resource type="Texture2D" uid="uid://dnxydugmhddif" path="res://textures/menu_sprites/godot_logo.png" id="42_dg0of"]
+[ext_resource type="Texture2D" uid="uid://byi4mf8jhpot7" path="res://textures/menu_sprites/next_level.png" id="47_21umf"]
+[ext_resource type="Texture2D" uid="uid://dbwmurti1dxfx" path="res://textures/menu_sprites/medals/gold.png" id="47_055ta"]
+[ext_resource type="Texture2D" uid="uid://dbboilgylo8nn" path="res://textures/menu_sprites/medals/silver.png" id="48_6jp1x"]
+[ext_resource type="Texture2D" uid="uid://rvseeh3vaaj0" path="res://textures/menu_sprites/replay_level.png" id="48_bugl6"]
+[ext_resource type="Texture2D" uid="uid://b18e4ac50ujwl" path="res://textures/menu_sprites/medals/bronze.png" id="49_dslam"]
+[ext_resource type="Texture2D" uid="uid://cadnmqbm1pf23" path="res://textures/menu_sprites/level_complete.png" id="50_6jp1x"]
 
 [sub_resource type="Gradient" id="Gradient_dg0of"]
 offsets = PackedFloat32Array(0, 0.107143, 0.875, 1)
@@ -122,7 +130,6 @@ offset = Vector2(400, 64)
 
 [node name="Octogone" type="Sprite2D" parent="MenuLayer/Main"]
 position = Vector2(572, 125)
-scale = Vector2(1.25, 1.25)
 texture = ExtResource("20_spe5f")
 
 [node name="OctoShotgun" type="Sprite2D" parent="MenuLayer/Main"]
@@ -508,14 +515,13 @@ position = Vector2(576, 160)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("22_b5gwo")
 
-[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
+[node name="BackButton" type="TextureButton" parent="MenuLayer/LevelSelectLab"]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 1052.0
 offset_top = 25.0
-offset_right = 825.0
-offset_bottom = 153.0
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("27_0ndyk")
+offset_right = 1127.0
+offset_bottom = 89.0
+texture_normal = ExtResource("38_qwtqu")
 
 [node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/LevelSelectLab"]
 modulate = Color(0.59, 0.59, 0.59, 1)
@@ -638,14 +644,13 @@ offset_bottom = 295.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("25_d3h35")
 
-[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
+[node name="BackButton" type="TextureButton" parent="MenuLayer/LevelSelectLabBonus"]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 1052.0
 offset_top = 25.0
-offset_right = 825.0
-offset_bottom = 153.0
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("27_0ndyk")
+offset_right = 1127.0
+offset_bottom = 89.0
+texture_normal = ExtResource("38_qwtqu")
 
 [node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/LevelSelectLabBonus"]
 modulate = Color(0.59, 0.59, 0.59, 1)
@@ -977,14 +982,32 @@ offset_bottom = 40.0
 [node name="Credits" type="Label" parent="MenuLayer/Options/Credits"]
 layout_mode = 0
 offset_left = 300.0
-offset_top = 25.0
+offset_top = 15.0
 offset_right = 1129.0
-offset_bottom = 202.0
-theme_override_font_sizes/font_size = 30
-text = "Credits for assets in the game:
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 20
+text = "Credits for the game:
 
--> ExceptRea on itch.io for making a big part of the tileset we used for our levels."
+-> Octogone is made in the Godot Game Engine so first of all thanks to the Godot Community for making this possible!
+
+-> The Totem Game Dev student team of the TU/e for providing us with the casestudy and the freedom to let us make what we thought would be a fun and engaging game.
+
+-> ExceptRea on itch.io for making a big part of the tileset we used for our levels.
+
+-> And lastly a huge thank you to all of our friends who helped building and playtesting the game to ensure that all the physics and levels were on par!
+
+Sincerely,
+
+Team RND:
+Lead Programmer: Finn
+Level Design: Cogi
+Prototyping and QA: Pepijn
+Art: Philip"
 autowrap_mode = 3
+
+[node name="GodotLogo" type="Sprite2D" parent="MenuLayer/Options/Credits"]
+position = Vector2(1027, 50)
+texture = ExtResource("42_dg0of")
 
 [node name="RebindScreen" type="Control" parent="MenuLayer/Options"]
 visible = false
@@ -1010,7 +1033,7 @@ text = "Press button to rebind to"
 
 [node name="Background" type="Polygon2D" parent="MenuLayer/Options"]
 z_index = -1
-color = Color(0.2093, 0.477902, 0.91, 1)
+color = Color(0.141176, 0.376471, 0.509804, 1)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
 [node name="BackgroundOutline" type="Polygon2D" parent="MenuLayer/Options"]
@@ -1043,13 +1066,6 @@ invert_enabled = true
 invert_border = 10.0
 polygon = PackedVector2Array(10, 10, 285, 10, 285, 206, 10, 206)
 
-[node name="Outline4" type="Polygon2D" parent="MenuLayer/Options"]
-z_index = -1
-color = Color(0.0156863, 0.0745098, 0.207843, 1)
-invert_enabled = true
-invert_border = 10.0
-polygon = PackedVector2Array(942, 10, 1142, 10, 1142, 100, 942, 100)
-
 [node name="AudioButton" type="Button" parent="MenuLayer/Options"]
 layout_mode = 0
 offset_right = 295.0
@@ -1076,14 +1092,49 @@ theme_override_font_sizes/font_size = 50
 text = "Credits"
 flat = true
 
-[node name="BackButton" type="Button" parent="MenuLayer/Options"]
+[node name="BackButton" type="TextureButton" parent="MenuLayer/Options"]
+top_level = true
 layout_mode = 0
-offset_left = 932.0
-offset_right = 1152.0
-offset_bottom = 110.0
-theme_override_font_sizes/font_size = 50
-text = "Back"
-flat = true
+offset_left = 1052.0
+offset_top = 25.0
+offset_right = 1127.0
+offset_bottom = 89.0
+texture_normal = ExtResource("38_qwtqu")
+
+[node name="BackgroundTiling" type="Sprite2D" parent="MenuLayer/Options"]
+modulate = Color(0.59, 0.59, 0.59, 1)
+z_index = -2
+texture_repeat = 2
+position = Vector2(576, 324)
+scale = Vector2(0.833, 0.833)
+texture = ExtResource("21_jcbs5")
+region_enabled = true
+region_rect = Rect2(0, 0, 2304, 1296)
+
+[node name="Stars" type="CPUParticles2D" parent="MenuLayer/Options"]
+z_index = -3
+z_as_relative = false
+position = Vector2(576, 324)
+scale = Vector2(1.667, 1.667)
+amount = 200
+texture = ExtResource("23_qwtqu")
+lifetime = 200.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(576, 324)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_dg0of")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_21umf")
+
+[node name="BlackBackground" type="Polygon2D" parent="MenuLayer/Options"]
+z_index = -4
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-384, -216, 1536, -216, 1536, 864, -384, 864)
 
 [node name="Pause" type="Control" parent="MenuLayer"]
 visible = false
@@ -1156,38 +1207,183 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LevelSelectButton" type="TextureButton" parent="MenuLayer/WinScreen"]
-layout_mode = 0
-offset_left = 396.5
-offset_top = 50.0
-offset_right = 755.5
-offset_bottom = 114.0
-texture_normal = ExtResource("23_ffqrc")
+[node name="WinBoxOutline1" type="Polygon2D" parent="MenuLayer/WinScreen"]
+position = Vector2(35, 250)
+color = Color(0.0470588, 0.168627, 0.392157, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(0, 50, 600, 50, 600, 275, 0, 275)
 
-[node name="MedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen"]
-position = Vector2(150, 150)
+[node name="WinBoxOutline2" type="Polygon2D" parent="MenuLayer/WinScreen"]
+position = Vector2(35, 250)
+color = Color(0.0470588, 0.168627, 0.392157, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(0, 0, 175, 0, 175, 50)
+
+[node name="WinBoxOutline3" type="Polygon2D" parent="MenuLayer/WinScreen"]
+z_index = 1
+position = Vector2(39, 250)
+color = Color(0.0470588, 0.168627, 0.392157, 1)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(-4, 50, 171, 50, 171, 275, -4, 275)
+
+[node name="WinBox" type="Polygon2D" parent="MenuLayer/WinScreen"]
+position = Vector2(35, 250)
+color = Color(0.141176, 0.376471, 0.509804, 1)
+polygon = PackedVector2Array(0, 0, 175, 0, 175, 50, 600, 50, 600, 275, 0, 275)
+uv = PackedVector2Array(0, 0, 200, 0, 200, 70, 600, 70, 600, 350, 0, 350)
+
+[node name="LevelName" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 161.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 25
+text = "Level Name"
+horizontal_alignment = 1
+
+[node name="RecordMedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen/WinBox"]
+position = Vector2(250, 163)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("17_0ndyk")
 
-[node name="MedalLabel" type="Label" parent="MenuLayer/WinScreen"]
-layout_mode = 0
-offset_left = 100.0
+[node name="RecordMedalLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 184.0
 offset_top = 200.0
-offset_right = 270.0
-offset_bottom = 269.0
-theme_override_font_sizes/font_size = 50
+offset_right = 317.0
+offset_bottom = 242.0
+theme_override_font_sizes/font_size = 30
 text = "None"
+horizontal_alignment = 1
 
-[node name="RecordLabel" type="Label" parent="MenuLayer/WinScreen"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 256.0
-offset_bottom = 369.0
+[node name="RecordLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 314.0
+offset_top = 140.0
+offset_right = 594.0
+offset_bottom = 209.0
 theme_override_font_sizes/font_size = 50
 text = "00 : 00 . 000"
 
+[node name="CurrentBestLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 248.0
+offset_top = 75.0
+offset_right = 564.0
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 35
+text = "Current Best Time:"
+
+[node name="GoldSprite" type="Sprite2D" parent="MenuLayer/WinScreen/WinBox"]
+position = Vector2(20, 117)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("47_055ta")
+
+[node name="GoldLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 163.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 23
+text = "00 : 00 . 000"
+
+[node name="SilverSprite" type="Sprite2D" parent="MenuLayer/WinScreen/WinBox"]
+position = Vector2(20, 160)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("48_6jp1x")
+
+[node name="SilverLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 40.0
+offset_top = 143.0
+offset_right = 167.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 23
+text = "00 : 00 . 000"
+
+[node name="BronzeSprite" type="Sprite2D" parent="MenuLayer/WinScreen/WinBox"]
+position = Vector2(20, 205)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("49_dslam")
+
+[node name="BronzeLabel" type="Label" parent="MenuLayer/WinScreen/WinBox"]
+offset_left = 40.0
+offset_top = 188.0
+offset_right = 167.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 23
+text = "00 : 00 . 000"
+
+[node name="LevelComplete" type="Sprite2D" parent="MenuLayer/WinScreen"]
+position = Vector2(576, 75)
+texture = ExtResource("50_6jp1x")
+
+[node name="CurrentMedalSprite" type="Sprite2D" parent="MenuLayer/WinScreen"]
+position = Vector2(400, 165)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("17_0ndyk")
+
+[node name="CurrentLabel" type="Label" parent="MenuLayer/WinScreen"]
+offset_left = 450.0
+offset_top = 120.0
+offset_right = 813.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 65
+text = "00 : 00 . 000"
+
+[node name="NextLevelButton" type="TextureButton" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 225.0
+offset_right = 1500.0
+offset_bottom = 353.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="NextLevel" type="Sprite2D" parent="MenuLayer/WinScreen/NextLevelButton"]
+position = Vector2(400, 64)
+texture = ExtResource("47_21umf")
+
+[node name="ReplayLevelButton" type="TextureButton" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 300.0
+offset_right = 1500.0
+offset_bottom = 428.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="ReplayLevel" type="Sprite2D" parent="MenuLayer/WinScreen/ReplayLevelButton"]
+position = Vector2(400, 72.5)
+texture = ExtResource("48_bugl6")
+
+[node name="LevelSelectButton" type="TextureButton" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 375.0
+offset_right = 1500.0
+offset_bottom = 503.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="LevelSelect" type="Sprite2D" parent="MenuLayer/WinScreen/LevelSelectButton"]
+position = Vector2(400, 64)
+texture = ExtResource("23_ffqrc")
+
+[node name="MainMenuButton" type="TextureButton" parent="MenuLayer/WinScreen"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 450.0
+offset_right = 1500.0
+offset_bottom = 578.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("27_0ndyk")
+
+[node name="MainMenu" type="Sprite2D" parent="MenuLayer/WinScreen/MainMenuButton"]
+position = Vector2(400, 64)
+texture = ExtResource("31_mhjd8")
+
 [node name="BackgroundBlur" type="Polygon2D" parent="MenuLayer"]
-z_index = -2
+z_index = -4
 color = Color(0, 0, 0, 0.752941)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
@@ -1205,11 +1401,11 @@ polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level9Button" to="." method="load_level" binds= [9]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/Level10Button" to="." method="load_level" binds= [10]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLab/BonusButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLabBonus")]]
-[connection signal="pressed" from="MenuLayer/LevelSelectLab/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLab/BackButton" to="." method="back"]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level11Button" to="." method="load_level" binds= [11]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/Level12Button" to="." method="load_level" binds= [12]]
 [connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/NormalButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
-[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
+[connection signal="pressed" from="MenuLayer/LevelSelectLabBonus/BackButton" to="." method="back"]
 [connection signal="value_changed" from="MenuLayer/Options/Audio/Master" to="." method="change_audio" binds= ["Master"]]
 [connection signal="value_changed" from="MenuLayer/Options/Audio/Music" to="." method="change_audio" binds= ["Music"]]
 [connection signal="value_changed" from="MenuLayer/Options/Audio/Sfx" to="." method="change_audio" binds= ["Sfx"]]
@@ -1230,4 +1426,7 @@ polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 [connection signal="pressed" from="MenuLayer/Pause/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
 [connection signal="pressed" from="MenuLayer/Pause/OptionsButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Options")]]
 [connection signal="pressed" from="MenuLayer/Pause/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]
+[connection signal="pressed" from="MenuLayer/WinScreen/NextLevelButton" to="." method="load_relative_level" binds= [1]]
+[connection signal="pressed" from="MenuLayer/WinScreen/ReplayLevelButton" to="." method="load_relative_level" binds= [0]]
 [connection signal="pressed" from="MenuLayer/WinScreen/LevelSelectButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/LevelSelectLab")]]
+[connection signal="pressed" from="MenuLayer/WinScreen/MainMenuButton" to="." method="show_single_screen" binds= [NodePath("MenuLayer/Main")]]

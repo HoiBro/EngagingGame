@@ -31,24 +31,6 @@ collision_mask = 3
 floor_max_angle = 1.22173
 floor_snap_length = 0.0
 script = ExtResource("1_s1vd6")
-max_speed = null
-acceleration_air = null
-acceleration_ground = null
-jump_velocity = null
-air_friction = null
-ground_friction = null
-dir_fric_mult = null
-gravity = null
-max_fall = null
-jump_buffer_time = null
-bunnyhop_speed = null
-coyote_time = null
-pull_strength = null
-grappling_conserve = null
-just_jumped = null
-has_jumped = null
-is_grappling = null
-has_grappled = null
 
 [node name="PlayerSprite" parent="." instance=ExtResource("2_r7638")]
 script = ExtResource("3_3v2ag")

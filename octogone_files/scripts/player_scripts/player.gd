@@ -206,6 +206,8 @@ func win() -> void:
 	died.emit()
 	$"../PlayerWin".play()
 	
+	if SaveSystem.get_var("progress") < $"..".current_level + 2:
+		SaveSystem.set_var("progress", $"..".current_level + 2)
 	LEVEL_PATH = $"../../Menu".levels[$"..".current_level].get_path()
 	LEVEL_NAME = LEVEL_PATH.right(-LEVEL_PATH.rfind("/") - 1).left(-5)
 	#Check for level save
@@ -217,9 +219,8 @@ func win() -> void:
 		LEVEL_RECORD = SaveSystem.get_var("%s:record" % LEVEL_NAME)
 		if TIME < LEVEL_RECORD:
 			set_records()
-	if SaveSystem.get_var("progress") < $"..".current_level + 2:
-		SaveSystem.set_var("progress", $"..".current_level + 2)
-	$"../../Menu".win_screen(LEVEL_NAME)
+	SaveSystem.save()
+	$"../../Menu".win_screen(LEVEL_NAME, TIME)
 	queue_free()
 
 ##Saves the records to the save data
@@ -230,7 +231,6 @@ func set_records():
 	for i in range(MEDAL_TIMES.size()):
 		if TIME <= MEDAL_TIMES[i]:
 			SaveSystem.set_var("%s:medal" % LEVEL_NAME, i+1)
-	SaveSystem.save()
 
 ##Convert a time to a string of the format "00 : 00 . 000"
 func time_to_string() -> String:
